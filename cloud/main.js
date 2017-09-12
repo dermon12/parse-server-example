@@ -60,9 +60,11 @@ Parse.Cloud.define("addRec", function(request, response)
         //When the promise is fulfilled function(user) fires, and now we have our USER!
         function(user)
         {
-			user.set("sentRecordedMessagesList", requestList);
-			user.save(null, {useMasterKey:true});
-            response.success("success");
+	    user.set("sentRecordedMessagesList", requestList);
+	    user.save(null, {useMasterKey:true});
+            var data =  "new recorded message arrived!"
+	    sendPushNotificationToUserByMobile(id, data);
+	    response.success("success");
         }
         ,
         function(error)
@@ -146,3 +148,24 @@ Parse.Cloud.define("updateWait", function(request, response)
     );
 
 });
+
+function sendPushNotificationToUserByMobile(mobile, data) {
+	var query = new Parse.Query(Parse.User);
+    	query.equalTo("mobile", userId);
+	Parse.Push.send({
+		  where: query,
+		  data: {
+		    alert: data,
+		    badge: 1,
+		    sound: 'default'
+		  }
+		}, {
+		  useMasterKey: true,
+		  success: function() {
+		    // Push sent!
+		  },
+		  error: function(error) {
+		    // There was a problem :(
+		  }
+		});	
+}
