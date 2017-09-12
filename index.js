@@ -20,6 +20,12 @@ var api = new ParseServer({
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
+  push: {
+        android: {
+            senderId: '272441704533', // The Sender ID of GCM
+            apiKey: 'AIzaSyC8yat3hCt3xrIYQ2gDipVVVcVWKK7tnHw' // The Server API Key of GCM
+        } 
+    }
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
