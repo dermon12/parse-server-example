@@ -158,22 +158,29 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 			function(user)
 			{
 			query.equalTo("user", user);
+					Parse.Push.send({
+			  where: query,
+			  data: {
+			    alert: pushData,
+			    badge: 1,
+			    sound: 'default'
+			  }
+			}, {
+			  useMasterKey: true,
+			  success: function() {
+			    // Push sent!
+			  },
+			  error: function(error) {
+				response.error(error);
+			  }
+			});	
 			}
-		}
-	Parse.Push.send({
-		  where: query,
-		  data: {
-		    alert: pushData,
-		    badge: 1,
-		    sound: 'default'
-		  }
-		}, {
-		  useMasterKey: true,
-		  success: function() {
-		    // Push sent!
-		  },
-		  error: function(error) {
-		   	response.error(error);
-		  }
-		});	
+			,
+		function(error)
+			{
+			    response.error(error);
+			    return error
+			}
+		};
+
 }
