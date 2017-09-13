@@ -157,7 +157,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 			//When the promise is fulfilled function(user) fires, and now we have our USER!
 			function(user)
 			{
-			query.equalTo("_p_user", user);
+			query.equalTo("user", user);
 			Parse.Push.send({
 			  where: query,
 			  data: {
