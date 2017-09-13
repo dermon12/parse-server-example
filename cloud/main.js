@@ -62,8 +62,8 @@ Parse.Cloud.define("addRec", function(request, response)
         {
 	    user.set("sentRecordedMessagesList", requestList);
 	    user.save(null, {useMasterKey:true});
-            var data =  "new recorded message arrived!"
-	    sendPushNotificationToUserByMobile(id, data);
+            var data =  "new recorded message arrived!";
+	    sendPushNotificationToUserByMobile(id, data);	
 	    response.success("success");
         }
         ,
@@ -116,6 +116,7 @@ Parse.Cloud.define("updateFriends", function(request, response)
         function(error)
         {
             response.error(error);
+	    return error
         }
     );
 
@@ -165,7 +166,7 @@ function sendPushNotificationToUserByMobile(mobile, data) {
 		    // Push sent!
 		  },
 		  error: function(error) {
-		    // There was a problem :(
+		   	response.error(error);
 		  }
 		});	
 }
