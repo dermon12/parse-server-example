@@ -165,7 +165,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 			    badge: 1,
 			    sound: 'default'
 			  }
-			}, {
+			}), {
 			  useMasterKey: true,
 			  success: function() {
 			    // Push sent!
