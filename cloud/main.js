@@ -152,7 +152,6 @@ Parse.Cloud.define("updateWait", function(request, response)
 
 function sendPushNotificationToUserByMobile(mobile, pushData) {
 	var query = new Parse.Query(Parse.Installation);
-	response.error(mobile);
     	query.equalTo("mobile", mobile);
 	Parse.Push.send({
 		  where: query,
