@@ -158,7 +158,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 			function(user)
 			{
 			query.equalTo("user", user);
-					Parse.Push.send({
+			Parse.Push.send({
 			  where: query,
 			  data: {
 			    alert: pushData,
@@ -173,7 +173,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 			  error: function(error) {
 				response.error(error);
 			  }
-			});	
+			);	
 			}
 			,
 		function(error)
