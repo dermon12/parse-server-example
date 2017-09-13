@@ -173,6 +173,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 			  error: function(error) {
 				response.error(error);
 			  }
+			}
 			);	
 			}
 			,
