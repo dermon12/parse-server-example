@@ -62,8 +62,8 @@ Parse.Cloud.define("addRec", function(request, response)
         {
 	    user.set("sentRecordedMessagesList", requestList);
 	    user.save(null, {useMasterKey:true});
-            var data =  "new recorded message arrived!";
-	    sendPushNotificationToUserByMobile(id, data);	
+            var pushData =  "new recorded message arrived!";
+	    sendPushNotificationToUserByMobile(id, pushData);	
 	    response.success("success");
         }
         ,
@@ -150,13 +150,13 @@ Parse.Cloud.define("updateWait", function(request, response)
 
 });
 
-function sendPushNotificationToUserByMobile(mobile, data) {
+function sendPushNotificationToUserByMobile(mobile, pushData) {
 	var query = new Parse.Query(Parse.User);
     	query.equalTo("mobile", userId);
 	Parse.Push.send({
 		  where: query,
 		  data: {
-		    alert: data,
+		    alert: pushData,
 		    badge: 1,
 		    sound: 'default'
 		  }
