@@ -150,6 +150,7 @@ Parse.Cloud.define("updateWait", function(request, response)
 
 });
 
+
 function sendPushNotificationToUserByMobile(mobile, pushData) {
 	   //Get value from Ticket Object
                   //Set push query
@@ -164,12 +165,6 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
                                   sound: "default"
                                   }
                                   },{
-				  useMasterKey: true,
-                                  success: function(){
-                                  response.success('true');
-                                  },
-                                  error: function (error) {
-                                  response.error(error);
-                                  }
-                 })};
+				  useMasterKey: true
+                 });}
 		    );};
