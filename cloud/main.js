@@ -153,8 +153,12 @@ Parse.Cloud.define("updateWait", function(request, response)
 function sendPushNotificationToUserByMobile(mobile, pushData) {
 	   //Get value from Ticket Object
                   //Set push query
-                  var pushQuery = new Parse.Query(Parse.Installation);
-                  pushQuery.equalTo("mobile",mobile);
+		 var Query = new Parse.Query(Parse.User);
+		Query.equalTo('mobile', mobile);
+		// Find devices associated with these users
+		var pushQuery = new Parse.Query(Parse.Installation);
+		// need to have users linked to installations
+		pushQuery.matchesQuery('user', query);
 
                   //Send Push message
                   Parse.Push.send({
