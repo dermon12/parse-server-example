@@ -162,7 +162,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 
                   //Send Push message
                   Parse.Push.send({
-                                  where: pushQuery,
+                                  where: Query,
                                   data: {
                                   alert: pushData,
                                   sound: "default"
