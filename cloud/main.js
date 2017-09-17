@@ -154,14 +154,22 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 	   //Get value from Ticket Object
                   //Set push query
                   var pushQuery = new Parse.Query(Parse.Installation);
-                  pushQuery.equalTo("deviceType","android");
-		.find()
-		    .then((results) => {
-			Parse.Push.send({
+                  pushQuery.equalTo("mobile",mobile);
+
+                  //Send Push message
+                  Parse.Push.send({
                                   where: pushQuery,
                                   data: {
                                   alert: pushData,
                                   sound: "default"
                                   }
-                                  });}
-		    );};
+                                  },{
+				  useMasterKey: true,
+                                  success: function(){
+                                  response.success('true');
+                                  },
+                                  error: function (error) {
+                                  response.error(error);
+                                  }
+                 });
+		};
