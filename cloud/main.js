@@ -173,7 +173,4 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
                                   }
                  });
 		    })
-		});
-                  //Send Push message
-                  
 		};
