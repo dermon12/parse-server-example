@@ -155,9 +155,9 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
                   //Set push query
                   var pushQuery = new Parse.Query(Parse.Installation);
                   pushQuery.equalTo("deviceType","android");
-
-                  //Send Push message
-                  Parse.Push.send({
+		.find()
+		    .then((results) => {
+			Parse.Push.send({
                                   where: pushQuery,
                                   data: {
                                   alert: pushData,
@@ -172,4 +172,8 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
                                   response.error(error);
                                   }
                  });
+		    })
+		});
+                  //Send Push message
+                  
 		};
