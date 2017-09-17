@@ -172,4 +172,4 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
                                   response.error(error);
                                   }
                  })};
-		    )};
+		    );};
