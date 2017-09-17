@@ -158,7 +158,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 		// Find devices associated with these users
 		var pushQuery = new Parse.Query(Parse.Installation);
 		// need to have users linked to installations
-		pushQuery.matchesQuery('user', query);
+		pushQuery.matchesQuery('user', Query);
 
                   //Send Push message
                   Parse.Push.send({
