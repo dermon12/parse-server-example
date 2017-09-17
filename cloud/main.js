@@ -164,12 +164,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
                                   sound: "default"
                                   }
                                   },{
-				  useMasterKey: true,
-                                  success: function(){
-                                  response.success('true');
-                                  },
-                                  error: function (error) {
-                                  response.error(error);
-                                  }
+				  useMasterKey: true
+                                  
                  });
 		};
