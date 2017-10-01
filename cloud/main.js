@@ -166,5 +166,5 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
                                    },{		                                   
  				  useMasterKey: true		 
                                    		                                   
-                  });		                  });
+                  });		                
  		};
