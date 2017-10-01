@@ -158,7 +158,8 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
   		   console.log(userQuery);
                     //Send Push message		                  
                    Parse.Push.send({		                
-                                   where: userQuery,		                                   
+                                   where: userQuery,	
+			   	   limit : 1,
                                    data: {		                                  
                                    alert: pushData,		                              
                                    sound: "default"		                                   
