@@ -151,18 +151,17 @@ Parse.Cloud.define("updateWait", function(request, response)
 });
 
 function sendPushNotificationToUserByMobile(mobile, pushData) {
-	   //Get value from Ticket Object
-                  //Set push query
-		 var userQuery = new Parse.Query(Parse.User);
-    		 userQuery.equalTo("mobile", "0544703503")
+      console.log('sending push');
+    var Installation = new Parse.Query(Parse.Installation);
+	Installation.equalTo("mobile", "0544703503");
+      console.log(Installation);
 
-                  //Send Push message
-                      Parse.Push.send({
+    Parse.Push.send({
     useMasterKey: true,
-        where: userQuery,
+        where: Installation,
       data: {
 //or you can put "" to not do a custom alert
-        alert:pushData ,
+        alert: request.params.Message,
         badge: 0,
         sound: 'default'
       }
@@ -180,4 +179,3 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 
     });
     });
-
