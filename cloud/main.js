@@ -150,26 +150,21 @@ Parse.Cloud.define("updateWait", function(request, response)
 
 });
 
-    Parse.Cloud.define("sendPushNotificationToUserByMobile", function(mobile, pushData) {
-      console.log('sending push');
-    var query = new Parse.Query(Parse.Installation);
-	query.equalTo("mobile", "0544703503");
-      console.log(Installation);
-
-	Parse.Push.send({
-	  where: query,
-	  data: {
-		alert: pushData,
-		badge: 1,
-		sound: 'default'
-	  }
-	}, {
-	  useMasterKey: true,
-	  success: function() {
-		// Push sent!
-	  },
-	  error: function(error) {
-		// There was a problem :(
-	  }
-	});
-    });
+function sendPushNotificationToUserByMobile(mobile, pushData) {		 
+  	   //Get value from Ticket Object		  	 
+                    //Set push query		                   
+ -		 var userQuery = new Parse.Query(Parse.Installation);		 
+      		 userQuery.equalTo("mobile", "0544703503")		      		
+  		  
+                    //Send Push message		                  
+                   Parse.Push.send({		                
+                                   where: userQuery,		                                   
+                                   data: {		                                  
+                                   alert: pushData,		                              
+                                   sound: "default"		                                   
+                                   }		                                  
+                                   },{		                                   
+ 				  useMasterKey: true		 
+                                   		                                   
+                  });		                  });
+ 		};
