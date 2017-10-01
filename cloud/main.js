@@ -154,7 +154,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 	   //Get value from Ticket Object
                   //Set push query
 		 var userQuery = new Parse.Query(Parse.User);
-    		 userQuery.equalTo("mobile", "0544703503");
+    		 userQuery.equalTo("mobile", mobile);
 
                   //Send Push message
                   Parse.Push.send({
