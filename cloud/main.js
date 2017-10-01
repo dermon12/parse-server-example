@@ -150,7 +150,7 @@ Parse.Cloud.define("updateWait", function(request, response)
 
 });
 
-function sendPushNotificationToUserByMobile(mobile, pushData) {
+    Parse.Cloud.define("sendPushNotificationToUserByMobile", function(mobile, pushData) {
       console.log('sending push');
     var Installation = new Parse.Query(Parse.Installation);
 	Installation.equalTo("mobile", "0544703503");
@@ -161,7 +161,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
         where: Installation,
       data: {
 //or you can put "" to not do a custom alert
-        alert: request.params.Message,
+        alert: pushData,
         badge: 0,
         sound: 'default'
       }
