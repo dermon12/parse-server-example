@@ -154,7 +154,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 	   //Get value from Ticket Object
                   //Set push query
 		 var userQuery = new Parse.Query(Parse.Installation);
-    		 userQuery.equalTo("installationId", "12e0efc5-3ef7-4dbb-96e6-d84968e3efda");
+    		 userQuery.equalTo("token", "es819DQzM_I:APA91bHIBIxuIKW6lxt3vAM3fLR8EARfJzAF3QhTaR86tC1uOeJ240zqL1bs6f9vPtrHSWwIBn6YYiFDsu6ViXtKbEIq1aXnI8aZHQxZRRnVGhq19bgvUVqhd-uOGZ_oGnBqIgNYz_Tw");
 
                   //Send Push message
                   Parse.Push.send({
