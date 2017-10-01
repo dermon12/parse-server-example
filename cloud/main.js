@@ -157,14 +157,27 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
     		 userQuery.equalTo("mobile", "0544703503")
 
                   //Send Push message
-                  Parse.Push.send({
-                                  where: userQuery,
-                                  data: {
-                                  alert: pushData,
-                                  sound: "default"
-                                  }
-                                  },{
-				  useMasterKey: true
-                                  
-                 });
+                      Parse.Push.send({
+    useMasterKey: true,
+        where: userQuery,
+      data: {
+//or you can put "" to not do a custom alert
+        alert:pushData ,
+        badge: 0,
+        sound: 'default'
+      }
+    }, {
+      useMasterKey: true,
+      success: function() {
+        // Push sent!
+      console.log('Push sent');
+            response.success('success');
+
+      },
+      error: function(error){
+    console.error(error);
+    }
+
+    });
+    });
 		};
