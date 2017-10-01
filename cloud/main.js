@@ -152,30 +152,24 @@ Parse.Cloud.define("updateWait", function(request, response)
 
     Parse.Cloud.define("sendPushNotificationToUserByMobile", function(mobile, pushData) {
       console.log('sending push');
-    var Installation = new Parse.Query(Parse.Installation);
-	Installation.equalTo("mobile", "0544703503");
+    var query = new Parse.Query(Parse.Installation);
+	query.equalTo("mobile", "0544703503");
       console.log(Installation);
 
-    Parse.Push.send({
-    useMasterKey: true,
-        where: Installation,
-      data: {
-//or you can put "" to not do a custom alert
-        alert: pushData,
-        badge: 0,
-        sound: 'default'
-      }
-    }, {
-      useMasterKey: true,
-      success: function() {
-        // Push sent!
-      console.log('Push sent');
-            response.success('success');
-
-      },
-      error: function(error){
-    console.error(error);
-    }
-
-    });
+	Parse.Push.send({
+	  where: query,
+	  data: {
+		alert: pushData,
+		badge: 1,
+		sound: 'default'
+	  }
+	}, {
+	  useMasterKey: true,
+	  success: function() {
+		// Push sent!
+	  },
+	  error: function(error) {
+		// There was a problem :(
+	  }
+	});
     });
