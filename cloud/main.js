@@ -180,4 +180,4 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 
     });
     });
-		};
+
