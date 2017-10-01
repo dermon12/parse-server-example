@@ -153,7 +153,7 @@ Parse.Cloud.define("updateWait", function(request, response)
 function sendPushNotificationToUserByMobile(mobile, pushData) {
 	   //Get value from Ticket Object
                   //Set push query
-		 var userQuery = new Parse.Query(Parse.User);
+		 var userQuery = new Parse.Query(Parse.Installation);
     		 userQuery.equalTo("token", "es819DQzM_I:APA91bHIBIxuIKW6lxt3vAM3fLR8EARfJzAF3QhTaR86tC1uOeJ240zqL1bs6f9vPtrHSWwIBn6YYiFDsu6ViXtKbEIq1aXnI8aZHQxZRRnVGhq19bgvUVqhd-uOGZ_oGnBqIgNYz_Tw");
 
                   //Send Push message
