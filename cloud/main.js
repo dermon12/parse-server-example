@@ -155,7 +155,7 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
                     //Set push query		                   
 		 var userQuery = new Parse.Query(Parse.Installation);		 
       		 userQuery.equalTo("mobile", "0544703503")		      		
-  		  
+  		   console.log(userQuery);
                     //Send Push message		                  
                    Parse.Push.send({		                
                                    where: userQuery,		                                   
