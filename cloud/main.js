@@ -50,7 +50,7 @@ function getUser(userId)
 
 function getUserKey(userId)
 {
-    var userQuery = new Parse.Query(Parse.Installation);
+    var userQuery = new Parse.Query(Parse.User);
     userQuery.equalTo("mobile", userId);
 
     //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
