@@ -65,7 +65,7 @@ Parse.Cloud.define("addRec", function(request, response)
 	    user.set("sentRecordedMessagesList", requestList);
 	    user.save(null, {useMasterKey:true});
 	    var from = user.get("fullName");
-            var pushData =  "new recorded message arrived from" + from + "!";
+            var pushData =  "new recorded message arrive!";
 	    var token = user.get("token");
 	    sendPushNotificationToUserByMobile(token, pushData);	
 	    response.success("success");
