@@ -48,26 +48,6 @@ function getUser(userId)
 };
 
 
-function getUserKey(userId)
-{
-    var userQuery = new Parse.Query(Parse.User);
-    userQuery.equalTo("mobile", userId);
-
-    //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
-    return userQuery.first
-    ({
-        success: function(userRetrieved)
-        {
-            //When the success method fires and you return userRetrieved you fulfill the above promise, and the userRetrieved continues up the chain.
-            return userRetrieved.get("token");
-        },
-        error: function(error)
-        {
-            return error;
-        }
-    });
-};
-
 
 
 Parse.Cloud.define("addRec", function(request, response) 
@@ -85,8 +65,8 @@ Parse.Cloud.define("addRec", function(request, response)
 	    user.set("sentRecordedMessagesList", requestList);
 	    user.save(null, {useMasterKey:true});
             var pushData =  "new recorded message arrived!";
-		
-	    sendPushNotificationToUserByMobile(getUserKey(id), pushData);	
+	    var token = user.get("token");
+	    sendPushNotificationToUserByMobile(token, pushData);	
 	    response.success("success");
         }
         ,
