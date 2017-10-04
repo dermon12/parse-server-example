@@ -159,11 +159,11 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 		    notification: {
 			title: "BackSeat",
 			icon: "your_icon_name",
-			body: "מה קורה?",
+			body: "הודעה חדשה ממתינה לך ....",
 			sound: "default"
 		    },
 		});
-		var recipients = gcm.IRecipient = { to: "fQOybQMwJRQ:APA91bGmOQbnaLnptwGvkCy-twaGlKXeWH77SNOZRDBGUmW-N-4K9hF55WLRA8HHNQRCpcTepQSfPqcNoeUhG4UysnCWsIna93V0em6p75uAp7N9j24Y5zNhcmu2uFuCerv_M6A9pRNO"/*"es819DQzM_I:APA91bHIBIxuIKW6lxt3vAM3fLR8EARfJzAF3QhTaR86tC1uOeJ240zqL1bs6f9vPtrHSWwIBn6YYiFDsu6ViXtKbEIq1aXnI8aZHQxZRRnVGhq19bgvUVqhd-uOGZ_oGnBqIgNYz_Tw"*/ };
+		var recipients = gcm.IRecipient = { to: /*"fQOybQMwJRQ:APA91bGmOQbnaLnptwGvkCy-twaGlKXeWH77SNOZRDBGUmW-N-4K9hF55WLRA8HHNQRCpcTepQSfPqcNoeUhG4UysnCWsIna93V0em6p75uAp7N9j24Y5zNhcmu2uFuCerv_M6A9pRNO"*/"es819DQzM_I:APA91bHIBIxuIKW6lxt3vAM3fLR8EARfJzAF3QhTaR86tC1uOeJ240zqL1bs6f9vPtrHSWwIBn6YYiFDsu6ViXtKbEIq1aXnI8aZHQxZRRnVGhq19bgvUVqhd-uOGZ_oGnBqIgNYz_Tw" };
 		sender.sendNoRetry(message, recipients, (err, response) => {
 		    if (err) console.error(err);
 		    else console.log(response);
