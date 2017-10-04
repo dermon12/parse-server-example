@@ -48,6 +48,28 @@ function getUser(userId)
 };
 
 
+function getUserKey(userId)
+{
+    var userQuery = new Parse.Query(Parse.Installation);
+    userQuery.equalTo("mobile", userId);
+
+    //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
+    return userQuery.first
+    ({
+        success: function(userRetrieved)
+        {
+            //When the success method fires and you return userRetrieved you fulfill the above promise, and the userRetrieved continues up the chain.
+            return userRetrieved.get("token");
+        },
+        error: function(error)
+        {
+            return error;
+        }
+    });
+};
+
+
+
 Parse.Cloud.define("addRec", function(request, response) 
 {
 	
@@ -63,7 +85,8 @@ Parse.Cloud.define("addRec", function(request, response)
 	    user.set("sentRecordedMessagesList", requestList);
 	    user.save(null, {useMasterKey:true});
             var pushData =  "new recorded message arrived!";
-	    sendPushNotificationToUserByMobile(id, pushData);	
+		
+	    sendPushNotificationToUserByMobile(getUserKey(id), pushData);	
 	    response.success("success");
         }
         ,
@@ -150,7 +173,7 @@ Parse.Cloud.define("updateWait", function(request, response)
 
 });
 
-function sendPushNotificationToUserByMobile(mobile, pushData) {		 
+function sendPushNotificationToUserByMobile(id, pushData) {		 
   	   //Get value from Ticket Object		  	 
                     //Set push query		                   
 		var gcm = require("node-gcm");
@@ -159,11 +182,11 @@ function sendPushNotificationToUserByMobile(mobile, pushData) {
 		    notification: {
 			title: "BackSeat",
 			icon: "your_icon_name",
-			body: "הודעה חדשה ממתינה לך ....",
+			body: pushData,
 			sound: "default"
 		    },
 		});
-		var recipients = gcm.IRecipient = { to: /*"fQOybQMwJRQ:APA91bGmOQbnaLnptwGvkCy-twaGlKXeWH77SNOZRDBGUmW-N-4K9hF55WLRA8HHNQRCpcTepQSfPqcNoeUhG4UysnCWsIna93V0em6p75uAp7N9j24Y5zNhcmu2uFuCerv_M6A9pRNO"*/"es819DQzM_I:APA91bHIBIxuIKW6lxt3vAM3fLR8EARfJzAF3QhTaR86tC1uOeJ240zqL1bs6f9vPtrHSWwIBn6YYiFDsu6ViXtKbEIq1aXnI8aZHQxZRRnVGhq19bgvUVqhd-uOGZ_oGnBqIgNYz_Tw" };
+		var recipients = gcm.IRecipient = { to: id };
 		sender.sendNoRetry(message, recipients, (err, response) => {
 		    if (err) console.error(err);
 		    else console.log(response);
