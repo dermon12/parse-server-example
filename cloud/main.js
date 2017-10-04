@@ -153,18 +153,20 @@ Parse.Cloud.define("updateWait", function(request, response)
 function sendPushNotificationToUserByMobile(mobile, pushData) {		 
   	   //Get value from Ticket Object		  	 
                     //Set push query		                   
-		 var userQuery = new Parse.Query(Parse.Installation);		 
-      		 userQuery.equalTo(mobile, "0544703503")		      		
-  		   console.log(userQuery);
-                    //Send Push message		                  
-                   Parse.Push.send({		                
-                                   where: userQuery,	
-                                   data: {		                                  
-                                   alert: pushData,		                              
-                                   sound: "default"		                                   
-                                   }		                                  
-                                   },{		                                   
- 				  useMasterKey: true		 
-                                   		                                   
-                  });		                
+		var gcm = require("node-gcm");
+		var sender = new gcm.Sender("AIzaSyCYV5hIJpk7RaoXUnQf98eRMM8Psaez3a4");
+		var message = new gcm.Message({
+		    notification: {
+			title: "BackSeat",
+			icon: "your_icon_name",
+			body: "מה קורה?",
+			sound: "default"
+		    },
+		});
+		var recipients = gcm.IRecipient = { to: "fQOybQMwJRQ:APA91bGmOQbnaLnptwGvkCy-twaGlKXeWH77SNOZRDBGUmW-N-4K9hF55WLRA8HHNQRCpcTepQSfPqcNoeUhG4UysnCWsIna93V0em6p75uAp7N9j24Y5zNhcmu2uFuCerv_M6A9pRNO"/*"es819DQzM_I:APA91bHIBIxuIKW6lxt3vAM3fLR8EARfJzAF3QhTaR86tC1uOeJ240zqL1bs6f9vPtrHSWwIBn6YYiFDsu6ViXtKbEIq1aXnI8aZHQxZRRnVGhq19bgvUVqhd-uOGZ_oGnBqIgNYz_Tw"*/ };
+		sender.sendNoRetry(message, recipients, (err, response) => {
+		    if (err) console.error(err);
+		    else console.log(response);
+		});
+	                
  		};
