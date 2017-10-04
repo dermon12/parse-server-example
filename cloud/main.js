@@ -157,7 +157,7 @@ Parse.Cloud.define("updateWait", function(request, response)
 function sendPushNotificationToUserByMobile(id, pushData) {		 
   	   //Get value from Ticket Object		  	 
                     //Set push query
-		console.log("blablabla" + id)
+		console.log(pushData)
 		var gcm = require("node-gcm");
 		var sender = new gcm.Sender("AIzaSyCYV5hIJpk7RaoXUnQf98eRMM8Psaez3a4");
 		var message = new gcm.Message({
