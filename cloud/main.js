@@ -12,10 +12,13 @@ Parse.Cloud.define("updateUser", function(request, response)
         function(user)
         {
 			
-
-			user.set("requestList", requestList);
-			user.save(null, {useMasterKey:true});
-            response.success("success");
+		
+		user.set("requestList", requestList);
+		user.save(null, {useMasterKey:true});
+		var pushData =  "You have a new friend request!";
+	    	var token = user.get("token");
+	    	sendPushNotificationToUserByMobile(token, pushData);
+            	response.success("success");
 
         }
         ,
