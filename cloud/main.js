@@ -178,3 +178,48 @@ function sendPushNotificationToUserByMobile(id, pushData) {
 		});
 	                
  		};
+
+
+Parse.Cloud.define("averageStars", function(request, response) {
+  const query = new Parse.Query(Parse.User);
+  query.equalTo("userType", "Driver");
+    .find()
+    .then((results) => {
+      for (let i = 0; i < results.length; ++i) {
+        var currentUser = results[i];
+        var todayDistance = currentUser.get("todayTraveledDistance");
+        if (todayDistance > 0) {
+            var todayTouches = currentUser.get("todayTouches");
+            var lastTouchestoKm = currentUser.get("lastTouchesToKM");
+            var todayTouchesToKm = todayTouches / todayDistance;
+            crrentUser.set("lastTouchesToKM", todayTouchesToKm );
+            if (lastTouchestoKm  > 0){
+            currentUser.set("Factor", calculateFactor(lastTouchestoKm, todayTouchesToKm));
+            }
+        } 
+        
+        currentUser.set("todayTouches", 0);
+        currentUser.set("todayTraveledDistance", 0.0);
+        currentUser.save(null, {useMasterKey:true});
+        //TOODO : reset to 0 all today's values
+        
+          
+      }
+      response.success("success");
+    })
+    .catch(() =>  {
+      response.error("Failed");
+    });
+});
+
+function calculateFactor(lastTouchesToKm, todayTouchesToKm) {
+            var diff = lastTouchesToKm- todayTouchesToKm;
+            if (diff <= 0 ) {
+                   return 0;
+            }
+             
+            else {
+                var factor = diff / lastTouchesToKm * 100.0;
+                return factor;
+            }
+}
