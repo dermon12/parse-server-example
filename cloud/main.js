@@ -182,7 +182,7 @@ function sendPushNotificationToUserByMobile(id, pushData) {
 
 Parse.Cloud.define("SetFactors", function(request, response) {
   var query = new Parse.Query(Parse.User);
-  query.equalTo("userType", "Driver");
+  query.equalTo("userType", "Driver")
     .find()
     .then((results) => {
       for (let i = 0; i < results.length; ++i) {
