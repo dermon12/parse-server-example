@@ -180,8 +180,8 @@ function sendPushNotificationToUserByMobile(id, pushData) {
  		};
 
 
-/*Parse.Cloud.define("averageStars", function(request, response) {
-  const query = new Parse.Query(Parse.User);
+Parse.Cloud.define("SetFactors", function(request, response) {
+  var query = new Parse.Query(Parse.User);
   query.equalTo("userType", "Driver");
     .find()
     .then((results) => {
@@ -223,4 +223,4 @@ function calculateFactor(lastTouchesToKm, todayTouchesToKm) {
                 return factor;
             }
 }
-*/
+
