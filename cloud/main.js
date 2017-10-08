@@ -225,5 +225,5 @@ function calculateFactor(lastTouchesToKm, todayTouchesToKm) {
                 var factor = diff / lastTouchesToKm * 100.0;
                 return factor;
             }
-}
+};
 
