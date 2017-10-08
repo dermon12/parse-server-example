@@ -193,7 +193,6 @@ Parse.Cloud.define("SetFactors", function(request, response) {
             var todayTouches = currentUser.get("todayTouches");
             var lastTouchestoKm = currentUser.get("lastTouchesToKM");
             var todayTouchesToKm = todayTouches / todayDistance;
-		response.success(todayTouchesToKm);
             crrentUser.set("lastTouchesToKM", todayTouchesToKm );
             if (lastTouchestoKm  > 0){
             currentUser.set("Factor", calculateFactor(lastTouchestoKm, todayTouchesToKm));
@@ -216,6 +215,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 
 function calculateFactor(lastTouchesToKm, todayTouchesToKm) {
             var diff = lastTouchesToKm- todayTouchesToKm;
+	      response.success(diff);
             if (diff <= 0 ) {
                    return 0;
             }
