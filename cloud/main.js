@@ -157,6 +157,42 @@ Parse.Cloud.define("updateWait", function(request, response)
 
 });
 
+
+
+Parse.Cloud.define("DeleteSentRequest", function(request, response) 
+{
+	
+    //Example where an objectId is passed to a cloud function.
+    var id = request.params.user;
+    var thisphone = request.params.thisp;
+    //When getUser(id) is called a promise is returned. Notice the .then this means that once the promise is fulfilled it will continue. See getUser() function below.
+    getUser(id).then
+    (   
+        //When the promise is fulfilled function(user) fires, and now we have our USER!
+        function(user)
+        {	
+		var requestlist = user.get("sentRequestList");
+		var index = requestlist.indexOf(thisphone);
+		if (index >= 0) {
+		  requestlist.splice( index, 1 );
+		}
+		user.set("sentRequestList", requestlist);
+		user.save(null, {useMasterKey:true});
+            	response.success("success");
+
+        }
+        ,
+        function(error)
+        {
+            response.error(error);
+        }
+    );
+
+});
+
+
+
+
 function sendPushNotificationToUserByMobile(id, pushData) {		 
   	   //Get value from Ticket Object		  	 
                     //Set push query
