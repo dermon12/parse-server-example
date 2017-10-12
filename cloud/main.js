@@ -232,7 +232,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 	    if (todayTouchesToKm > 0) {
             currentUser.set("lastTouchesToKM", todayTouchesToKm );
 	    }
-            if (lastTouchestoKm  > 0){
+            if (lastTouchestoKm  > -1){
       	
 	    var nextfactor = calculateFactor(lastTouchestoKm, todayTouchesToKm);
             currentUser.set("Factor", nextfactor );
