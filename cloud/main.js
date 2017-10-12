@@ -15,7 +15,7 @@ Parse.Cloud.define("updateUser", function(request, response)
 		
 		user.set("requestList", requestList);
 		user.save(null, {useMasterKey:true});
-		var pushData =  "You have a new friend request!";
+		var pushData =  "התקבלה בקשת חברות חדשה!";
 	    	var token = user.get("token");
 	    	sendPushNotificationToUserByMobile(token, pushData);
             	response.success("success");
@@ -68,7 +68,7 @@ Parse.Cloud.define("addRec", function(request, response)
 	    user.set("sentRecordedMessagesList", requestList);
 	    user.save(null, {useMasterKey:true});
 	    var from = user.get("fullName");
-            var pushData =  "new recorded message arrive!";
+            var pushData =  "התקבלה הודעה קולית חדשה!";
 	    var token = user.get("token");
 	    sendPushNotificationToUserByMobile(token, pushData);	
 	    response.success("success");
