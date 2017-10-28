@@ -233,7 +233,7 @@ Parse.Cloud.define("SetScore", function(request, response)
 		if (clas in scoreslist)
 		{
 			var x = scoreslist[clas];
-			x = x + score;
+			score = x + score;
 		}		
 		scoreslist[clas] = score;
 		school.set("SchoolScores", scoreslist);
