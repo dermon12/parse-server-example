@@ -50,6 +50,26 @@ function getUser(userId)
     });
 };
 
+function getSchool(userId)
+{
+    var userQuery = new Parse.Query("SchoolScores");
+    userQuery.equalTo("SchoolID", userId);
+
+    //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
+    return userQuery.first
+    ({
+        success: function(userRetrieved)
+        {
+            //When the success method fires and you return userRetrieved you fulfill the above promise, and the userRetrieved continues up the chain.
+            return userRetrieved;
+        },
+        error: function(error)
+        {
+            return error;
+        }
+    });
+};
+
 
 
 
@@ -100,6 +120,12 @@ Parse.Cloud.define("updateFriends", function(request, response)
 			var waitingList = user.get("waitingList");
 			waitingList.push(friendsList);
 			user.set("waitingList", waitingList);
+			var schoolid = user.get("SchoolID");
+			var userclas = user.get("class");
+			var toadd = request.params.scorestoadd;
+			if (schoolid != null){
+			Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd}).then(function(ratings) {});
+			}
 			user.save(null, {useMasterKey:true});
             response.success("success");
 			
@@ -178,6 +204,40 @@ Parse.Cloud.define("DeleteSentRequest", function(request, response)
 		}
 		user.set("sentRequestList", requestlist);
 		user.save(null, {useMasterKey:true});
+            	response.success("success");
+
+        }
+        ,
+        function(error)
+        {
+            response.error(error);
+        }
+    );
+
+});
+
+Parse.Cloud.define("SetScore", function(request, response) 
+{
+	
+    //Example where an objectId is passed to a cloud function.
+    var id = request.params.id;
+    var clas = request.params.class;
+    var score = request.params.scoretoadd;
+    //When getUser(id) is called a promise is returned. Notice the .then this means that once the promise is fulfilled it will continue. See getUser() function below.
+    getSchool(id).then
+    (   
+        //When the promise is fulfilled function(user) fires, and now we have our USER!
+        function(school)
+        {	
+		var scoreslist = school.get("SchoolScores");
+		if (clas in scoreslist)
+		{
+			var x = scoreslist[clas];
+			x = x + score;
+		}		
+		scoreslist[clas] = score;
+		school.set("SchoolScores", scoreslist);
+		school.save(null, {useMasterKey:true});
             	response.success("success");
 
         }
