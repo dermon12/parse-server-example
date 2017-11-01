@@ -124,7 +124,7 @@ Parse.Cloud.define("updateFriends", function(request, response)
 			var userclas = user.get("class");
 			var toadd = request.params.scorestoadd;
 			if (schoolid != null){
-			Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd}).then(function(ratings) {});
+			Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
 			}
 			user.save(null, {useMasterKey:true});
             response.success("success");
