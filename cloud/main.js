@@ -235,7 +235,7 @@ Parse.Cloud.define("SetScore", function(request, response)
 			var x = scoreslist[clas];
 			score = (Number(x) + Number(score)).toString();
 		}		
-		scoreslist[clas] = score;
+		scoreslist[clas] = Number(score);
 		school.set("SchoolScores", scoreslist);
 		school.save(null, {useMasterKey:true});
             	response.success("success");
