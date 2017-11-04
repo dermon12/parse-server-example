@@ -293,15 +293,43 @@ Parse.Cloud.define("SetFactors", function(request, response) {
             currentUser.set("lastTouchesToKM", todayTouchesToKm );
 	    }
             if (lastTouchestoKm  > -1){
-      	
-	    var nextfactor = calculateFactor(lastTouchestoKm, todayTouchesToKm);
-            currentUser.set("Factor", nextfactor );
+
+		    var nextfactor = calculateFactor(lastTouchestoKm, todayTouchesToKm);
+		    currentUser.set("Factor", nextfactor );
+		    currentUser.set("todayTouches", 0);
+        	    currentUser.set("todayTraveledDistance", 0.0);
+        	    currentUser.save(null, {useMasterKey:true});
+		    var driverslist = currentUser.get("friendsList");
+		    if ( nextfactor >= 10){
+			     for (let i = 0; i < driverslist.length; ++i) {
+				 getUser(driverslist[i]).then
+				(   
+					//When the promise is fulfilled function(user) fires, and now we have our USER!
+					function(user)
+					{	
+						var waitingList = user.get("waitingList");
+						var toadd =  parseInt((nextfactor / 10), 10);
+						waitingList.push(currentUser.get("mobile") + toadd);
+						user.set("waitingList",waitingList);
+						var schoolid = user.get("SchoolID");
+						var userclas = user.get("class");
+						if (schoolid != null){
+							Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
+						}
+						user.save(null, {useMasterKey:true});
+
+					}
+					,
+					function(error)
+					{
+					    response.error(error);
+					}
+			    );
+			     }
+		    }
             }
         } 
-        
-        currentUser.set("todayTouches", 0);
-        currentUser.set("todayTraveledDistance", 0.0);
-        currentUser.save(null, {useMasterKey:true});
+       
         //TOODO : reset to 0 all today's values
         
           
