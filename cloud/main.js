@@ -309,6 +309,9 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 					{	
 						var waitingList = user.get("waitingList");
 						var toadd =  parseInt((nextfactor / 10), 10);
+						if (toadd >= 10){
+							toadd = 9;
+						}
 						waitingList.push(currentUser.get("mobile") + toadd);
 						user.set("waitingList",waitingList);
 						var schoolid = user.get("SchoolID");
