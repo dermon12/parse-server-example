@@ -300,7 +300,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
         	    currentUser.set("todayTraveledDistance", 0.0);
         	    currentUser.save(null, {useMasterKey:true});
 		    var driverslist = currentUser.get("friendsList");
-		    if ( nextfactor >= 10){
+		    /*if ( nextfactor >= 10){
 			     for (let i = 0; i < driverslist.length; ++i) {
 				 getUser(driverslist[i]).then
 				(   
@@ -329,7 +329,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 					}
 			    );
 			     }
-		    }
+		    }*/
             }
         } 
        
