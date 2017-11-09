@@ -4,7 +4,7 @@ function login() {
     
     var Parse = require('parse/node');
     Parse.initialize("BSId");
-    Parse.serverURL = 'http://back-seat.herokuapp.com/parse/'
+    Parse.serverURL = 'http://back-seat.herokuapp.com/'
     
     Parse.User.logIn(username, password, {
       success: function(user) {
