@@ -1,3 +1,3 @@
 function login() {
-    alert("dsada");
+    alert(document.getElementById("username"));
 }
