@@ -3,10 +3,10 @@ function login() {
     var password = (document.getElementById("password").value);
     
     var Parse = require('parse');
+    alert(Parse);
     Parse.initialize("BSId");
     Parse.serverURL = 'http://back-seat.herokuapp.com/'
-    alert(username);
-    alert(Parse);
+
     Parse.User.logIn(username, password, {
       success: function(user) {
         alert(user);
