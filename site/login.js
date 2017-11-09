@@ -2,21 +2,18 @@ function login() {
     var username = (document.getElementById("username").value);
     var password = (document.getElementById("password").value);
     
+    var Parse = require('parse');
+    Parse.initialize("BSId");
+    Parse.serverURL = 'http://back-seat.herokuapp.com/parse/'
     
+    Parse.User.logIn(username, password, {
+      success: function(user) {
+        alert(user);
+      },
+      error: function(user, error) {
+        alert(error);
+      }
+    });
+
     
-    var url = "https://back-seat.herokuapp.com/parse/functions/login";
-    var params = "user=" + username + "&pass=" + password;
-    http.open("POST", url, true);
-
-    //Send the proper header information along with the request
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    http.setRequestHeader("Content-length", params.length);
-    http.setRequestHeader("Connection", "close");
-
-    http.onreadystatechange = function() {//Call a function when the state changes.
-        if(http.readyState == 4 && http.status == 200) {
-            alert(http.responseText);
-        }
-    }
-    http.send(params);
 }
