@@ -1,6 +1,6 @@
 function login() {
-    alert(document.getElementById("username").value);
-    alert(document.getElementById("password").value);
-    window.location = "https://stackoverflow.com";
-    return false;
+    var username = (document.getElementById("username").value);
+    var password = (document.getElementById("password").value);
+    Parse.Cloud.run('login', { name: username , pass: password});
+			}
 }
