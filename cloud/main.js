@@ -33,12 +33,12 @@ Parse.Cloud.define("updateUser", function(request, response)
 Parse.Cloud.define("login", function(request, response) 
 {
 	
-	Parse.User.logIn("myname", "mypass", {
+	Parse.User.logIn(request.params.user, request.params.pass, {
   success: function(user) {
         response.success(user);
   },
   error: function(user, error) {
-    // The login failed. Check error to see why.
+    response.error(error);
   }
 });
 
