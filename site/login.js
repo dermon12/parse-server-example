@@ -1,2 +1,2 @@
-window.alert("GOOD");
+alert("i've submitted this form");
 
