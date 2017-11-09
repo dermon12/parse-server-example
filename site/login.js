@@ -1,4 +1,4 @@
 function login(){
-  alert("i've submitted this form");
+  document.write("<li>hiiiiii</li>");
 }
 
