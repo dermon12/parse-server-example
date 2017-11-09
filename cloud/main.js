@@ -30,6 +30,24 @@ Parse.Cloud.define("updateUser", function(request, response)
 
 });
 
+Parse.Cloud.define("login", function(request, response) 
+{
+	
+	Parse.User.logIn("myname", "mypass", {
+  success: function(user) {
+        response.success(user);
+  },
+  error: function(user, error) {
+    // The login failed. Check error to see why.
+  }
+});
+
+
+});
+
+
+
+
 function getUser(userId)
 {
     var userQuery = new Parse.Query(Parse.User);
