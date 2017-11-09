@@ -1,2 +1,4 @@
-alert("i've submitted this form");
+function login(){
+  alert("i've submitted this form");
+}
 
