@@ -1,3 +1,3 @@
 function login() {
-    alert(document.getElementById("username"));
+    alert(document.getElementById("username").value);
 }
