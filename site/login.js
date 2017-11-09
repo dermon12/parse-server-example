@@ -1,3 +1,3 @@
 function login() {
-    alert("I am an alert box!");
+    alert(document.getElementById("username"));
 }
