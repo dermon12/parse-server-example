@@ -1,3 +1,2 @@
-function login(){
-  window.alert("GOOD");
-}
+window.alert("GOOD");
+
