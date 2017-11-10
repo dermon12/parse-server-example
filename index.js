@@ -82,9 +82,11 @@ app.post('/', function (req, res, next) {
         return next(error);
       }
     });
+  
+  }
   console.log(req.username);
-    console.log(req.password);
-  } else if (req.username && req.password) {
+  console.log(req.password);
+  else if (req.username && req.password) {
     Parse.User.logIn(req.username, req.password, {
     success: function(user) {
       return res.redirect('/profile');
