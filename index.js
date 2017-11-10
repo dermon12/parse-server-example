@@ -53,6 +53,8 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function (req, res, next) {
+  console.log(req.username);
+  console.log(req.password);
   // confirm that user typed same password twice
   if (req.password !== req.passwordConf) {
     var err = new Error('Passwords do not match.');
@@ -84,8 +86,6 @@ app.post('/', function (req, res, next) {
     });
   
   }
-  console.log(req.username);
-  console.log(req.password);
   else if (req.username && req.password) {
     Parse.User.logIn(req.username, req.password, {
     success: function(user) {
