@@ -92,6 +92,7 @@ app.post('/', function (req, res, next) {
     success: function(user) {
       console.log("aaaaaaaaaaa" + user.getSessionToken());
       req.session.userId = user.getSessionToken();
+      console.log("aaaaaaaaaaa" + req.session.userId);
       return res.redirect('/profile');
     },
     error: function(user, error) {
