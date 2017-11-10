@@ -3,7 +3,7 @@
 
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
-var Parse = require('parse');
+var Parse = require('parse/node');
 var path = require('path');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
@@ -48,7 +48,7 @@ app.get('/', function(req, res) {
   Parse.initialize("BSId");
     Parse.serverURL = 'http://back-seat.herokuapp.com/'
 
-    Parse.User.logIn(username, password, {
+    Parse.User.logIn("ofir", "753951a", {
       success: function(user) {
         alert(user);
       },
