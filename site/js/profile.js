@@ -1,3 +1,3 @@
-//var Parse = require('site/js/parse.js');
-//alert(Parse.User.current());
+var Parse = require('site/js/parse.js');
+alert("ASDADA" + Parse.User.current());
 alert("hifdsfd");
