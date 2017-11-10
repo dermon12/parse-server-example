@@ -54,7 +54,7 @@ app.get('/', function(req, res) {
 
   
 
-app.get('/process_get', function (req, res) {
+app.get('/login', function (req, res) {
    // Prepare output in JSON format
   var user = req.query.username;
   var pass = req.query.password;
