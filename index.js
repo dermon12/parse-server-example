@@ -91,7 +91,7 @@ app.post('/', function (req, res, next) {
     Parse.User.logIn(req.body.username, req.body.password, {
     success: function(user) {
       console.log("aaaaaaaaaaa" + user.getSessionToken());
-      req.session.userId = user.getSessionToken();
+      //req.session.userId = user.getSessionToken();
       console.log("aaaaaaaaaaa" + req.session.userId);
       return res.redirect('/profile');
     },
