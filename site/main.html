@@ -1,9 +1,4 @@
-<script src="/site/login.js"></script>
-
-<p style="text-align: center;">&nbsp;</p>
-<p style="text-align: center;">&nbsp;</p>
-<p style="text-align: center;">BackSeat</p>
-<form style="text-align: center;" >שם משתמש:<br /> <input id = "username" type="text" /><br />סיסמא:<br /> <input id = "password" type="password" /><br /><br /> 
-  <input type="submit" value="התחבר" onclick="login()" />
-
+<form style="text-align: center;" action="https://back-seat.herokuapp.com/login" method="GET">
+<p>username: <input name="username" type="text" /> <br /> password: <input name="password" type="text" /></p>
+<p><input type="submit" value="Submit" /></p>
 </form>
