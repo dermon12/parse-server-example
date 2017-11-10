@@ -50,7 +50,7 @@ app.get('/', function(req, res) {
 
     Parse.User.logIn("ofir", "753951a", {
       success: function(user) {
-        alert(user);
+        res.status(200).send(user);
       },
       error: function(user, error) {
         alert(error);
