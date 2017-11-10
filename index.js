@@ -2,6 +2,7 @@
 // compatible API routes.
 
 var express = require('express');
+var session = require('express-session');
 var ParseServer = require('parse-server').ParseServer;
 var Parse = require('parse/node');
 Parse.initialize("BSId");
