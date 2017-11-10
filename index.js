@@ -47,17 +47,30 @@ app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
-  //res.sendFile(path.join(__dirname, '/site/main.html'));
-    Parse.User.logIn("ofir", "753951a", {
-      success: function(user) {
-        res.status(200).send(user);
-      },
-      error: function(user, error) {
-        alert(error);
-      }
-    });
+  res.sendFile(path.join(__dirname, '/site/main.html'));
+   
 
 });
+
+  
+
+app.get('/process_get', function (req, res) {
+   // Prepare output in JSON format
+  var user = req.query.username;
+  var pass = req.query.password;
+  Parse.User.logIn(user, pass, {
+        success: function(user) {
+          //res.status(200).send(user);
+          res.end(user);
+        },
+        error: function(user, error) {
+          alert(error);
+        }
+      });
+})
+
+
+
 
 // There will be a test page available on the /test path of your server url
 // Remove this before launching your app
