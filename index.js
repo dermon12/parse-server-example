@@ -2,6 +2,7 @@
 // compatible API routes.
 
 var express = require('express');
+var session = require('express-session');
 var ParseServer = require('parse-server').ParseServer;
 var Parse = require('parse/node');
 Parse.initialize("BSId");
@@ -78,7 +79,7 @@ app.post('/', function (req, res, next) {
 
     user.signUp(null, {
       success: function(user) {
-        req.session.userId = user.get("sessionToken");
+        req.session.userId = user.getSessionToken();
         return res.redirect('/profile');
       },
       error: function(user, error) {
@@ -90,7 +91,8 @@ app.post('/', function (req, res, next) {
   else if (req.body.username && req.body.password) {
     Parse.User.logIn(req.body.username, req.body.password, {
     success: function(user) {
-      console.log("aaaaaaaaaaa" + user.getSessionToken());
+      req.session.userId = user.getSessionToken();
+      console.log("aaaaaaaaaaaaaaaaaaa" + req.session);
       return res.redirect('/profile');
     },
     error: function(user, error) {
