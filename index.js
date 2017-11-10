@@ -3,6 +3,7 @@
 
 var express = require('express');
 var session = require('express-session');
+
 var ParseServer = require('parse-server').ParseServer;
 var Parse = require('parse/node');
 Parse.initialize("BSId");
@@ -40,6 +41,7 @@ var api = new ParseServer({
 var app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({secret: "Shh, its a secret!"}));
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
 app.use('/site', express.static(path.join(__dirname, '/site')));
@@ -91,6 +93,7 @@ app.post('/', function (req, res, next) {
     Parse.User.logIn(req.body.username, req.body.password, {
     success: function(user) {
       //req.session.userId = user.getSessionToken();
+      console.log("AAAAAAAAAAAAA" + req.session);
       return res.send('<h1>Name: </h1>' + user.get("username") + '<h2>Mail: </h2>' + user.get("email") + '<br><a type="button" href="/logout">Logout</a>')
       return res.redirect('/profile');
     },
