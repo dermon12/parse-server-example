@@ -46,7 +46,7 @@ app.use(mountPath, api);
 app.get('/', function(req, res) {
   //res.sendFile(path.join(__dirname, '/site/main.html'));
   Parse.initialize("BSId");
-    Parse.serverURL = 'http://back-seat.herokuapp.com/'
+    Parse.serverURL = 'http://back-seat.herokuapp.com/parse'
 
     Parse.User.logIn("ofir", "753951a", {
       success: function(user) {
