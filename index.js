@@ -90,8 +90,8 @@ app.post('/', function (req, res, next) {
   else if (req.body.username && req.body.password) {
     Parse.User.logIn(req.body.username, req.body.password, {
     success: function(user) {
-      req.session.userId = user.get("sessionToken");
-      console.log("asdklasdkls;dkas;ldksald;ksaaa:" + req.session);
+      console.log(res.sessionToken);
+      req.session.userId = res.sessionToken;
       return res.redirect('/profile');
     },
     error: function(user, error) {
