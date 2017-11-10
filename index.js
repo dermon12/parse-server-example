@@ -114,6 +114,7 @@ app.post('/', function (req, res, next) {
 
 // GET route after registering
 app.get('/profile', function (req, res, next) {
+  Parse.User.enableUnsafeCurrentUser();
     Parse.User.become(req.session.userId).then(function (user) {
      return res.send('<h1>Name: </h1>' + user.get("username") + '<h2>Mail: </h2>' + user.get("email") + '<br><a type="button" href="/logout">Logout</a>')
   }, function (error) {
