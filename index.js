@@ -63,7 +63,7 @@ app.get('/login', function (req, res) {
           res.status(200).send(user);
         },
         error: function(user, error) {
-          alert(error);
+          alert("wrong username or password");
         }
       });
 })
