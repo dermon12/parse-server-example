@@ -82,7 +82,8 @@ app.post('/', function (req, res, next) {
         return next(error);
       }
     });
-
+  console.log(req.logemail);
+    console.log(req.logpassword);
   } else if (req.logemail && req.logpassword) {
     Parse.User.logIn(req.logemail, req.logpassword, {
     success: function(user) {
