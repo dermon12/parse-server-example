@@ -58,17 +58,17 @@ app.post('/', function (req, res, next) {
   console.log(req.body.username);
   console.log(req.body.password);
   // confirm that user typed same password twice
-  if (req.body.password !== req.body.passwordConf) {
+  if (req.body.spassword !== req.body.spasswordConf) {
     var err = new Error('Passwords do not match.');
     err.status = 400;
     res.send("passwords dont match");
     return next(err);
   }
 
-  if (req.body.email &&
-    req.body.username &&
-    req.body.password &&
-    req.body.passwordConf) {
+  if (req.body.semail &&
+    req.body.susername &&
+    req.body.spassword &&
+    req.body.spasswordConf) {
 
     var user = new Parse.User();
     user.set("username",  req.body.username);
