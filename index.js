@@ -36,7 +36,7 @@ var api = new ParseServer({
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 
-var app = express.Router();
+var app = express();
 
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
@@ -132,7 +132,6 @@ app.get('/logout', function (req, res, next) {
 app.get('/test', function(req, res) {
   res.sendFile(path.join(__dirname, '/public/test.html'));
 });
-module.exports = router;
 
 var port = process.env.PORT || 1337;
 var httpServer = require('http').createServer(app);
