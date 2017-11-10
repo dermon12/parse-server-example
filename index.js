@@ -78,6 +78,7 @@ app.post('/', function (req, res, next) {
 
     user.signUp(null, {
       success: function(user) {
+        req.session.userId = user.get("sessionToken");
         return res.redirect('/profile');
       },
       error: function(user, error) {
@@ -89,6 +90,7 @@ app.post('/', function (req, res, next) {
   else if (req.body.username && req.body.password) {
     Parse.User.logIn(req.body.username, req.body.password, {
     success: function(user) {
+      req.session.userId = user.get("sessionToken");
       return res.redirect('/profile');
     },
     error: function(user, error) {
@@ -107,15 +109,13 @@ app.post('/', function (req, res, next) {
 
 // GET route after registering
 app.get('/profile', function (req, res, next) {
-  var currentUser = Parse.User.current();
-  console.log(currentUser);
-  if (currentUser) {
-      return res.send('<h1>Name: </h1>' + currentUser.get("username") + '<h2>Mail: </h2>' + currentUser.get("email") + '<br><a type="button" href="/logout">Logout</a>')
-  } else {
-          var err = new Error('Not authorized! Go back!');
-          err.status = 400;
-          return next(err);
-  }
+    Parse.User.become(req.session.userId).then(function (user) {
+     return res.send('<h1>Name: </h1>' + currentUser.get("username") + '<h2>Mail: </h2>' + currentUser.get("email") + '<br><a type="button" href="/logout">Logout</a>')
+  }, function (error) {
+            var err = new Error('Not authorized! Go back!');
+            err.status = 400;
+            return next(err);
+  });
 });
 
 
