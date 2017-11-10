@@ -52,22 +52,74 @@ app.get('/', function(req, res) {
 
 });
 
-  
+app.post('/', function (req, res, next) {
+  // confirm that user typed same password twice
+  if (req.body.password !== req.body.passwordConf) {
+    var err = new Error('Passwords do not match.');
+    err.status = 400;
+    res.send("passwords dont match");
+    return next(err);
+  }
 
-app.get('/login', function (req, res) {
-   // Prepare output in JSON format
-  var user = req.query.username;
-  var pass = req.query.password;
-  Parse.User.logIn(user, pass, {
-        success: function(user) {
-          res.status(200).send(user);
-        },
-        error: function(user, error) {
-          res.status(200).send("wrong username or password");
-        }
-      });
-})
+  if (req.body.email &&
+    req.body.username &&
+    req.body.password &&
+    req.body.passwordConf) {
 
+    var user = new Parse.User();
+    user.set("username",  req.body.username);
+    user.set("password",  req.body.password);
+    user.set("email", req.body.email);
+
+    // other fields can be set just like with Parse.Object
+    user.set("phone", "415-392-0202");
+
+    user.signUp(null, {
+      success: function(user) {
+        return res.redirect('/profile');
+      },
+      error: function(user, error) {
+        return next(error);
+      }
+    });
+
+  } else if (req.body.logemail && req.body.logpassword) {
+    Parse.User.logIn("myname", "mypass", {
+    success: function(user) {
+      return res.redirect('/profile');
+    },
+    error: function(user, error) {
+        var err = new Error('Wrong email or password.');
+        err.status = 401;
+        return next(err);
+    }
+  });
+  } else {
+    var err = new Error('All fields required.');
+    err.status = 400;
+    return next(err);
+  }
+}) 
+
+
+// GET route after registering
+app.get('/profile', function (req, res, next) {
+  var currentUser = Parse.User.current();
+  if (currentUser) {
+      return res.send('<h1>Name: </h1>' + currentUser.get("username") + '<h2>Mail: </h2>' + currentUser.get("email") + '<br><a type="button" href="/logout">Logout</a>')
+  } else {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          return next(err);
+  }
+});
+
+
+router.get('/logout', function (req, res, next) {
+  Parse.User.logOut().then(() => {
+    return res.redirect('/');
+  });
+});
 
 
 
