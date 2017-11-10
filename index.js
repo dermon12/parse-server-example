@@ -4,7 +4,6 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var Parse = require('parse/node');
-var session = require('express-session');
 Parse.initialize("BSId");
 Parse.serverURL = 'http://back-seat.herokuapp.com/parse'
 
@@ -90,8 +89,9 @@ app.post('/', function (req, res, next) {
   else if (req.body.username && req.body.password) {
     Parse.User.logIn(req.body.username, req.body.password, {
     success: function(user) {
-      console.log("AAAAAAAAAAAAAA" + req.session);
-      req.session.userId = user.getSessionToken();
+     
+      //req.session.userId = user.getSessionToken();
+      return res.send('<h1>Name: </h1>' + currentUser.get("username") + '<h2>Mail: </h2>' + currentUser.get("email") + '<br><a type="button" href="/logout">Logout</a>')
       return res.redirect('/profile');
     },
     error: function(user, error) {
