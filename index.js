@@ -55,8 +55,6 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function (req, res, next) {
-  console.log(req.body.username);
-  console.log(req.body.password);
   // confirm that user typed same password twice
   if (req.body.spassword !== req.body.spasswordConf) {
     var err = new Error('Passwords do not match.');
@@ -110,6 +108,7 @@ app.post('/', function (req, res, next) {
 // GET route after registering
 app.get('/profile', function (req, res, next) {
   var currentUser = Parse.User.current();
+  console.log(currentUser);
   if (currentUser) {
       return res.send('<h1>Name: </h1>' + currentUser.get("username") + '<h2>Mail: </h2>' + currentUser.get("email") + '<br><a type="button" href="/logout">Logout</a>')
   } else {
