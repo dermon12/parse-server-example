@@ -115,7 +115,7 @@ app.get('/profile', function (req, res, next) {
 });
 
 
-router.get('/logout', function (req, res, next) {
+app.get('/logout', function (req, res, next) {
   Parse.User.logOut().then(() => {
     return res.redirect('/');
   });
