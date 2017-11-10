@@ -116,7 +116,8 @@ app.post('/', function (req, res, next) {
 app.get('/profile', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
     Parse.User.become(req.session.userId).then(function (user) {
-     return res.send('<h1>Name: </h1>' + user.get("username") + '<h2>Mail: </h2>' + user.get("email") + '<br><a type="button" href="/logout">Logout</a>')
+      return res.sendFile(path.join(__dirname, '/site/profile.html'));
+      //return res.send('<h1>Name: </h1>' + user.get("username") + '<h2>Mail: </h2>' + user.get("email") + '<br><a type="button" href="/logout">Logout</a>')
   }, function (error) {
             var err = new Error('Not authorized! Go back!');
             err.status = 400;
