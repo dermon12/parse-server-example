@@ -4,6 +4,9 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var Parse = require('parse/node');
+Parse.initialize("BSId");
+Parse.serverURL = 'http://back-seat.herokuapp.com/parse'
+
 var path = require('path');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
@@ -45,9 +48,6 @@ app.use(mountPath, api);
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
   //res.sendFile(path.join(__dirname, '/site/main.html'));
-  Parse.initialize("BSId");
-    Parse.serverURL = 'http://back-seat.herokuapp.com/parse'
-
     Parse.User.logIn("ofir", "753951a", {
       success: function(user) {
         res.status(200).send(user);
