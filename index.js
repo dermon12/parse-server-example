@@ -91,7 +91,7 @@ app.post('/', function (req, res, next) {
     success: function(user) {
      
       //req.session.userId = user.getSessionToken();
-      return res.send('<h1>Name: </h1>' + currentUser.get("username") + '<h2>Mail: </h2>' + currentUser.get("email") + '<br><a type="button" href="/logout">Logout</a>')
+      return res.send('<h1>Name: </h1>' + user.get("username") + '<h2>Mail: </h2>' + user.get("email") + '<br><a type="button" href="/logout">Logout</a>')
       return res.redirect('/profile');
     },
     error: function(user, error) {
