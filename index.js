@@ -150,7 +150,14 @@ app.get('/test', function(req, res) {
 });
 
 app.get('/token', function(req, res) {
-  res.send(req.session.userId);
+  Parse.User.enableUnsafeCurrentUser();
+  Parse.User.become(req.session.userId).then(function (user) {
+      res.send(user);
+  }, function (error) {
+            var err = new Error('Not authorized! Go back!');
+            err.status = 400;
+            return next(err);
+  });
 });
 
 var port = process.env.PORT || 1337;
