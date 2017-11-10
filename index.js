@@ -54,22 +54,22 @@ app.get('/', function(req, res) {
 
 app.post('/', function (req, res, next) {
   // confirm that user typed same password twice
-  if (req.password !== req.body.passwordConf) {
+  if (req.password !== req.passwordConf) {
     var err = new Error('Passwords do not match.');
     err.status = 400;
     res.send("passwords dont match");
     return next(err);
   }
 
-  if (req.body.email &&
-    req.body.username &&
-    req.body.password &&
-    req.body.passwordConf) {
+  if (req.email &&
+    req.username &&
+    req.password &&
+    req.passwordConf) {
 
     var user = new Parse.User();
-    user.set("username",  req.body.username);
-    user.set("password",  req.body.password);
-    user.set("email", req.body.email);
+    user.set("username",  req.username);
+    user.set("password",  req.password);
+    user.set("email", req.email);
 
     // other fields can be set just like with Parse.Object
     user.set("phone", "415-392-0202");
@@ -83,8 +83,8 @@ app.post('/', function (req, res, next) {
       }
     });
 
-  } else if (req.body.logemail && req.body.logpassword) {
-    Parse.User.logIn("myname", "mypass", {
+  } else if (req.logemail && req.logpassword) {
+    Parse.User.logIn(req.logemail, req.logpassword, {
     success: function(user) {
       return res.redirect('/profile');
     },
