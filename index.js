@@ -60,8 +60,7 @@ app.get('/login', function (req, res) {
   var pass = req.query.password;
   Parse.User.logIn(user, pass, {
         success: function(user) {
-          //res.status(200).send(user);
-          res.end(user);
+          res.status(200).send(user);
         },
         error: function(user, error) {
           alert(error);
