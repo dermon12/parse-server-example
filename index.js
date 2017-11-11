@@ -76,8 +76,11 @@ app.post('/', function (req, res, next) {
     user.set("email", req.body.email);
 
     // other fields can be set just like with Parse.Object
-    user.set("phone", "415-392-0202");
-
+    user.put("fullName", req.body.username);
+    user.put("mobile", req.body.mobile);
+    user.put("userType", "Player");
+    user.put("friendsList", new Array());
+    user.put("token","");
     user.signUp(null, {
       success: function(user) {
         req.session.userId = user.getSessionToken();
