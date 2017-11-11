@@ -4,8 +4,8 @@
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.open( "GET", "https://back-seat.herokuapp.com/token", false ); // false for synchronous request
 xmlHttp.send( null );
-var user = xmlHttp.responseText;
-alert(typeof user);
+var user = JSON.parse(xmlHttp.responseText);
+alert(user.mobile);
 /*Parse.User.become(xmlHttp.responseText).then(function (user) {
   alert(user.get("mobile"));
 }, function (error) {
