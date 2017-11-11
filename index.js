@@ -99,6 +99,10 @@ app.post('/', function (req, res, next) {
             }); 
 
         }
+       else{
+        res.send("Choose Other Number"); 
+       }
+       
       },
       error: function(error) {
              return next(error);
