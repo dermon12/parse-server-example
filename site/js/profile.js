@@ -16,11 +16,20 @@ var table = document.getElementById("myTable");
   xmlHttp.send( null );
   var r = xmlHttp.responseText;
   var scores = JSON.parse(r);
-  for (var key in scores) {
+  var sortable = [];
+for (var clas in scores) {
+    sortable.push([clas, scores[clas]]);
+}
+
+sortable.sort(function(a, b) {
+    return a[1] - b[1];
+});
+  
+  for (var key in sortable.reverse()) {
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-    cell1.innerHTML = key;
-    cell2.innerHTML = scores[key]; 
+    cell1.innerHTML = key[0];
+    cell2.innerHTML = key [1]; 
   }
 }
