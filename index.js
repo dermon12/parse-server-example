@@ -164,7 +164,7 @@ app.get('/table', function(req, res) {
      Parse.User.become(req.session.userId).then(function (user) {
            var userQuery = new Parse.Query("SchoolScores");
             userQuery.equalTo("SchoolID", user.get("SchoolID"));
-            query.first({
+            userQuery.first({
               success: function(object) {
                 res.send(object.get("SchoolScores"));
               },
