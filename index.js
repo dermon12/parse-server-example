@@ -86,6 +86,7 @@ app.post('/', function (req, res, next) {
     userQuery.equalTo("mobile", req.body.mobile);
     userQuery.first({
       success: function(object) {
+        console.log("AAAAAAAAAAAAAAA" + object);
         if (object){
          user.signUp(null, {
             success: function(user) {
