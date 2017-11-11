@@ -25,14 +25,11 @@ var table = document.getElementById("myTable");
       return second[1] - first[1];
   });
   items.reverse();
-  alert(items);
   for (var key in items) {
-    alert(typeof key);
-    alert(typeof items);
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-    cell1.innerHTML = key;
-    cell2.innerHTML = key[1]; 
+    cell1.innerHTML = items[key][0];
+    cell2.innerHTML = items[key][1]; 
   }
 }
