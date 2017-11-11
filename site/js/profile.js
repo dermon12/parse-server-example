@@ -17,16 +17,17 @@ var table = document.getElementById("myTable");
   var r = xmlHttp.responseText;
   var scores = JSON.parse(r);
   var sortable = [];
-for (var clas in scores) {
-    sortable.push([clas, scores[clas]]);
-}
+  var items = Object.keys(scores).map(function(key) {
+      return [key, scores[key]];
+  });
 
-sortable.sort(function(a, b) {
-    return a[1] - b[1];
-});
-  sortable.reverse();
-  alert(sortable);
-  for (var key in sortable) {
+  // Sort the array based on the second element
+  items.sort(function(first, second) {
+      return second[1] - first[1];
+  });
+  items.reverse();
+  alert(items);
+  for (var key in items) {
     alert(key);
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
