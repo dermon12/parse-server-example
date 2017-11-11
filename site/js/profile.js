@@ -6,8 +6,8 @@ xmlHttp.open( "GET", "https://back-seat.herokuapp.com/token", false ); // false 
 xmlHttp.send( null );
 var user = JSON.parse(xmlHttp.responseText);
 window.onload = function() {
-  document.getElementById("Name").innerHTML = user.fullName;
-  document.getElementById("Mail").innerHTML = user.email;
+  var url = "https://back-seat.herokuapp.com/parse/files/BSId/" + user.profileImage;
+  document.body.style.backgroundImage = "url('" + url + "')";
 }
 /*Parse.User.become(xmlHttp.responseText).then(function (user) {
   alert(user.get("mobile"));
