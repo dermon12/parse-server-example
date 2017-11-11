@@ -187,10 +187,11 @@ app.get('/table', function(req, res) {
             userQuery.first({
               success: function(object) {
                 if (typeof object === "undefined"){
-                res.send(object.get("SchoolScores"));
+                  res.send("");
                 }
                 else{
-                  res.send("");
+                  
+                  res.send(object.get("SchoolScores"));
                 }
               },
               error: function(error) {
