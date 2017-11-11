@@ -7,7 +7,8 @@ xmlHttp.send( null );
 var user = JSON.parse(xmlHttp.responseText);
 window.onload = function() {
   var url = "https://back-seat.herokuapp.com/parse/files/BSId/" + user.profileImage;
-  document.body.style.backgroundImage = "url('" + url + "')";
+  alert(url);
+  document.style.backgroundImage = "url('" + url + "')";
 }
 /*Parse.User.become(xmlHttp.responseText).then(function (user) {
   alert(user.get("mobile"));
