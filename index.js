@@ -114,16 +114,14 @@ app.post('/', function (req, res, next) {
 
 // GET route after registering
 app.get('/profile', function (req, res, next) {
-  Parse.User.enableUnsafeCurrentUser();
-    Parse.User.become(req.session.userId).then(function (user) {
+    if (req.session.userId){
       res.sendFile(path.join(__dirname, '/site/profile.html'));
-      return res.render("index", { session: req.session.userId });
       //return res.send('<h1>Name: </h1>' + user.get("username") + '<h2>Mail: </h2>' + user.get("email") + '<br><a type="button" href="/logout">Logout</a>')
-  }, function (error) {
+  }, else {
             var err = new Error('Not authorized! Go back!');
             err.status = 400;
             return next(err);
-  });
+  }
 });
 
 
@@ -150,7 +148,12 @@ app.get('/test', function(req, res) {
 });
 
 app.get('/token', function(req, res) {
-   res.send(req.session.userId);
+    Parse.User.enableUnsafeCurrentUser();
+   Parse.User.become(req.session.userId).then(function (user) {
+    return res.send(user);
+}, function (error) {
+    return res.redirect('/');
+});
  });
 
 var port = process.env.PORT || 1337;
