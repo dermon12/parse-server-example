@@ -24,11 +24,13 @@ var table = document.getElementById("myTable");
   items.sort(function(first, second) {
       return second[1] - first[1];
   });
+  var calsses = ["ד","ה","ו","ז","ח"];
   for (var key in items) {
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-    cell1.innerHTML = items[key][0];
+    var splited = items[key][0].split(",");
+    cell1.innerHTML = calsses[splited[0]-4] + splited[1];
     cell2.innerHTML = items[key][1]; 
   }
 }
