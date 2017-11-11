@@ -16,7 +16,6 @@ var table = document.getElementById("myTable");
   xmlHttp.send( null );
   var r = xmlHttp.responseText;
   var scores = JSON.parse(r);
-  alert(scores);
   var items = Object.keys(scores).map(function(key) {
       return [key, scores[key]];
   });
@@ -28,11 +27,12 @@ var table = document.getElementById("myTable");
   items.reverse();
   alert(items);
   for (var key in items) {
-    alert(key);
+    alert(typeof key);
+    alert(typeof items);
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     cell1.innerHTML = key;
-    cell2.innerHTML = key [1]; 
+    cell2.innerHTML = key[1]; 
   }
 }
