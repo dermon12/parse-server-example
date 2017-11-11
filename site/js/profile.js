@@ -4,10 +4,7 @@ xmlHttp.send( null );
 var r = xmlHttp.responseText;
 var user = JSON.parse(r);
 window.onload = function() {
-  
-}
-
-function url()
-{
-  reutrn user.profileImage.url; 
+  var url = user.profileImage.url;
+  alert(document.getElementsByClassName("bgimg"));
+  document.getElementsByClassName("bgimg").backgroundImage = "url('" + url + "')";
 }
