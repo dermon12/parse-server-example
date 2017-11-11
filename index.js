@@ -156,6 +156,11 @@ app.get('/token', function(req, res) {
 });
  });
 
+
+app.get('/table', function(req, res) {
+    return res.send(scores);
+ });
+
 var port = process.env.PORT || 1337;
 var httpServer = require('http').createServer(app);
 httpServer.listen(port, function() {
