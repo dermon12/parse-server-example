@@ -16,7 +16,7 @@ var table = document.getElementById("myTable");
   xmlHttp.send( null );
   var r = xmlHttp.responseText;
   var scores = JSON.parse(r);
-  var sortable = [];
+  alert(scores);
   var items = Object.keys(scores).map(function(key) {
       return [key, scores[key]];
   });
