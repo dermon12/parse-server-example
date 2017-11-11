@@ -11,17 +11,16 @@ window.onload = function() {
 }
 
 function settable(){
-/*var table = document.getElementById("myTable");
-var row = table.insertRow(-1);
-var cell1 = row.insertCell(0);
-var cell2 = row.insertCell(1);
-cell1.innerHTML = "ד1";
-cell2.innerHTML = "10 נקודות"; */
+var table = document.getElementById("myTable");
   xmlHttp.open( "GET", "https://back-seat.herokuapp.com/table", false ); // false for synchronous request
   xmlHttp.send( null );
   var r = xmlHttp.responseText;
-  alert(r);
   var scores = JSON.parse(r);
-  alert(scores);
-  alert(typeof scores);
+  for (var key in p) {
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = key;
+    cell2.innerHTML = scores[key]; 
+  }
 }
