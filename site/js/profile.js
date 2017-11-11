@@ -6,7 +6,7 @@ xmlHttp.open( "GET", "https://back-seat.herokuapp.com/token", false ); // false 
 xmlHttp.send( null );
 var user = JSON.parse(xmlHttp.responseText);
 window.onload = function() {
-  alert(user.profileImage.toString());
+  alert(typeof user.profileImage);
   var url = "https://back-seat.herokuapp.com/parse/files/BSId/" + user.profileImage.toString();
   alert(url);
   document.body.style.backgroundImage = "url('" + url + "')";
