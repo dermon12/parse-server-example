@@ -87,7 +87,7 @@ app.post('/', function (req, res, next) {
     userQuery.first({
       success: function(object) {
         console.log("AAAAAAAAAAAAAAA" + object);
-        if (object){
+        if (typeof object === "undefined"){
          user.signUp(null, {
             success: function(user) {
                 req.session.userId = user.getSessionToken();
@@ -111,7 +111,6 @@ app.post('/', function (req, res, next) {
     success: function(user) {
       //req.session.userId = user.getSessionToken();
       req.session.userId = user.getSessionToken();
-      console.log("AAAAAAAAAAAAA" + req.session.userId);
       //return res.send('<h1>Name: </h1>' + user.get("username") + '<h2>Mail: </h2>' + user.get("email") + '<br><a type="button" href="/logout">Logout</a>')
       return res.redirect('/profile');
     },
