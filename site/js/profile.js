@@ -7,7 +7,7 @@ window.onload = function() {
   var url = user.profileImage.url;
   document.getElementsByClassName("w3-container w3-center")[0].style.backgroundImage = "url('" + url + "')";
   document.getElementsByClassName("w3-jumbo")[0].innerText  = "Welcome " + user.fullName;
-  settable();
+  //settable();
 }
 
 function settable(){
