@@ -117,7 +117,7 @@ app.get('/profile', function (req, res, next) {
     if (req.session.userId){
       res.sendFile(path.join(__dirname, '/site/profile.html'));
       //return res.send('<h1>Name: </h1>' + user.get("username") + '<h2>Mail: </h2>' + user.get("email") + '<br><a type="button" href="/logout">Logout</a>')
-  }, else {
+  } else {
             var err = new Error('Not authorized! Go back!');
             err.status = 400;
             return next(err);
