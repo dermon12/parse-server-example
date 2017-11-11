@@ -3,7 +3,6 @@
 
 var express = require('express');
 var session = require('express-session');
-var Promise = require('promise');
 
 var ParseServer = require('parse-server').ParseServer;
 var Parse = require('parse/node');
@@ -159,35 +158,7 @@ app.get('/token', function(req, res) {
 
 
 
-
 app.get('/table', function(req, res) {
-      function getSchool(req)
-        {
-          return new Promise(function(resolve,reject) {
-              Parse.User.enableUnsafeCurrentUser();
-               Parse.User.become(req.session.userId).then(function (user) {
-                var userQuery = new Parse.Query("SchoolScores");
-                userQuery.equalTo("SchoolID", user.get("SchoolID"));
-                //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
-                return userQuery.first
-                ({
-                    success: function(userRetrieved)
-                    {
-                        //When the success method fires and you return userRetrieved you fulfill the above promise, and the userRetrieved continues up the chain.
-                        resolve(userRetrieved);
-                    },
-                    error: function(error)
-                    {
-                        return reject(error);
-                    }
-                });
-            }, function (error) {
-                return reject(error);
-            });
-          });
-        };
-  
-  
     getSchool(req).then
     (   
         //When the promise is fulfilled function(user) fires, and now we have our USER!
@@ -205,6 +176,33 @@ app.get('/table', function(req, res) {
  });
 
 
+function getSchool(req)
+{
+    
+     Parse.User.enableUnsafeCurrentUser();
+     Parse.User.become(req.session.userId).then(function (user) {
+      var userQuery = new Parse.Query("SchoolScores");
+      userQuery.equalTo("SchoolID", user.get("SchoolID"));
+      //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
+      return userQuery.first
+      ({
+          success: function(userRetrieved)
+          {
+              //When the success method fires and you return userRetrieved you fulfill the above promise, and the userRetrieved continues up the chain.
+              return userRetrieved;
+          },
+          error: function(error)
+          {
+              return error;
+          }
+      });
+  }, function (error) {
+      return error;
+  });
+    
+};
+
+
 var port = process.env.PORT || 1337;
 var httpServer = require('http').createServer(app);
 httpServer.listen(port, function() {
@@ -213,5 +211,4 @@ httpServer.listen(port, function() {
 
 // This will enable the Live Query real-time server
 ParseServer.createLiveQueryServer(httpServer);
-
 
