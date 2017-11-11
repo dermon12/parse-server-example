@@ -6,8 +6,9 @@ xmlHttp.open( "GET", "https://back-seat.herokuapp.com/token", false ); // false 
 xmlHttp.send( null );
 var user = JSON.parse(xmlHttp.responseText);
 window.onload = function() {
-  var url = "https://back-seat.herokuapp.com/parse/files/BSId/" + String(user.profileImage);
-  alert(url);
+  alert(user);
+  var url = "https://back-seat.herokuapp.com/parse/files/BSId/" + user.profileImage;
+  alert(String(url));
   document.body.style.backgroundImage = "url('" + url + "')";
 }
 /*Parse.User.become(xmlHttp.responseText).then(function (user) {
