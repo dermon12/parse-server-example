@@ -6,5 +6,5 @@ var user = JSON.parse(r);
 window.onload = function() {
   alert(user.profileImage.url);
   var url = user.profileImage.url;
-  document.body.style.backgroundImage = "url('" + url + "')";
+  document.style.backgroundImage = "url('" + url + "')";
 }
