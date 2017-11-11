@@ -182,13 +182,14 @@ function getSchool(req)
    Parse.User.become(req.session.userId).then(function (user) {
     var userQuery = new Parse.Query("SchoolScores");
     userQuery.equalTo("SchoolID", user.SchoolID);
-
+    console.log("IDDDDDDDDDDDDDD" + user.SchoolID);
     //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
     return userQuery.first
     ({
         success: function(userRetrieved)
         {
             //When the success method fires and you return userRetrieved you fulfill the above promise, and the userRetrieved continues up the chain.
+            console.log("userRetrieveduserRetrieveduserRetrieved" + userRetrieved);
             return userRetrieved;
         },
         error: function(error)
