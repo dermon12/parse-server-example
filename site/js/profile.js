@@ -6,4 +6,5 @@ var user = JSON.parse(r);
 window.onload = function() {
   var url = user.profileImage.url;
   document.getElementsByClassName("w3-container w3-center")[0].style.backgroundImage = "url('" + url + "')";
+  document.getElementById("w3-jumbo").innerHTML = user.fullName;
 }
