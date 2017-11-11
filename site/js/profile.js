@@ -25,7 +25,9 @@ sortable.sort(function(a, b) {
     return a[1] - b[1];
 });
   sortable.reverse();
+  alert(sortable);
   for (var key in sortable) {
+    alert(key);
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
