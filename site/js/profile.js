@@ -5,5 +5,5 @@ var r = xmlHttp.responseText;
 var user = JSON.parse(r);
 window.onload = function() {
   var url = user.profileImage.url;
-  document.getElementsByClassName("bgimg")[0].style.backgroundImage = "url('" + url + "')";
+  document.getElementsByClassName("w3-jumbo")[0].style.backgroundImage = "url('" + url + "')";
 }
