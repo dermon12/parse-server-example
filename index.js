@@ -157,33 +157,36 @@ app.get('/token', function(req, res) {
  });
 
 
-function getSchool(req)
-{
-  
-  Parse.User.enableUnsafeCurrentUser();
-   Parse.User.become(req.session.userId).then(function (user) {
-    var userQuery = new Parse.Query("SchoolScores");
-    userQuery.equalTo("SchoolID", user.get("SchoolID"));
-    //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
-    return userQuery.first
-    ({
-        success: function(userRetrieved)
-        {
-            //When the success method fires and you return userRetrieved you fulfill the above promise, and the userRetrieved continues up the chain.
-            return userRetrieved;
-        },
-        error: function(error)
-        {
-            return error;
-        }
-    });
-}, function (error) {
-    return error;
-});
-    
-};
+
 
 app.get('/table', function(req, res) {
+      function getSchool(req)
+        {
+
+          Parse.User.enableUnsafeCurrentUser();
+           Parse.User.become(req.session.userId).then(function (user) {
+            var userQuery = new Parse.Query("SchoolScores");
+            userQuery.equalTo("SchoolID", user.get("SchoolID"));
+            //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
+            return userQuery.first
+            ({
+                success: function(userRetrieved)
+                {
+                    //When the success method fires and you return userRetrieved you fulfill the above promise, and the userRetrieved continues up the chain.
+                    return userRetrieved;
+                },
+                error: function(error)
+                {
+                    return error;
+                }
+            });
+        }, function (error) {
+            return error;
+        });
+
+        };
+  
+  
     getSchool(req).then
     (   
         //When the promise is fulfilled function(user) fires, and now we have our USER!
