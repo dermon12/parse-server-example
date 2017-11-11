@@ -86,10 +86,8 @@ app.post('/', function (req, res, next) {
             userQuery.equalTo("mobile", req.body.mobile);
             userQuery.first({
               success: function(object) {
-                res.send("Already user with this phone");
-              },
-              error: function(error) {
-                    user.signUp(null, {
+                if (object){
+                 user.signUp(null, {
                     success: function(user) {
                         req.session.userId = user.getSessionToken();
                         return res.redirect('/profile');
@@ -97,7 +95,12 @@ app.post('/', function (req, res, next) {
                       error: function(user, error) {
                         return next(error);
                       }
-                    });
+                    }); 
+                  
+                }
+              },
+              error: function(error) {
+                     return next(error);
               }
             });
   
