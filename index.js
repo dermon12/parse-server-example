@@ -71,38 +71,38 @@ app.post('/', function (req, res, next) {
     req.body.spasswordConf) {
 
     var user = new Parse.User();
-    user.set("username",  req.body.username);
-    user.set("password",  req.body.password);
-    user.set("email", req.body.email);
+    user.set("username",  req.body.susername);
+    user.set("password",  req.body.spassword);
+    user.set("email", req.body.semail);
 
     // other fields can be set just like with Parse.Object
-    user.set("fullName", req.body.username);
+    user.set("fullName", req.body.susername);
     user.set("mobile", req.body.mobile);
     user.set("userType", "Player");
     user.set("friendsList", new Array());
     user.set("token","");
     
     var userQuery = new Parse.Query(Parse.User);
-            userQuery.equalTo("mobile", req.body.mobile);
-            userQuery.first({
-              success: function(object) {
-                if (object){
-                 user.signUp(null, {
-                    success: function(user) {
-                        req.session.userId = user.getSessionToken();
-                        return res.redirect('/profile');
-                      },
-                      error: function(user, error) {
-                        return next(error);
-                      }
-                    }); 
-                  
-                }
+    userQuery.equalTo("mobile", req.body.mobile);
+    userQuery.first({
+      success: function(object) {
+        if (object){
+         user.signUp(null, {
+            success: function(user) {
+                req.session.userId = user.getSessionToken();
+                return res.redirect('/profile');
               },
-              error: function(error) {
-                     return next(error);
+              error: function(user, error) {
+                return next(error);
               }
-            });
+            }); 
+
+        }
+      },
+      error: function(error) {
+             return next(error);
+      }
+    });
   
   }
   else if (req.body.username && req.body.password) {
