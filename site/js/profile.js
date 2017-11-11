@@ -16,7 +16,7 @@ var table = document.getElementById("myTable");
   xmlHttp.send( null );
   var r = xmlHttp.responseText;
   var scores = JSON.parse(r);
-  for (var key in p) {
+  for (var key in scores) {
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
