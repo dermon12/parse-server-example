@@ -4,6 +4,10 @@ xmlHttp.send( null );
 var r = xmlHttp.responseText;
 var user = JSON.parse(r);
 window.onload = function() {
-  var url = user.profileImage.url;
-  document.getElementsByClassName("w3-sidebar w3-hide-medium w3-hide-small").backgroundImage = "url('" + url + "')";
+  
+}
+
+function url()
+{
+  reutrn user.profileImage.url; 
 }
