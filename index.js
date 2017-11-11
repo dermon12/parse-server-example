@@ -158,7 +158,26 @@ app.get('/token', function(req, res) {
 
 
 app.get('/table', function(req, res) {
-    return res.send(scores);
+      Parse.User.enableUnsafeCurrentUser();
+      Parse.User.become(req.session.userId).then(function (user) {
+        var userQuery = new Parse.Query("SchoolScores");
+        userQuery.equalTo("SchoolID", user.SchoolID);
+
+        //Here you aren't directly returning a user, but you are returning a function that will sometime in the future return a user. This is considered a promise.
+        return userQuery.first
+        ({
+            success: function(userRetrieved)
+            {
+                    return res.send(userRetrieved.SchoolScores);
+            },
+            error: function(error)
+            {
+                return res.send("");
+            }
+        });
+    }, function (error) {
+        return res.send("");
+    });
  });
 
 var port = process.env.PORT || 1337;
