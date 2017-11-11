@@ -20,6 +20,7 @@ cell2.innerHTML = "10 נקודות"; */
   xmlHttp.open( "GET", "https://back-seat.herokuapp.com/table", false ); // false for synchronous request
   xmlHttp.send( null );
   var r = xmlHttp.responseText;
+  alert(r);
   var scores = JSON.parse(r);
   alert(scores);
   alert(typeof scores);
