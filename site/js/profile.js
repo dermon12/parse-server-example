@@ -3,10 +3,6 @@ xmlHttp.open( "GET", "https://back-seat.herokuapp.com/token", false ); // false 
 xmlHttp.send( null );
 var r = xmlHttp.responseText;
 var user = JSON.parse(r);
-xmlHttp.open( "GET", "https://back-seat.herokuapp.com/table", false ); // false for synchronous request
-xmlHttp.send( null );
-var r = xmlHttp.responseText;
-var scores = JSON.parse(r);
 window.onload = function() {
   var url = user.profileImage.url;
   document.getElementsByClassName("w3-container w3-center")[0].style.backgroundImage = "url('" + url + "')";
@@ -21,6 +17,10 @@ var cell1 = row.insertCell(0);
 var cell2 = row.insertCell(1);
 cell1.innerHTML = "ד1";
 cell2.innerHTML = "10 נקודות"; */
+  xmlHttp.open( "GET", "https://back-seat.herokuapp.com/table", false ); // false for synchronous request
+  xmlHttp.send( null );
+  var r = xmlHttp.responseText;
+  var scores = JSON.parse(r);
   alert(scores);
   alert(typeof scores);
 }
