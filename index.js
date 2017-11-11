@@ -186,7 +186,12 @@ app.get('/table', function(req, res) {
             userQuery.equalTo("SchoolID", user.get("SchoolID"));
             userQuery.first({
               success: function(object) {
+                if (typeof object === "undefined"){
                 res.send(object.get("SchoolScores"));
+                }
+                else{
+                  res.send("");
+                }
               },
               error: function(error) {
                 res.send("");
