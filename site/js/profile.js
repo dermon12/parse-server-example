@@ -24,7 +24,6 @@ var table = document.getElementById("myTable");
   items.sort(function(first, second) {
       return second[1] - first[1];
   });
-  items.reverse();
   for (var key in items) {
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
