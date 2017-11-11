@@ -81,15 +81,25 @@ app.post('/', function (req, res, next) {
     user.put("userType", "Player");
     user.put("friendsList", new Array());
     user.put("token","");
-    user.signUp(null, {
-      success: function(user) {
-        req.session.userId = user.getSessionToken();
-        return res.redirect('/profile');
-      },
-      error: function(user, error) {
-        return next(error);
-      }
-    });
+    
+    var userQuery = new Parse.Query(Parse.User);
+            userQuery.equalTo("mobile", req.body.mobile);
+            userQuery.first({
+              success: function(object) {
+                res.send("Already user with this phone");
+              },
+              error: function(error) {
+                    user.signUp(null, {
+                    success: function(user) {
+                        req.session.userId = user.getSessionToken();
+                        return res.redirect('/profile');
+                      },
+                      error: function(user, error) {
+                        return next(error);
+                      }
+                    });
+              }
+            });
   
   }
   else if (req.body.username && req.body.password) {
