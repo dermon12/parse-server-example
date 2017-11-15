@@ -136,8 +136,13 @@ Parse.Cloud.define("updateFriends", function(request, response)
 			if (typeof friendsList === 'string')
 			{
 			var waitingList = user.get("waitingList");
-			waitingList.push(friendsList);
-			user.set("waitingList", waitingList);
+			//waitingList.push(friendsList);
+			var number = waitingList.substring(0,10);;
+			var pointstoad = waitingList.slice(-1);
+			var drivers = user.get("friendsList");
+			var pointslist = user.get("driversPoints");
+			pointslist[drivers.indexOf(number)] = pointslist[drivers.indexOf(number)] + pointstoad;
+			user.set("driversPoints", pointslist);
 			var schoolid = user.get("SchoolID");
 			var userclas = user.get("class");
 			var toadd = request.params.scorestoadd;
