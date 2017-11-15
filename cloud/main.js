@@ -145,8 +145,11 @@ Parse.Cloud.define("updateFriends", function(request, response)
 			var schoolid = user.get("SchoolID");
 			var userclas = user.get("class");
 			var toadd = request.params.scorestoadd;
+			var rand = Math.floor(Math.random() * 2000) + 0  ;
 			if (schoolid != null){
-			    new Auktionator(schoolid, userclas, toadd).versteigern()
+				setTimeout(function() {
+				    Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
+				}, rand);
 				
 			}
 			user.save(null, {useMasterKey:true});
@@ -342,7 +345,6 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 							Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
 						}
 						user.save(null, {useMasterKey:true});
-
 					}
 					,
 					function(error)
@@ -377,21 +379,3 @@ function calculateFactor(lastTouchesToKm, todayTouchesToKm) {
                 return factor;
             }
 };
-Auktionator.LOCKS = 0;
-function Auktionator(schoolid,userclas,toadd) {
-    this.versteigern = function (objekt) {
-        if (Auktionator.LOCKS > 0) {
-            return;
-        }
-
-        for (var i = 1; i <= 3; i++) {
-            Auktionator.LOCKS++;
-            setTimeout(function (x) {
-                return function () {                        
-                    Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
-                    Auktionator.LOCKS--;
-                };
-            }(i), 1000 * i);
-        }
-    };
-}
