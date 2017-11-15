@@ -141,7 +141,7 @@ Parse.Cloud.define("updateFriends", function(request, response)
 			var pointstoad = friendsList.slice(-1);
 			var drivers = user.get("friendsList");
 			var pointslist = user.get("driversPoints");
-			pointslist[drivers.indexOf(number)] = pointslist[drivers.indexOf(number)] + pointstoad;
+			pointslist[drivers.indexOf(number)] = parseInt(pointslist[drivers.indexOf(number)]) + parseInt(pointstoad);
 			user.set("driversPoints", pointslist);
 			var schoolid = user.get("SchoolID");
 			var userclas = user.get("class");
