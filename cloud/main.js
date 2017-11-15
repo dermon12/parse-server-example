@@ -145,7 +145,7 @@ Parse.Cloud.define("updateFriends", function(request, response)
 			var schoolid = user.get("SchoolID");
 			var userclas = user.get("class");
 			var toadd = request.params.scorestoadd;
-			var rand = Math.floor(Math.random() * 2000) + 0  ;
+			var rand = Math.floor(Math.random() * 5000) + 0  ;
 			if (schoolid != null){
 				setTimeout(function() {
 				    Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
