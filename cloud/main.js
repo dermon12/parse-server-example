@@ -1,4 +1,4 @@
-
+var isrun = false;
 Parse.Cloud.define("updateUser", function(request, response) 
 {
 	
@@ -147,10 +147,12 @@ Parse.Cloud.define("updateFriends", function(request, response)
 			var userclas = user.get("class");
 			var toadd = request.params.scorestoadd;
 			if (schoolid != null){
-			Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
+				while (isrun) {
+				}
+				Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
 			}
 			user.save(null, {useMasterKey:true});
-            response.success("success");
+			response.success("success");
 			
 			}
 			
@@ -241,7 +243,7 @@ Parse.Cloud.define("DeleteSentRequest", function(request, response)
 
 Parse.Cloud.define("SetScore", function(request, response) 
 {
-	
+	isrun = true;
     //Example where an objectId is passed to a cloud function.
     var id = request.params.id;
     var clas = request.params.class;
@@ -261,12 +263,14 @@ Parse.Cloud.define("SetScore", function(request, response)
 		scoreslist[clas] = Number(score);
 		school.set("SchoolScores", scoreslist);
 		school.save(null, {useMasterKey:true});
+		isrun = false;
             	response.success("success");
 
         }
         ,
         function(error)
         {
+		isrun = false;
             response.error(error);
         }
     );
