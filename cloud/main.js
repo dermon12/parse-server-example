@@ -381,7 +381,6 @@ Auktionator.LOCKS = 0;
 function Auktionator(schoolid,userclas,toadd) {
     this.versteigern = function (objekt) {
         if (Auktionator.LOCKS > 0) {
-            Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
             return;
         }
 
@@ -389,7 +388,7 @@ function Auktionator(schoolid,userclas,toadd) {
             Auktionator.LOCKS++;
             setTimeout(function (x) {
                 return function () {                        
-                    console.log(objekt + " zum " + x);
+                    Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
                     Auktionator.LOCKS--;
                 };
             }(i), 1000 * i);
