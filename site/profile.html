@@ -187,7 +187,7 @@ input:required, textarea:required {
   <p id="failure">Oopsie...message not sent.</p>
   <p id="success">Your message was sent successfully. Thank you!</p>
 
-  <form method="post" action="/updateclass">
+  <form id = "form" method="post" action="/updateclass">
     <div>
 
 
@@ -265,16 +265,15 @@ function closeNav() {
     document.getElementById("mySidebar").style.display = "none";
 }
 	
-$("submit").click(function(){
-$.ajax({
-   type:'POST',
-   url:"/updateclass"
-   success: function(x)
-   {
-     alert(x);
-   }
- });
-});
+$('#form')
+    .ajaxForm({
+        url : '/updateclass', // or whatever
+        dataType : 'json',
+        success : function (response) {
+            alert("The server says: " + response);
+        }
+    })
+;
 
 	
 	
