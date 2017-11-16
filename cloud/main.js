@@ -9,7 +9,6 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
     var id = request.params.user;
     var school = request.params.school;
     var clas = request.params.clas;
-    var number = request.params.number;
     //When getUser(id) is called a promise is returned. Notice the .then this means that once the promise is fulfilled it will continue. See getUser() function below.
     getUser(id).then
     	(   
