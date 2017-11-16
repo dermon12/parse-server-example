@@ -15,8 +15,7 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 		//When the promise is fulfilled function(user) fires, and now we have our USER!
 		function(user)
 		{
-			console.log("HEREEEEEEEEEEEE ");
-			if (user.get("SchoolID"))
+			if (user.get("SchoolID") != null)
 			{
 				
 				var currentschool = user.get("SchoolID");
