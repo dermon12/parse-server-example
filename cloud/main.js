@@ -40,7 +40,7 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 			    );
 			}
 			
-			getSchool(school).then
+			getSchool(Number(school)).then
 			(   
 			//When the promise is fulfilled function(user) fires, and now we have our USER!
 			function(school)
