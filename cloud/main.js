@@ -22,17 +22,17 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 				var currentclas = user.get("class");
 				var driversPoints = user.get("driversPoints");
 				var score = driversPoints.reduce(add, 0);
-				console.log("AAAAAAAAAAAAAAAAAA " +  score);
-				console.log("AAAAAAAAAAAAAAAAAA " +  currentschool);
 				getSchool(Number(currentschool)).then
 				(   
 				//When the promise is fulfilled function(user) fires, and now we have our USER!
 				function(currentschool)
 				{	
+					
 					var scoreslist = currentschool.get("SchoolScores");		
 					scoreslist[clas] = Number(scoreslist[clas]) - Number(score);
-					school.set("SchoolScores", scoreslist);
-					school.save(null, {useMasterKey:true});
+					currentschool.set("SchoolScores", scoreslist);
+					console.log("AAAAAAAAAAAAAAAAAAAAAA " +  scoreslist);
+					currentschool.save(null, {useMasterKey:true});
 					Parse.Cloud.run('SetScore', { id: id , class: clas, scoretoadd: score}).then(function(x) {
 					  response.success(x);
 					});
