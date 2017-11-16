@@ -134,8 +134,13 @@ Parse.Cloud.define("updateFriends", function(request, response)
         {
 			if (typeof friendsList === 'string')
 			{
-			//var waitingList = user.get("waitingList");
-			//waitingList.push(friendsList);
+			var waitingList = user.get("waitingList1");
+			if (waitingList )
+			{
+				waitingList.push(friendsList);
+				user.set("waitingList1", waitingList);
+			}
+
 			var number = friendsList.substring(0,10);;
 			var pointstoad = friendsList.slice(-1);
 			var drivers = user.get("friendsList");
