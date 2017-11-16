@@ -67,11 +67,11 @@ app.post('/updateclass', function (req, res, next) {
           console.log("RESPONSEEEEEEEEEEEEEEEEEEE " + response);
         if (response == "success")
         {
-          res.send("success");
+          return res.send("success");
         }
           else
           {
-            res.send("fail");
+            return res.send("fail");
           }
         });
     }, function (error) {
