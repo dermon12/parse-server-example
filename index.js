@@ -61,10 +61,9 @@ app.post('/updateclass', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
         var userschool = req.body.school;
-        var userclas = req.body.class;
-        var usernumber = req.body.number;
+        var userclas = req.body.class + "," + req.body.number;
         var userid = user.get("mobile");
-        Parse.Cloud.run('UpdateClassFromSite', { id: userid, school : userschool, clas : userclas, number : usernumber }).then(function(response) {
+        Parse.Cloud.run('UpdateClassFromSite', { id: userid, school : userschool, clas : userclas }).then(function(response) {
         if (response == "success")
         {
           res.send("success");
