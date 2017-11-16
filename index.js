@@ -56,6 +56,33 @@ app.get('/', function(req, res) {
 
 });
 
+// GET route after registering
+app.post('/updateclass', function (req, res, next) {
+  Parse.User.enableUnsafeCurrentUser();
+  Parse.User.become(req.session.userId).then(function (user) {
+        var userschool = req.body.school;
+        var userclas = req.body.class;
+        var usernumber = req.body.number;
+        var userid = user.get("mobile");
+        Parse.Cloud.run('UpdateClassFromSite', { id: userid, school : userschool, clas : userclas, number : usernumber }).then(function(response) {
+        if (response == "success")
+        {
+          res.send("success");
+        }
+          else
+          {
+            res.send("fail");
+          }
+        });
+    }, function (error) {
+      return res.redirect('/');
+    });
+  
+  
+  
+});
+
+
 app.post('/', function (req, res, next) {
   // confirm that user typed same password twice
   if (req.body.spassword !== req.body.spasswordConf) {
