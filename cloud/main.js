@@ -33,7 +33,7 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 					currentschool.set("SchoolScores", scoreslist);
 					currentschool.save(null, {useMasterKey:true});
 					console.log("NEWWWWWWWWWWWCLASSSSSSSSSSS " + clas);
-					user.set("SchoolID", school);
+					user.set("SchoolID", Number(school));
 					user.set("class",clas);
 					user.save(null, {useMasterKey:true});
 					Parse.Cloud.run('SetScore', { id: Number(school) , class: clas, scoretoadd: score}).then(function(x) {
