@@ -64,6 +64,7 @@ app.post('/updateclass', function (req, res, next) {
         var userclas = req.body.class + "," + req.body.number;
         var userid = user.get("mobile");
         Parse.Cloud.run('UpdateClassFromSite', { id: userid, school : userschool, clas : userclas }).then(function(response) {
+          console.log("RESPONSEEEEEEEEEEEEEEEEEEE " + response);
         if (response == "success")
         {
           res.send("success");
