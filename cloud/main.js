@@ -29,10 +29,12 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 				{	
 					
 					var scoreslist = currentschool.get("SchoolScores");		
-					scoreslist[clas] = Number(scoreslist[clas]) - Number(score);
+					scoreslist[currentclas] = Number(scoreslist[currentclas]) - Number(score);
 					currentschool.set("SchoolScores", scoreslist);
-					console.log("AAAAAAAAAAAAAAAAAAAAAA " +  scoreslist);
 					currentschool.save(null, {useMasterKey:true});
+					user.set("SchoolID", id);
+					user.set("class",clas);
+					user.save(null, {useMasterKey:true});
 					Parse.Cloud.run('SetScore', { id: id , class: clas, scoretoadd: score}).then(function(x) {
 					  response.success(x);
 					});
