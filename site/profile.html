@@ -225,7 +225,7 @@ input:required, textarea:required {
 		      </label>
     </div>
     <div>
-      <button name="submit" type="submit" id="submit" onclick="GetMSG()">עדכן כתה</button>
+      <button name="submit" type="submit" id="submit">עדכן כתה</button>
     </div>
   </form>
 
@@ -265,9 +265,16 @@ function closeNav() {
     document.getElementById("mySidebar").style.display = "none";
 }
 	
-function GetMSG() {
-    alert(xmlHttp.responseText);
-}
+$("submit").click(function(){
+$.ajax({
+   type:'POST',
+   url:"/updateclass"
+   success: function(x)
+   {
+     alert(x);
+   }
+ });
+});
 
 	
 	
