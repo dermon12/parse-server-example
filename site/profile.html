@@ -264,6 +264,27 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidebar").style.display = "none";
 }
+$("#submit").submit(function(event) {
+
+    var formData = new FormData();
+    formData.append("uploadFiles", $('[name="file"]')[0].files[0]);
+    event.stopPropagation();
+    event.preventDefault();
+    $.ajax({
+      url: $(this).attr("action"),
+      data: formData,
+      processData: false,
+      contentType: false,
+      type: 'POST',
+      success: function(data) {
+        alert(data);
+      }
+    });
+    return false;
+  });
+	
+	
+	
 </script>
 
 </body>
