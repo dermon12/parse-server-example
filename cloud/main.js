@@ -21,7 +21,9 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 				var currentclas = user.get("class");
 				var driversPoints = user.get("driversPoints");
 				var score = driversPoints.reduce(add, 0);
-				getSchool(currentschool).then
+				console.log("AAAAAAAAAAAAAAAAAA " +  score);
+				console.log("AAAAAAAAAAAAAAAAAA " +  currentschool);
+				getSchool(Number(currentschool)).then
 				(   
 				//When the promise is fulfilled function(user) fires, and now we have our USER!
 				function(currentschool)
