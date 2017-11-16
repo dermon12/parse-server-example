@@ -32,6 +32,13 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 					scoreslist[clas] = Number(scoreslist[clas]) - Number(score);
 					school.set("SchoolScores", scoreslist);
 					school.save(null, {useMasterKey:true});
+					Parse.Cloud.run('SetScore', { id: id , class: clas, scoretoadd: score}).then(function(x) {
+					  response.success(x);
+					});
+					            	
+					
+					
+					
 
 				}
 				,
@@ -41,30 +48,6 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 				}
 			    );
 			}
-			
-			getSchool(Number(school)).then
-			(   
-			//When the promise is fulfilled function(user) fires, and now we have our USER!
-			function(school)
-			{	
-				var scoreslist = school.get("SchoolScores");
-				if (clas in scoreslist)
-				{
-					var x = scoreslist[clas];
-					score = (Number(x) + Number(score)).toString();
-				}		
-				scoreslist[clas] = Number(score);
-				school.set("SchoolScores", scoreslist);
-				school.save(null, {useMasterKey:true});
-				response.success("success");
-
-			}
-			,
-			function(error)
-			{
-			    response.error(error);
-			}
-		    );
         }
         ,
         function(error)
