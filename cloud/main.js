@@ -6,7 +6,7 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 {
 	
     //Example where an objectId is passed to a cloud function.
-    var id = request.params.user;
+    var id = request.params.id;
     var school = request.params.school;
     var clas = request.params.clas;
     //When getUser(id) is called a promise is returned. Notice the .then this means that once the promise is fulfilled it will continue. See getUser() function below.
