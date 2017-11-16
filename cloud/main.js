@@ -1,3 +1,83 @@
+function add(a, b) {
+    return a + b;
+}
+
+Parse.Cloud.define("UpdateClassFromSite", function(request, response) 
+{
+	
+    //Example where an objectId is passed to a cloud function.
+    var id = request.params.user;
+    var school = request.params.school;
+    var clas = request.params.clas;
+    var number = request.params.number;
+    //When getUser(id) is called a promise is returned. Notice the .then this means that once the promise is fulfilled it will continue. See getUser() function below.
+    getUser(id).then
+    	(   
+		//When the promise is fulfilled function(user) fires, and now we have our USER!
+		function(user)
+		{
+			if (user.get("SchoolID"))
+			{
+				var currentschool = user.get("SchoolID");
+				var currentclas = user.get("class");
+				var driversPoints = user.get("driversPoints");
+				var score = driversPoints.reduce(add, 0);
+				getSchool(currentschool).then
+				(   
+				//When the promise is fulfilled function(user) fires, and now we have our USER!
+				function(currentschool)
+				{	
+					var scoreslist = currentschool.get("SchoolScores");		
+					scoreslist[clas] = Number(scoreslist[clas]) - Number(score);
+					school.set("SchoolScores", scoreslist);
+					school.save(null, {useMasterKey:true});
+
+				}
+				,
+				function(error)
+				{
+				    response.error(error);
+				}
+			    );
+			}
+			
+			getSchool(school).then
+			(   
+			//When the promise is fulfilled function(user) fires, and now we have our USER!
+			function(school)
+			{	
+				var scoreslist = school.get("SchoolScores");
+				if (clas in scoreslist)
+				{
+					var x = scoreslist[clas];
+					score = (Number(x) + Number(score)).toString();
+				}		
+				scoreslist[clas] = Number(score);
+				school.set("SchoolScores", scoreslist);
+				school.save(null, {useMasterKey:true});
+				response.success("success");
+
+			}
+			,
+			function(error)
+			{
+			    response.error(error);
+			}
+		    );
+        }
+        ,
+        function(error)
+        {
+            response.error(error);
+        }
+    );
+
+});
+
+
+
+
+
 Parse.Cloud.define("updateUser", function(request, response) 
 {
 	
