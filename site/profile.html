@@ -268,7 +268,7 @@ function closeNav() {
 	
 $(document).ready(function(){
     $("#form").submit(function(response){
-        alert(response.body);
+        alert(JSON.parse(response));
     });
 });
 
