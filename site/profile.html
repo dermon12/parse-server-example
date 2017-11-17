@@ -266,14 +266,17 @@ function closeNav() {
     document.getElementById("mySidebar").style.display = "none";
 }
 	
-$('#form')
-    .ajaxForm({
-        dataType : 'json',
-        success : function (response) {
-            alert("The server says: " + response);
+$('#form').submit(function() { // catch the form's submit event
+    $.ajax({ // create an AJAX call...
+        data: $(this).serialize(), // get the form data
+        type: $(this).attr('POST'), // GET or POST
+        url: $(this).attr('/updateclass'), // the file to call
+        success: function(response) { // on success..
+            alert(response);
         }
-    })
-;
+    });
+    return false; // cancel original event to prevent form submitting
+});
 
 	
 	
