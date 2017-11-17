@@ -63,6 +63,7 @@ app.post('/updateclass', function (req, res, next) {
         var userschool = req.body.school;
         var userclas = req.body.class + "," + req.body.number;
         var userid = user.get("mobile");
+    
         Parse.Cloud.run('UpdateClassFromSite', { id: userid, school : userschool, clas : userclas }).then(function(response) {
           console.log("RESPONSEEEEEEEEEEEEEEEEEEE " + response);
         if (response == "success")
@@ -107,6 +108,8 @@ app.post('/', function (req, res, next) {
     user.set("mobile", req.body.smobile);
     user.set("userType", "Player");
     user.set("friendsList", new Array());
+    
+    user.set("driversPoints", new Array());
     user.set("token","");
     
     var userQuery = new Parse.Query(Parse.User);
