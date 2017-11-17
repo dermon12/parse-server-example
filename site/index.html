@@ -135,9 +135,14 @@ $("#register").submit(function() {
            url : "/",
            data: $("#register").serialize(), 
            success: function(data)
-           {
-	   	alert(data);
-	   	openalert(data);
+   	{		
+	   if(data.length > 100)
+		{
+			window.location.replace("https://back-seat.herokuapp.com/profile");	
+		}
+	        else{
+	   		openalert(data);
+	        }
            }
          });
     // avoid to execute the actual submit of the form.
@@ -152,8 +157,13 @@ $("#login").submit(function() {
            data: $("#login").serialize(), 
            success: function(data)
            {
-		alert(data);
-	   	openalert(data);
+		if(data.length > 100)
+		{
+			window.location.replace("https://back-seat.herokuapp.com/profile");	
+		}
+	        else{
+	   		openalert(data);
+	        }
            }
          });
     // avoid to execute the actual submit of the form.
