@@ -136,6 +136,7 @@ $("#register").submit(function() {
            data: $("#register").serialize(), 
            success: function(data)
            {
+	   	alert(typeof data);
 	   	openalert(data);
            }
          });
@@ -151,6 +152,7 @@ $("#login").submit(function() {
            data: $("#login").serialize(), 
            success: function(data)
            {
+		alert(typeof data);
 	   	openalert(data);
            }
          });
