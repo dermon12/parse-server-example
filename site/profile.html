@@ -266,17 +266,18 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidebar").style.display = "none";
 }
+$(document).ready(function() { 	
+	$('#form')
+	    .ajaxForm({
+		//url : 'myscript.php', // or whatever
+		dataType : 'json',
+		success : function (response) {
+		    alert("The server says: " + response);
+		}
+	    })
+	;
+   }); 
 	
-$('#form')
-    .ajaxForm({
-        //url : 'myscript.php', // or whatever
-        dataType : 'json',
-        success : function (response) {
-            alert("The server says: " + response);
-        }
-    })
-;
-
 	
 	
 </script>
