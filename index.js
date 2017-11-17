@@ -146,6 +146,7 @@ app.post('/', function (req, res, next) {
       return res.redirect('/profile');
     },
     error: function(user, error) {
+        return res.send('Wrong email or password.');
         var err = new Error('Wrong email or password.');
         err.status = 401;
         return next(err);
