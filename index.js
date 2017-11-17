@@ -86,9 +86,9 @@ app.post('/updateclass', function (req, res, next) {
 app.post('/', function (req, res, next) {
   // confirm that user typed same password twice
   if (req.body.spassword !== req.body.spasswordConf) {
+    return res.send("!הסיסמאות אינן תואמות");
     var err = new Error('Passwords do not match.');
     err.status = 400;
-    res.send("passwords dont match");
     return next(err);
   }
 
@@ -127,7 +127,7 @@ app.post('/', function (req, res, next) {
 
         }
        else{
-        res.send("Choose Other Number"); 
+        res.send("!משתמש תפוס.... בחר מספר אחר"); 
        }
        
       },
@@ -146,13 +146,14 @@ app.post('/', function (req, res, next) {
       return res.redirect('/profile');
     },
     error: function(user, error) {
-        return res.send('Wrong email or password.');
+      return res.send('!שם משתמש או סיסמא אינם נכונים');
         var err = new Error('Wrong email or password.');
         err.status = 401;
         return next(err);
     }
   });
   } else {
+    return rese.send("!כל השדות נדרשים");
     var err = new Error('All fields required.');
     err.status = 400;
     return next(err);
