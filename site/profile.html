@@ -10,6 +10,31 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+.loader {
+  display :none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -185,7 +210,7 @@ input:required, textarea:required {
 }
 </style>
 <body>
-
+<div class="loader"></div>
 <!-- Sidebar with image -->
 <nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
   <div class="bgimg"></div>
@@ -279,7 +304,7 @@ input:required, textarea:required {
 		      </label>
     </div>
     <div>
-      <button name="submit" id="submit" type="submit" > עדכון כתה</button>
+      <button name="submit" id="submit" type="submit" onclick="openloader()" > עדכון כתה</button>
     </div>
   </form>
 
@@ -328,6 +353,12 @@ function openalert(text) {
     document.getElementById("alerttet").innerHTML  = text;
     modal.style.display = "block";
 }
+function openloader() {
+    document.getElementsByClassName("loader")[0].style.display = "block";
+}
+function closeloader() {
+    document.getElementsByClassName("loader")[0].style.display = "none";
+}
 	
 	
 $("#form").submit(function() {
@@ -338,6 +369,7 @@ $("#form").submit(function() {
            data: $("#form").serialize(), 
            success: function(data)
            {
+	   	closeloader();
                // "something" is the class of your form wrapper
                if(data === "success")
 	       {
