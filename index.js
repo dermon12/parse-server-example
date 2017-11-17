@@ -104,13 +104,13 @@ app.post('/', function (req, res, next) {
 
     // other fields can be set just like with Parse.Object
     user.set("fullName", req.body.susername);
-    user.set("mobile", req.body.mobile);
+    user.set("mobile", req.body.smobile);
     user.set("userType", "Player");
     user.set("friendsList", new Array());
     user.set("token","");
     
     var userQuery = new Parse.Query(Parse.User);
-    userQuery.equalTo("mobile", req.body.mobile);
+    userQuery.equalTo("mobile", req.body.smobile);
     userQuery.first({
       success: function(object) {
         console.log("AAAAAAAAAAAAAAA" + object);
