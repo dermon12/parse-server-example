@@ -1,11 +1,55 @@
+
+
+<!DOCTYPE html>
+<html>
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<!DOCTYPE html>
-<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+<script src="site/js/ajaxforms.js"></script>
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+    background-color: #3b5998;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+
 <head>
 <title>BackSeat</title>
 <!--Custom Theme files-->
@@ -20,6 +64,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//web-fonts-->
 </head>
 <body>
+	<div id="myModal" class="modal">
+
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close">&times;</span>
+	    <p id = "alerttet">Some text in the Modal..</p>
+	  </div>
+
+	</div>
 	<h1>BackSeat</h1>
 	<!-- main -->
 	<div class="main">
@@ -32,7 +85,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h3>התחבר</h3>
 				
 				<div class="login-form">
-					<form action="/" method="post">
+					<form id = "login" action="/" method="post">
 						<input type="text" name="username" placeholder="שם משתמש" required="">
 						<input type="password" name="password" placeholder="סיסמא" required="">
 						<div class="tp">
@@ -47,7 +100,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h3>הירשם</h3>
 				
 				<div class="login-form">
-					<form action="/" method="post">
+					<form id ="register" action="/" method="post">
 						<input type="text" name="semail" placeholder="אי-מייל" required="">
 						<input type="text" name="susername" placeholder="שם משתמש" required="">
 						<input type="text" name="smobile" placeholder="מספר טלפון" required="">
@@ -63,3 +116,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>				
 </body>
 </html>
+
+
+
+<script>
+var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+function openalert(text) {
+    document.getElementById("alerttet").innerHTML  = text;
+    modal.style.display = "block";
+}
+$("#register").submit(function() {
+    $.ajax({
+           type: "POST",
+           // serialize your form's elements.
+           data: $("#form").serialize(), 
+           success: function(data)
+           {
+	   	openalert(data);
+           }
+         });
+    // avoid to execute the actual submit of the form.
+    return false;
+});	
+	
+
+$("#login").submit(function() {
+    $.ajax({
+           type: "POST",
+           // serialize your form's elements.
+           data: $("#form").serialize(), 
+           success: function(data)
+           {
+	   	openalert(data);
+           }
+         });
+    // avoid to execute the actual submit of the form.
+    return false;
+});
+	
+	
+	
+</script>
