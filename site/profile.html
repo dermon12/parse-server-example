@@ -266,12 +266,14 @@ function closeNav() {
     document.getElementById("mySidebar").style.display = "none";
 }
 	
-$(document).ready(function(){
-    $("#form").submit(function(response){
-    	var str = JSON.stringify(response);
-        alert(str);
-    });
-});
+$('#form')
+    .ajaxForm({
+        dataType : 'json',
+        success : function (response) {
+            alert("The server says: " + response);
+        }
+    })
+;
 
 	
 	
