@@ -270,7 +270,7 @@ $('#form').submit(function() { // catch the form's submit event
     $.ajax({ // create an AJAX call...
         data: $(this).serialize(), // get the form data
         type: $(this).attr('POST'), // GET or POST
-        url: $(this).attr('/updateclass'), // the file to call
+        url: $(this).attr('https://back-seat.herokuapp.com/updateclass'), // the file to call
         success: function(response) { // on success..
             alert(response);
         }
