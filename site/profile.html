@@ -330,17 +330,21 @@ function openalert(text) {
 }
 	
 	
-$(document).ready(function() { 	
-	$('#form')
-	    .ajaxForm({
-		//url : 'myscript.php', // or whatever
-		dataType : 'json',
-		success : function (response) {
-		    alert("The server says: " + response);
-		}
-	    })
-	;
-   }); 
+$("#form").submit(function() {
+    $.ajax({
+           type: "POST",
+           url: "/updateclass",
+           // serialize your form's elements.
+           data: $("#form").serialize(), 
+           success: function(data)
+           {
+               // "something" is the class of your form wrapper
+               alert(data);
+           }
+         });
+    // avoid to execute the actual submit of the form.
+    return false;
+});
 	
 	
 	
