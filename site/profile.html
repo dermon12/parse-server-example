@@ -279,7 +279,7 @@ input:required, textarea:required {
 		      </label>
     </div>
     <div>
-      <button name="submit" id="submit" type="submit" onclick='openalert("בוצע")'>עדכן כתה</button>
+      <button name="submit" id="submit" type="submit" </button>
     </div>
   </form>
 
@@ -339,7 +339,14 @@ $("#form").submit(function() {
            success: function(data)
            {
                // "something" is the class of your form wrapper
-               alert(data);
+               if(data === "success")
+	       {
+		     openalert("עדכון הכתה בוצע!");  
+	       }
+		   else
+		   {
+			openalert("אופס... משהו השתבש"); 
+		   }
            }
          });
     // avoid to execute the actual submit of the form.
