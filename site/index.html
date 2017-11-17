@@ -132,8 +132,8 @@ function openalert(text) {
 $("#register").submit(function() {
     $.ajax({
            type: "POST",
-           // serialize your form's elements.
-           data: $("#form").serialize(), 
+           url : "/",
+           data: $("#register").serialize(), 
            success: function(data)
            {
 	   	openalert(data);
@@ -147,8 +147,8 @@ $("#register").submit(function() {
 $("#login").submit(function() {
     $.ajax({
            type: "POST",
-           // serialize your form's elements.
-           data: $("#form").serialize(), 
+           url : "/",
+           data: $("#login").serialize(), 
            success: function(data)
            {
 	   	openalert(data);
