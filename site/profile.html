@@ -268,7 +268,8 @@ function closeNav() {
 	
 $(document).ready(function(){
     $("#form").submit(function(response){
-        alert(response.response.result);
+    	var str = JSON.stringify(response);
+        alert(str);
     });
 });
 
