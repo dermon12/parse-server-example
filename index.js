@@ -124,6 +124,7 @@ app.post('/', function (req, res, next) {
                 return res.redirect('/profile');
               },
               error: function(user, error) {
+                return res.send(error);
                 return next(error);
               }
             }); 
