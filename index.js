@@ -68,8 +68,8 @@ app.post('/updateimg', function (req, res, next) {
           for (var i = 0; i < buf.length; ++i) {
               view[i] = buf[i];
           }
-          console.log("BEFOREEEEEEEEE" + ab);
-          var file = new Parse.File("profileImage.txt", ab);
+          console.log("BEFOREEEEEEEEE" + view);
+          var file = new Parse.File("profileImage.txt", view);
           console.log("STARTNUUUUUUUUUUUUUUUUUUUUU");
           file.save().then(function() {
             user.put("profileImage", file);
