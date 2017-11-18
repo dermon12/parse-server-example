@@ -71,9 +71,8 @@ app.post('/updateimg', function (req, res, next) {
           var file = new Parse.File("profileImage.png", array);
           file.save().then(function() {
             var xx = JSON.parse(JSON.stringify(file));
-            console.log("FILEEEEEEEEEEEE " + xx.name);
             user.put("profileImage", xx.name);
-
+            console.log("AFTERPUTTTTTTTTTTT " + xx.name);
           user.save(null, {useMasterKey:true});
           return res.send("success");
           }, function(error) {
