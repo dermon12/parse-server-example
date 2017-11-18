@@ -13,7 +13,8 @@
     "kerberos": "~0.0.x",
     "parse": "~1.8.0",
     "express-session": "*",
-    "parse-server": "*"
+    "parse-server": "*",
+    "express-fileupload": "*"
   },
   "scripts": {
     "start": "node index.js"
