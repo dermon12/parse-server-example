@@ -61,9 +61,15 @@ app.get('/', function(req, res) {
 app.post('/updateimg', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
-          let sampleFile = req.files.file;
-          console.log("BEFOREEEEEEEEE" + typeof req.files.file.data);
-          var file = new Parse.File("profileImage.txt", req.files.file.data);
+          let buf = req.files.file.data;
+          
+          var ab = new ArrayBuffer(buf.length);
+          var view = new Uint8Array(ab);
+          for (var i = 0; i < buf.length; ++i) {
+              view[i] = buf[i];
+          }
+          console.log("BEFOREEEEEEEEE" + ab);
+          var file = new Parse.File("profileImage.txt", ab);
           console.log("STARTNUUUUUUUUUUUUUUUUUUUUU");
           file.save().then(function() {
             user.put("profileImage", file);
