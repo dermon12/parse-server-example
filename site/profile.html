@@ -417,9 +417,9 @@ function closeloader() {
 	
 document.getElementById("file").onchange = function() {
     openloader();
-    document.getElementById("imgform").submit();
+    //document.getElementById("imgform").submit();
+    $('#imgform').submit();
     setTimeout(function(){
-    	
     closeloader();
     window.location = "https://back-seat.herokuapp.com/profile";
 	}, 3000);
