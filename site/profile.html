@@ -428,7 +428,7 @@ $("#form").submit(function() {
            type: "POST",
            url: "/updateclass",
            // serialize your form's elements.
-           data: $("#form").serialize(), 
+           data: $("#file").serialize(), 
            success: function(data)
            {
 	   	closeloader();
