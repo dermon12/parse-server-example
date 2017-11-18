@@ -69,10 +69,10 @@ app.post('/updateimg', function (req, res, next) {
               view[i] = buf[i];
           }
           var array = Array.from(view)
-          var file = new Parse.File("profileImage.txt", array);
+          var file = new Parse.File("profileImage.png", array);
           file.save().then(function() {
-            console.log("SAVEDDDDDDDDDDDDDD");
             user.put("profileImage", file);
+            console.log("PUTTTTTTTTTTTTTTTTTTT");
           user.save(null, {useMasterKey:true});
           return res.send("success");
           }, function(error) {
