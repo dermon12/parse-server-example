@@ -417,9 +417,25 @@ function closeloader() {
 	
 document.getElementById("file").onchange = function() {
     openloader();
-    document.getElementById("imgform").submit();
-	var r = xmlHttp.responseText;
-	alert(r);
+    //document.getElementById("imgform").submit();
+    $.ajax({
+      type: "POST",
+      url: "/updateimg",
+      data: $("#file").serialize(), 
+      success: function() {
+	closeloader();
+               // "something" is the class of your form wrapper
+               if(data === "success")
+	       {
+		     openalert("!עדכון הכתה בוצע");  
+	       }
+		   else
+		   {
+			openalert("אופס... משהו השתבש"); 
+		   }
+      }
+    });
+    return false;
 };
 	
 $("#imgform").submit(function() {
