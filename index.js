@@ -69,7 +69,7 @@ app.post('/updateimg', function (req, res, next) {
             user.save(null, {useMasterKey:true});
             res.send("success");
           }, function(error) {
-            // The file either could not be read, or could not be saved to Parse.
+            console.log("ERRRRRRRRRRRRRRRROR "  + error);
           });
           
         });
