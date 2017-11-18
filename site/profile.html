@@ -417,30 +417,7 @@ function closeloader() {
 	
 document.getElementById("file").onchange = function() {
     openloader();
-    //document.getElementById("imgform").submit();
-    $('#imgform').submit(function() {
-    $.ajax({
-           type: "POST",
-           url: "/updateclass",
-           // serialize your form's elements.
-           data: $("#imgform").serialize(), 
-           success: function(data)
-           {
-	   	closeloader();
-               // "something" is the class of your form wrapper
-               if(data === "success")
-	       {
-		     openalert("!עדכון הכתה בוצע");  
-	       }
-		   else
-		   {
-			openalert("אופס... משהו השתבש"); 
-		   }
-           }
-         });
-    		// avoid to execute the actual submit of the form.
-		    return false;
-		});    
+    document.getElementById("imgform").submit();
 };
 	
 	
