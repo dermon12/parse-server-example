@@ -421,7 +421,7 @@ document.getElementById("file").onchange = function() {
     $.ajax({
       type: "POST",
       url: "/updateimg",
-      data: $("#file").serialize(), 
+      data: $("#imgform").serialize(), 
       success: function() {
 	closeloader();
                // "something" is the class of your form wrapper
