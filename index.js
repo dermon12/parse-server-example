@@ -59,7 +59,7 @@ app.get('/', function(req, res) {
 app.post('/updateimg', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
-          var str = JSON.stringify(req);
+          var str = JSON.stringify(req.body);
           console.log("FILEFILEFILEFILE" + str);
           res.send("success");
         });
