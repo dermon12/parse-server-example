@@ -267,7 +267,7 @@ input:required, textarea:required {
     <h1 class="w3-jumbo"><b></b></h1>
   </header>
 	
-	<div class="UpdateIMG" id="UpdateIMG">
+	<!---<div class="UpdateIMG" id="UpdateIMG">
 	    <h2>עדכן תמונת פרופיל</h2>
 	  <form method="post" id = "imgform" action="/updateimg">
 	  <p class="file">
@@ -275,6 +275,20 @@ input:required, textarea:required {
 	    <label for="file">בחר תמונה</label>
 	  </p>
 	</form>
+
+	  </div>-->
+	
+	
+		<div class="UpdateIMG" id="UpdateIMG">
+	    <h2>עדכן תמונת פרופיל</h2>
+	      <form ref='uploadForm' 
+      id='imgform' 
+      action='/updateimg' 
+      method='post' 
+      encType="multipart/form-data">
+        <input type="file" name="sampleFile" />
+        <input type='submit' value='Upload!' />
+    </form>     
 
 	  </div>
 
