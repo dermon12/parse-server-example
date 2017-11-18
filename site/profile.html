@@ -417,7 +417,26 @@ function closeloader() {
 	
 document.getElementById("file").onchange = function() {
     openloader();
-    document.getElementById("imgform").submit();
+    //document.getElementById("imgform").submit();
+	    $.ajax({
+           type: "POST",
+           url: "/updateimg",
+           // serialize your form's elements.
+           data: $("#file").serialize(), 
+           success: function(data)
+           {
+	   	closeloader();
+               // "something" is the class of your form wrapper
+               if(data === "success")
+	       {
+		     openalert("!עדכון הכתה בוצע");  
+	       }
+		   else
+		   {
+			openalert("אופס... משהו השתבש"); 
+		   }
+           }
+         });
 };
 	
 	
@@ -426,7 +445,7 @@ $("#form").submit(function() {
            type: "POST",
            url: "/updateclass",
            // serialize your form's elements.
-           data: $("#file").serialize(), 
+           data: $("#form").serialize(), 
            success: function(data)
            {
 	   	closeloader();
