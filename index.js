@@ -56,6 +56,18 @@ app.get('/', function(req, res) {
 
 });
 
+app.post('/updateimg', function (req, res, next) {
+  Parse.User.enableUnsafeCurrentUser();
+  Parse.User.become(req.session.userId).then(function (user) {
+          console.log("AAAAAAAAAAAAA" + req.body.file);
+          res.send("success");
+        });
+    }, function (error) {
+      return res.redirect('/');
+    });
+
+
+
 // GET route after registering
 app.post('/updateclass', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
