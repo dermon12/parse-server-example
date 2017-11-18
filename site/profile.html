@@ -417,50 +417,10 @@ function closeloader() {
 	
 document.getElementById("file").onchange = function() {
     openloader();
-    //document.getElementById("imgform").submit();
-    $.ajax({
-      type: "POST",
-      url: "/updateimg",
-      data: $("#imgform").serialize(), 
-      success: function() {
-	closeloader();
-               // "something" is the class of your form wrapper
-               if(data === "success")
-	       {
-		     openalert("!עדכון הכתה בוצע");  
-	       }
-		   else
-		   {
-			openalert("אופס... משהו השתבש"); 
-		   }
-      }
-    });
-    return false;
+    document.getElementById("imgform").submit();
+    document.location.href = "https://back-seat.herokuapp.com/profile";
 };
 	
-$("#imgform").submit(function() {
-	var formData = new FormData(this);
-    $.ajax({
-           type: "POST",
-           url: "/updateimg",
-	    data : formData,
-           success: function(data)
-           {
-	   	closeloader();
-               // "something" is the class of your form wrapper
-               if(data === "success")
-	       {
-		     openalert("!עדכון הכתה בוצע");  
-	       }
-		   else
-		   {
-			openalert("אופס... משהו השתבש"); 
-		   }
-           }
-         });
-    // avoid to execute the actual submit of the form.
-    return false;
-});
 	
 	
 	
