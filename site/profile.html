@@ -400,12 +400,19 @@ function closeloader() {
 }
 	
 $('#file').change(function(){
-    openloader()
+	var form = $('imgform')[0]; // You need to use standard javascript object here
+	var formData = new FormData(form);
+	var formData = new FormData();
+	formData.append('section', 'general');
+	formData.append('action', 'previewImg');
+	// Attach file
+	formData.append('image', $('input[type=file]')[0].files[0]); 
+    	openloader()
 	$.ajax({
 	   type: "POST",
 	   url: "/updateimg",
 	   // serialize your form's elements.
-	   data: $("#imgform").serialize(), 
+	   data: formData, 
 	   success: function(data)
 	   {
 		closeloader();
