@@ -64,7 +64,7 @@ app.post('/updateimg', function (req, res, next) {
           let sampleFile = req.files.file;
           var str = JSON.stringify(sampleFile.data);
           console.log("BEFORENEWWWWWWWW " + str); // Logs output to dev tools console.
-          var file = new Parse.File("profileImage.png", sampleFile.data);
+          var file = new Parse.File("profileImage.png", sampleFile.data.data);
           file.save();
           user.put("profileImage", file);
           user.save(null, {useMasterKey:true});
