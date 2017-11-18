@@ -69,18 +69,19 @@ app.post('/updateimg', function (req, res, next) {
               view[i] = buf[i];
           }
           var array = Array.from(view)
-          console.log("BEFOREEEEEEEEE" + array);
           var file = new Parse.File("profileImage.txt", array);
-          console.log("STARTNUUUUUUUUUUUUUUUUUUUUU");
           file.save().then(function() {
+            console.log("SAVEDDDDDDDDDDDDDD");
             user.put("profileImage", file);
           user.save(null, {useMasterKey:true});
           return res.send("success");
           }, function(error) {
+            console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
            return res.redirect('/');
           });
         });
     }, function (error) {
+      console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
       return res.redirect('/');
     });
 
