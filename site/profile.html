@@ -287,7 +287,7 @@ input:required, textarea:required {
 	      method='post' 
 	      encType="multipart/form-data">
 		<p class="file">
-	    <input type="file" name="file" onchange="$('imgform').submit();" accept="image/*" id="file" />
+	    <input type="file" name="file" accept="image/*" id="file" />
 	    <label for="file">בחר תמונה</label>
 	  </p>
 	    </form>     
@@ -416,34 +416,15 @@ function closeloader() {
 }
 	
 document.getElementById("file").onchange = function() {
-    //openloader();
-    //document.getElementById("imgform").submit();
+    openloader();
+    document.getElementById("imgform").submit();
+    setTimeout(function(){
+    	
+    closeloader();
+    window.location = "https://back-seat.herokuapp.com/profile";
+	}, 3000);
+
 };
-	
-$("#imgform").submit(function() {
-	openloader();
-	var formData = new FormData(this);
-    $.ajax({
-           type: "POST",
-           url: "/updateimg",
-	    data : formData,
-           success: function(data)
-           {
-	   	closeloader();
-               // "something" is the class of your form wrapper
-               if(data === "success")
-	       {
-		     openalert("!עדכון הכתה בוצע");  
-	       }
-		   else
-		   {
-			openalert("אופס... משהו השתבש"); 
-		   }
-           }
-         });
-    // avoid to execute the actual submit of the form.
-    return false;
-});
 	
 	
 	
