@@ -70,7 +70,7 @@ app.post('/updateimg', function (req, res, next) {
           var array = Array.from(view)
           var file = new Parse.File("profileImage.png", array);
           file.save().then(function() {
-            var xx = JSON.parse(file);
+            var xx = JSON.parse(JSON.stringify(file));
             console.log("FILEEEEEEEEEEEE " + xx.name);
             user.put("profileImage", xx.name);
 
