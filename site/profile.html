@@ -411,7 +411,8 @@ $('#file').change(function(){
 	$.ajax({
 	   type: "POST",
 	   url: "/updateimg",
-	   // serialize your form's elements.
+	   contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+    	   processData: false, // NEEDED, DON'T OMIT THIS
 	   data: formData, 
 	   success: function(data)
 	   {
