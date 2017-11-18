@@ -417,7 +417,8 @@ function closeloader() {
 	
 document.getElementById("file").onchange = function() {
     openloader();
-    document.getElementById("imgform").submit();
+    //document.getElementById("imgform").submit();
+	$("#imgform").ajaxSubmit({url: '/updateimg', type: 'post'})
 };
 	
 $("#imgform").submit(function() {
