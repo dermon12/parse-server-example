@@ -398,9 +398,9 @@ function openloader() {
 function closeloader() {
     document.getElementsByClassName("loader")[0].style.display = "none";
 }
-document.getElementById("file").onchange = function() {
+	
+$('#file').change(function(){
     openloader()
-    //document.getElementById("imgform").submit();
 	$.ajax({
 	   type: "POST",
 	   url: "/updateclass",
@@ -420,7 +420,7 @@ document.getElementById("file").onchange = function() {
 		   }
 	   }
 	 });
-};
+});
 	
 	
 $("#form").submit(function() {
