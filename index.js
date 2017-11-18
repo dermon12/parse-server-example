@@ -63,7 +63,7 @@ app.post('/updateimg', function (req, res, next) {
   Parse.User.become(req.session.userId).then(function (user) {
           let sampleFile = req.files.file;
           var str = JSON.stringify(sampleFile.data.data);
-          console.log("STRRRRRR " + str);
+          console.log("STRRRRRR " + sampleFile.data.data);
           var file = new Parse.File("profileImage.png", sampleFile.data.data);
           console.log("STARTNUUUUUUUUUUUUUUUUUUUUU");
           file.save().then(function() {
