@@ -371,9 +371,9 @@ input:required, textarea:required {
     	<div class="submit" id="submit">
 	    <h2>שליחת בקשת חברות</h2>  
         <div class="login-block">
-    <input dir = "rtl" type="text" value="" placeholder="הקלד מספר טלפון" id="phonenumber" />
+    <input dir = "rtl" type="number" value="" placeholder="הקלד מספר טלפון" id="phonenumber" />
             
-<button name="addfriend" class="addfriend" onclick="openloader()" > שליחת בקשת חברות</button>
+<button name="addfriend" class="addfriend" onclick="sendrequest()" > שליחת בקשת חברות</button>
     
     
 	
@@ -512,6 +512,24 @@ function openalert(text) {
 function openloader() {
     document.getElementsByClassName("loader")[0].style.display = "block";
 }
+function sendrequest(){
+
+	var number = document.getElementById("phonenumber").value;
+	if(number.length != 10 || !number.startsWith("05")){
+    	closeloader();
+        openalert("אנא הקלד מספר טלפון תקין בן 10 ספרות");
+    }
+    else
+    {
+    openloader();
+    openalert("GOOD");
+    
+    closeloader();
+    }
+    
+}
+
+
 function closeloader() {
     document.getElementsByClassName("loader")[0].style.display = "none";
 }
