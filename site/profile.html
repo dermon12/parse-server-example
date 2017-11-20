@@ -522,7 +522,11 @@ function sendrequest(){
     else
     {
     openloader();
-    openalert("GOOD");
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://back-seat.herokuapp.com/addfriend/" + number , false ); // false for synchronous request
+    xmlHttp.send( null );
+    var r = xmlHttp.responseText;
+    openalert(r);
     
     closeloader();
     }
