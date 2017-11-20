@@ -87,7 +87,12 @@ Parse.Cloud.define("updateUserSite", function(request, response)
         function(user)
         {
 		var listrequest = user.get("requestList");
-		if (listrequest.includes(requestList)){
+		if (user.get("userType") != "Driver")
+		{
+			response.success("success");
+		}
+		
+		else if (listrequest.includes(requestList)){
 			response.success("success");
 		}
 		else{
