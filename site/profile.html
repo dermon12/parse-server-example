@@ -6,11 +6,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
 <script src="site/js/ajaxforms.js"></script>
 <script src="site/js/profile.js"></script>
-<script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
 <style>
 	
 .file {
@@ -280,12 +278,6 @@ input:required, textarea:required {
 
 	  </div>-->
 	
-	  <body class="padding" ng-controller="PopupCtrl">
-    	<button class="button button-dark" ng-click="showPopup()">
-      	שלח בקשת חברות
-    	</button>
-	
-	
 	
 	<div class="UpdateIMG" id="UpdateIMG">
 	    <h2>עדכן תמונת פרופיל</h2>
@@ -454,44 +446,7 @@ $("#form").submit(function() {
     // avoid to execute the actual submit of the form.
     return false;
 });
-
-angular.module('mySuperApp', ['ionic'])
-.controller('PopupCtrl',function($scope, $ionicPopup, $timeout) {
-
- // Triggered on a button click, or some other target
- $scope.showPopup = function() {
-   $scope.data = {}
-
-   // An elaborate, custom popup
-   var myPopup = $ionicPopup.show({
-     template:       '<label class="item item-input"><input type="text" placeholder="מספר טלפון" ng-model="data.number"></label>' ,
-     title: 'הקלד את מספר הנייד של הנהג',
-     subTitle: 'אנא הקלד מספר טלפון תקין',
-     scope: $scope,
-     buttons: [
-       { text: 'ביטול' },
-       {
-
-         text: '<b>שלח בקשת חברות</b>',
-         scope: $scope,
-         type: 'button-positive',
-         onTap: function(e) {
-             if ((!$scope.data.number) || !/^\d+$/.test($scope.data.number) || $scope.data.number.length != 10 || !$scope.data.number.startsWith("05")  ) {
-             //don't allow the user to close unless he enters wifi password
-             e.preventDefault();
-           } else {
-             //alert($scope.data.number);
-             return $scope.data.number;
-           }
-         }
-       },
-     ]
-   });
-   myPopup.then(function(res) {
-     console.log('Tapped!', res);
-   });
-  };
-});
+	
 	
 	
 </script>
