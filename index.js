@@ -71,6 +71,7 @@ app.get('/addfriend', function (req, res, next) {
     }
     else{
       Parse.Cloud.run('updateUserSite', { id: driveraddto, requestList : playertoadd}).then(function(response) {
+        console.log("RESSSSSSSSSSSSSS " + response);
         if (response == "success")
         {
           return res.send("!בקשת חברות נשלחה בהצלחה");
