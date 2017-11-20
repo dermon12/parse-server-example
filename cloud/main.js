@@ -88,6 +88,7 @@ Parse.Cloud.define("updateUserSite", function(request, response)
         //When the promise is fulfilled function(user) fires, and now we have our USER!
         function(user)
         {
+		console.log("INUSER");
 		var listrequest = user.get("requestList");
 		if (user.get("userType") != "Driver")
 		{
@@ -109,6 +110,7 @@ Parse.Cloud.define("updateUserSite", function(request, response)
         ,
         function(error)
         {
+		console.log("INERROR");
             response.error(error);
         }
     );
