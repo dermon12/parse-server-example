@@ -74,6 +74,9 @@ app.get('/addfriend', function (req, res, next) {
         console.log("RESSSSSSSSSSSSSS " + response);
         if (response == "success")
         {
+          sentrequestlist.push(driveraddto);
+          user.set("sentRequestList",sentrequestlist);
+          user.save();
           return res.send("!בקשת חברות נשלחה בהצלחה");
         }
           else
