@@ -83,7 +83,7 @@ Parse.Cloud.define("updateUserSite", function(request, response)
     var id = request.params.user;
     var requestList = request.params.requestList;
     //When getUser(id) is called a promise is returned. Notice the .then this means that once the promise is fulfilled it will continue. See getUser() function below.
-    getUser(Number(id)).then
+    getUser(id).then
     (   
         //When the promise is fulfilled function(user) fires, and now we have our USER!
         function(user)
