@@ -59,7 +59,7 @@ app.get('/', function(req, res) {
 });
 
 
-app.post('/addfriend/:num', function (req, res, next) {
+app.post('/addfriend', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
     var numtoadd = user.get("mobile");
