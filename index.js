@@ -58,6 +58,18 @@ app.get('/', function(req, res) {
 
 });
 
+
+app.post('/addfriend', function (req, res, next) {
+  Parse.User.enableUnsafeCurrentUser();
+  Parse.User.become(req.session.userId).then(function (user) {
+    var numtoadd = user.get("mobile");
+    console.log(req.url);
+    return res.send("success");
+    }, function (error) {
+      return res.redirect('/');
+    });
+
+
 app.post('/updateimg', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
@@ -138,7 +150,7 @@ app.post('/', function (req, res, next) {
     user.set("mobile", req.body.smobile);
     user.set("userType", "Player");
     user.set("friendsList", new Array());
-    
+    user.set("sentRequestList", new Array());
     user.set("driversPoints", new Array());
     user.set("token","");
     
