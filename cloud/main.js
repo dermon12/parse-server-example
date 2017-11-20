@@ -15,6 +15,7 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
 		//When the promise is fulfilled function(user) fires, and now we have our USER!
 		function(user)
 		{
+			console.log("INUSER");
 			if (user.get("SchoolID") != null)
 			{
 				
@@ -67,6 +68,7 @@ Parse.Cloud.define("UpdateClassFromSite", function(request, response)
         ,
         function(error)
         {
+		console.log("INERROR");
             response.error(error);
         }
     );
