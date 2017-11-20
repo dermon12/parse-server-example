@@ -63,12 +63,12 @@ app.post('/addfriend', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
     var numtoadd = user.get("mobile");
-    console.log(req.url);
+    console.log("URLLLLLLLLL " + req.url);
     return res.send("success");
     }, function (error) {
       return res.redirect('/');
     });
-}
+});
 
 app.post('/updateimg', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
