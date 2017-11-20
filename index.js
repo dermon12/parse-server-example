@@ -62,9 +62,26 @@ app.get('/', function(req, res) {
 app.get('/addfriend', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
-    var numtoadd = user.get("mobile");
-    console.log("URLLLLLLLLL " + req.param('num')  );
-    return res.send("success");
+    var playertoadd = user.get("mobile");
+    var driveraddto =  req.param('num');
+    var sentrequestlist = user.get("sentRequestList");
+    var friendslist = user.get("friendsList");
+    if(sentrequestlist.includes(driveraddto) || friendslist.includes(driveraddto)){
+      return res.send("עבור משתמש זה נשלחה בקשת חברות או שהוא כבר קיים ברשימת החברים שלך");
+    }
+    else{
+      Parse.Cloud.run('updateUserSite', { id: driveraddto, requestList : playertoadd}).then(function(response) {
+        if (response == "success")
+        {
+          return res.send("!בקשת חברות נשלחה בהצלחה");
+        }
+          else
+          {
+            return res.send("!משתמש זה אינו קיים במערכת");
+          }
+        });
+
+    }
     }, function (error) {
       return res.redirect('/');
     });
