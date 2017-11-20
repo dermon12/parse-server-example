@@ -70,7 +70,7 @@ app.get('/addfriend', function (req, res, next) {
       return res.send("עבור משתמש זה נשלחה בקשת חברות או שהוא כבר קיים ברשימת החברים שלך");
     }
     else{
-      Parse.Cloud.run('updateUserSite', { id: driveraddto, requestList : playertoadd}).then(function(response) {
+      Parse.Cloud.run('updateUserSite', { user: driveraddto, requestList : playertoadd}).then(function(response) {
         console.log("RESSSSSSSSSSSSSS " + response);
         if (response == "success")
         {
