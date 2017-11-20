@@ -68,7 +68,7 @@ app.post('/addfriend', function (req, res, next) {
     }, function (error) {
       return res.redirect('/');
     });
-
+}
 
 app.post('/updateimg', function (req, res, next) {
   Parse.User.enableUnsafeCurrentUser();
