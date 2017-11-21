@@ -259,7 +259,7 @@ Parse.Cloud.define("updateFriends", function(request, response)
 			if (typeof friendsList === 'string')
 			{
 			var waitingList = user.get("waitingList1");
-			if (waitingList )
+			if (waitingList != null )
 			{
 				waitingList.push(friendsList);
 				user.set("waitingList1", waitingList);
