@@ -49,7 +49,7 @@ var table = document.getElementById("myTable");
 function add (name, points,url)
 {document.getElementById("shadow").innerHTML += ` <div class="col-sm-15">
         <div class="col-sm-1" style="float: right;">
-          <img src="` + url + `" class="img-circle" width="10%" >
+          <img src="` + url + `" class="img-circle" width="60px" >
         </div>
         <div class="col-sm-11" align="right">
           <h4><a href="#">` + name + `</a></h4>
