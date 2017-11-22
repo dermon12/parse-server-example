@@ -4,10 +4,10 @@ xmlHttp.send( null );
 var r = xmlHttp.responseText;
 var user = JSON.parse(r);
 window.onload = function() {
-  document.getElementsByClassName("img-circle")[0].innerText  = "Welcome " + user.fullName;
+  document.getElementsByClassName("w3-big")[0].innerText  = "Welcome " + user.fullName;
   if(user.profileImage){
   var url = user.profileImage.url;
-    document.getElementsByClassName("imgprogileimg")[0].style.backgroundImage = "url('" + url + "')";
+    document.getElementsByClassName("img-circle")[0].style.backgroundImage = "url('" + url + "')";
   }
   settable();
   createfriendslist();
