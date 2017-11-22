@@ -53,7 +53,7 @@ if (url == null)
 }
 document.getElementById("shadow").innerHTML += ` <div class="col-sm-15">
         <div class="col-sm-1" style="float: right;">
-          <img src="` + url + `" class="img-circle" width="60px" >
+          <img src="` + url + `" class="img-circle" width="60px" height = "60px">
         </div>
         <div class="col-sm-11" align="right">
           <h4><a href="#">` + name + `</a></h4>
