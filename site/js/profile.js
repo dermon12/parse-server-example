@@ -7,7 +7,7 @@ window.onload = function() {
   document.getElementsByClassName("w3-large")[0].innerText  = "Welcome " + user.fullName;
   if(user.profileImage){
   var url = user.profileImage.url;
-    document.getElementsByClassName("img-circle")[0].style.backgroundImage = "url('" + url + "')";
+    document.getElementsByClassName("img-circle-profile")[0].style.backgroundImage = "url('" + url + "')";
   }
   settable();
   createfriendslist();
