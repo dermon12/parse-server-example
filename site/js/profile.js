@@ -47,6 +47,10 @@ var table = document.getElementById("myTable");
 
 
 function add (name, points,url)
+if (url == null)
+{
+ url = "https://animal-id.info/img/no-user.jpg"; 
+}
 {document.getElementById("shadow").innerHTML += ` <div class="col-sm-15">
         <div class="col-sm-1" style="float: right;">
           <img src="` + url + `" class="img-circle" width="60px" >
