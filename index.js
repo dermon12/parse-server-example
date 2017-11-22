@@ -63,7 +63,7 @@ app.get('/getuser', function (req, res, next) {
 	  Parse.User.become(req.session.userId).then(function (user) {
 		  var numtoget =  req.param('num');
 		  var userQuery = new Parse.Query(Parse.User);
-		  userQuery.equalTo("mobile", req.body.smobile);
+		  userQuery.equalTo("mobile", numtoget);
 		  userQuery.first({
 			success: function(object) {
 			  return res.send(object);
