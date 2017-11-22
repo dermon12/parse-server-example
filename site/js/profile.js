@@ -18,8 +18,7 @@ function createfriendslist(){
       for (let i = 0; i < friends.length; ++i) {
         var friendnum = friends[i];
         $.get("https://back-seat.herokuapp.com/getuser?num=" + friendnum, function(data, status){
-              alert(JSON.stringify(data));
-              var friend = JSON.parse(data);
+              var friend = data;
               add(friend.fullName, user.driversPoints[i], friend.profileImage.url);
     	});
         
