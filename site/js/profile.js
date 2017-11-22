@@ -14,8 +14,16 @@ window.onload = function() {
 }
 
 function createfriendslist(){
-add("יוסי המלך", 55);
-add("מולי המלך",97, "https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/84bf361e-9a4b-42eb-be68-f2d58fe7e385/11-dithering-bug-opt-small.png");
+      var friends = user.friendsList;
+      for (let i = 0; i < friends.length; ++i) {
+        var friendnum = friends[i];
+        add(friendnum, String(i + 4));
+        
+      }
+
+        
+//add("יוסי המלך", 55);
+//add("מולי המלך",97, "https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/84bf361e-9a4b-42eb-be68-f2d58fe7e385/11-dithering-bug-opt-small.png");
   
 }
 
