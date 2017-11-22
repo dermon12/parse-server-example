@@ -10,6 +10,13 @@ window.onload = function() {
     document.getElementsByClassName("w3-container w3-center")[0].style.backgroundImage = "url('" + url + "')";
   }
   settable();
+  createfriendslist();
+}
+
+function createfriendslist(){
+add("יוסי המלך", 55);
+add("מולי המלך",97, "https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/84bf361e-9a4b-42eb-be68-f2d58fe7e385/11-dithering-bug-opt-small.png");
+  
 }
 
 function settable(){
@@ -35,4 +42,23 @@ var table = document.getElementById("myTable");
     cell1.innerHTML = calsses[splited[0]-4] + splited[1];
     cell2.innerHTML = items[key][1]; 
   }
+}
+
+
+
+function add (name, points,url)
+{document.getElementById("shadow").innerHTML += ` <div class="col-sm-15">
+        <div class="col-sm-1" style="float: right;">
+          <img src="` + url + `" class="img-circle" width="60px" >
+        </div>
+        <div class="col-sm-11" align="right">
+          <h4><a href="#">` + name + `</a></h4>
+          <p><a href="#" dir="rtl">` + points + ` נקודות מנהג זה</a></p>
+        </div>
+        <div class="col-sm-2">
+          <br>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <hr />`
 }
