@@ -46,7 +46,7 @@ var table = document.getElementById("myTable");
 
 
 
-function add (name, points,url)
+function add (name, points,url){
 if (url == null)
 {
  url = "https://animal-id.info/img/no-user.jpg"; 
