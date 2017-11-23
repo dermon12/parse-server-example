@@ -622,9 +622,8 @@ function closeloader() {
     document.getElementsByClassName("loader")[0].style.display = "none";
 }
 	
-document.getElementById("file").onchange = function() {
-    openloader();
-    document.getElementById("imgform").submit();
+document.getElementById("file").onclick = function() {
+    alert("HI");
 };
 	
 	
