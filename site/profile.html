@@ -474,7 +474,20 @@ padding:20px;
 </div>     
 </div>
         
+	<div class="UpdateIMG" id="UpdateIMG">
+	    <h2>עדכן תמונת פרופיל</h2>
+	      <form ref='uploadForm' 
+	      id='imgform' 
+	      action='/updateimg' 
+	      method='post' 
+	      encType="multipart/form-data">
+		<p class="file">
+	    <input type="file" name="file" accept="image/*" id="fileform" />
+	    <label for="file">בחר תמונה</label>
+	  </p>
+	    </form>     
 
+	  </div>
 
       <div class="ChooseClass" id="ChooseClass">
     <h2>עדכן כתה</h2>
@@ -626,7 +639,7 @@ function closeloader() {
 }
 	
 document.getElementById("file").onclick = function() {
-    alert("HI");
+    document.getElementById('fileform').click();
 };
 	
 	
