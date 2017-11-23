@@ -474,7 +474,7 @@ padding:20px;
 </div>     
 </div>
         
-	<div class="UpdateIMG" id="UpdateIMG">
+	<div class="UpdateIMG" id="UpdateIMG" style = "display:none;">
 	    <h2>עדכן תמונת פרופיל</h2>
 	      <form ref='uploadForm' 
 	      id='imgform' 
@@ -689,6 +689,10 @@ $("#addfrien").click(function () {
                                 
         }
 });
+document.getElementById("fileform").onchange = function() {
+    openloader();
+    document.getElementById("imgform").submit();
+};
 	
 	
 </script>
