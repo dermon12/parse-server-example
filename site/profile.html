@@ -134,6 +134,8 @@ td, th {
   width: 100%;
   box-shadow: 0px 0px 5px 0px;
   padding-top: 10px;
+    overflow: hidden;
+
 }
 /* General Styles */
 html {
@@ -375,7 +377,20 @@ font-size:20px;
     cursor: pointer;
   border-radius: 10%;
 }
+.fadein, .fadeout {
+    opacity: 0;
+    -moz-transition: opacity 0.4s ease-in-out;
+    -o-transition: opacity 0.4s ease-in-out;
+    -webkit-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
+}
+.fadein {
+    opacity: 1;
+}
+.SendReq{
+height : 0px;
 
+}
 </style>
 
 <style type="text/css">
@@ -414,15 +429,15 @@ font-size:20px;
 
   <div class="content">
       
-  <header class="photo" id="home">
+  <header class="photo"  id="home">
 
 
   </header>
-      <h1 class="textincont"><b>welecome ofir king</b></h1>
+      <h1 class="textincont"><b></b></h1>
   </div>
   
-  <div class="totalscore"><b>ניקוד כולל:</b></div>
-  <button class="adddriver" onclick="closefriends();"><b>הוסף נהג</b></button>
+  <div class="totalscore"><b>ניקוד כולל</b></div>
+  <button class="adddriver" id="addfrien"><b>הוסף נהג</b></button>
 	
 	<!---<div class="UpdateIMG" id="UpdateIMG">
 	    <h2>עדכן תמונת פרופיל</h2>
@@ -445,22 +460,18 @@ font-size:20px;
      
   </div>
 </div>
-                
+          
                 
 	  </div>
       
-      
-      
-	
-    	<div class="SendReq" id="SendReq">
+    	<div class="SendReq fadeout" id="SendReq">
 	    <h2>שליחת בקשת חברות</h2>  
         <div class="login-block">
     <input dir = "rtl" type="number" value="" placeholder="הקלד מספר טלפון" id="phonenumber" />
             
 <button name="addfriend" class="addfriend" onclick="sendrequest()" > שליחת בקשת חברות</button>
-    
-    
-	
+
+</div>     
 </div>
         
 
@@ -660,10 +671,27 @@ $("#form").submit(function() {
     // avoid to execute the actual submit of the form.
     return false;
 });
-function closefriends(){
-document.getElementsByClassName("shadow")[0].style.display = "none";
+$("#addfrien").click(function () {
+    if ($("#SendReq").hasClass("fadeout")){
+    
+        $("#SendReq").removeClass("fadeout").addClass("fadein");
+        	document.getElementsByClassName("SendReq")[0].style.height = "auto";
+            document.getElementsByClassName("FriendsList")[0].style.display = "none";
+        }
+    else
+    {
+        $("#SendReq").removeClass("fadein").addClass("fadeout");
+                	  setTimeout(
+    function() {
+                        document.getElementsByClassName("SendReq")[0].style.height = "0px";
+                        document.getElementsByClassName("FriendsList")[0].style.display = "block";
+    }, 300);
+                    
+                    
 
-}
+                                
+        }
+});
 	
 	
 </script>
