@@ -334,6 +334,30 @@ input:required, textarea:required {
     background: #ff7b81;
 }
 
+.photo {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    position: absolute;
+  width: 180px;
+  height: 180px;
+  float: left;
+  border-radius: 100%;
+
+}
+.textincont{
+	width : 100%;
+    text-shadow: 2px 2px #FFFFFF;
+        position: absolute;
+    text-align: left;
+    padding-left: 150px;
+}
+.content{
+    width: 100%;
+    height:300px;
+    overflow: hidden;
+}
+
+
 </style>
 
 <style type="text/css">
@@ -369,9 +393,16 @@ input:required, textarea:required {
   <span class="w3-button w3-top w3-white w3-xxlarge w3-text-grey w3-hover-text-black" style="opacity:0.4;width:auto;right:0;" onclick="openNav()"><i class="fa fa-bars"></i></span>
 
   <!-- Header -->
-  <header class="w3-container w3-center" style="padding:128px 16px" id="home">
-    <h1 class="w3-jumbo"><b></b></h1>
+
+  <div class="content">
+      
+  <header class="photo" id="home">
+
+
   </header>
+      <h1 class="textincont"><b></b></h1>
+  </div>
+  
 	
 	<!---<div class="UpdateIMG" id="UpdateIMG">
 	    <h2>עדכן תמונת פרופיל</h2>
