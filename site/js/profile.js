@@ -5,7 +5,7 @@ var r = xmlHttp.responseText;
 var user = JSON.parse(r);
 window.onload = function() {
   document.getElementsByClassName("textincont")[0].innerText  = "Welcome " + user.fullName;
-  document.getElementsByClassName("totalscore")[0].innerText += user.driversPoints.reduce((a, b) => a + b, 0); + "נקודות";
+  document.getElementsByClassName("totalscore")[0].innerText += user.driversPoints.reduce((a, b) => a + b, 0) + "נקודות";
   if(user.profileImage){
   var url = user.profileImage.url;
     document.getElementsByClassName("photo")[0].style.backgroundImage = "url('" + url + "')";
