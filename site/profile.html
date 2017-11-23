@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <style>
 .file {
   position: relative;
@@ -380,6 +381,13 @@ font-size:20px;
 height : 0px;
 
 }
+.edit{
+float:left;
+padding:20px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background:#000;
+}
 </style>
 
 <style type="text/css">
@@ -419,7 +427,7 @@ height : 0px;
   <div class="content">
       
   <header class="photo"  id="home">
-
+	  <button class= "edit fa fa-pencil fa-lg" id ="file"/>
 
   </header>
       <h1 class="textincont"><b></b></h1>
@@ -463,21 +471,6 @@ height : 0px;
 </div>     
 </div>
         
-
-	<div class="UpdateIMG" id="UpdateIMG">
-	    <h2>עדכן תמונת פרופיל</h2>
-	      <form ref='uploadForm' 
-	      id='imgform' 
-	      action='/updateimg' 
-	      method='post' 
-	      encType="multipart/form-data">
-		<p class="file">
-	    <input type="file" name="file" accept="image/*" id="file" />
-	    <label for="file">בחר תמונה</label>
-	  </p>
-	    </form>     
-
-	  </div>
 
 
       <div class="ChooseClass" id="ChooseClass">
