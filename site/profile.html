@@ -691,11 +691,17 @@ document.getElementById("fileform").click(); // Click on the checkbox
 	
 document.getElementById("fileform").onchange = function() {
     openloader();
+	var data = new FormData();
+	jQuery.each(jQuery('#imgform')[0].files, function(i, file) {
+	    data.append('file1', file);
+	});
+	
+	
        $.ajax({
            type: "POST",
            url: "/updateimg",
            // serialize your form's elements.
-           data: $("#imgform").serialize(), 
+           data: data, 
            success: function(data)
            {
 	   	closeloader();
