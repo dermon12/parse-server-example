@@ -51,9 +51,6 @@ app.use(fileUpload());
 var mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/site/index.html'));
@@ -129,7 +126,7 @@ app.post('/updateimg', function (req, res, next) {
             user.set("profileImage", file);
             console.log("AFTERPUTTTTTTTTTTT " + file);
           user.save();
-          return res.send("success");
+          return res.redirect('/profile');
           }, function(error) {
             console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
            return res.redirect('/');
