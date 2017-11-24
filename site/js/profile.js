@@ -32,7 +32,7 @@ function createfriendslist(){
 }
 
 function settable(){
-var table = document.getElementById("myTable");
+var table = document.getElementById("Scorer");
   xmlHttp.open( "GET", "https://back-seat.herokuapp.com/table", false ); // false for synchronous request
   xmlHttp.send( null );
   var r = xmlHttp.responseText;
