@@ -126,7 +126,7 @@ app.post('/updateimg', function (req, res, next) {
             user.set("profileImage", file);
             console.log("AFTERPUTTTTTTTTTTT " + file);
           user.save();
-          return res.redirect('/profile');
+          return res.redirect('/profile?msg=הפעולה בוצעה בהצלחה');
           }, function(error) {
             console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
            return res.redirect('/');
