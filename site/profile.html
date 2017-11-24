@@ -693,7 +693,7 @@ document.getElementById("fileform").onchange = function() {
     openloader();
        $.ajax({
            type: "POST",
-           url: "/updateclass",
+           url: "/updateimg",
            // serialize your form's elements.
            data: $("#imgform").serialize(), 
            success: function(data)
