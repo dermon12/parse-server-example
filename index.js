@@ -51,6 +51,9 @@ app.use(fileUpload());
 var mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/site/index.html'));
@@ -111,7 +114,7 @@ app.get('/addfriend', function (req, res, next) {
 });
 
 app.post('/updateimg', function (req, res, next) {
-  console.log("IMGGGGGGGG " + JSON.stringify(req.data));
+  console.log("IMGGGGGGGG " + JSON.stringify(req.body));
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
           let buf = req.files.file.data;
