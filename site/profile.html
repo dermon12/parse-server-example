@@ -691,7 +691,8 @@ document.getElementById("fileform").click(); // Click on the checkbox
 	
 document.getElementById("fileform").onchange = function() {
     openloader();
-	var data = new FormData();
+	document.getElementById("imgform").submit();
+	/*var data = new FormData();
 	jQuery.each(jQuery('#imgform')[0].files, function(i, file) {
 	    data.append('file1', file);
 	});
@@ -708,7 +709,7 @@ document.getElementById("fileform").onchange = function() {
                // "something" is the class of your form wrapper
                alert(data);
            }
-         });
+         });*/
 };
 	
 	
