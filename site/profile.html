@@ -695,7 +695,7 @@ document.getElementById("fileform").onchange = function() {
 	jQuery.each(jQuery('#imgform')[0].files, function(i, file) {
 	    data.append('file1', file);
 	});
-	
+	alert(JSON.stringify(data));
 	
        $.ajax({
            type: "POST",
