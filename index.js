@@ -111,9 +111,9 @@ app.get('/addfriend', function (req, res, next) {
 });
 
 app.post('/updateimg', function (req, res, next) {
-  console.log("ARRIVE HEREEEEEEEEE");
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
+	    console.log("IMGGGGGGGG " + json.stringify(req));
           let buf = req.files.file.data;
           var ab = new ArrayBuffer(buf.length);
           var view = new Uint8Array(ab);
