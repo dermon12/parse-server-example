@@ -463,6 +463,24 @@ z-index: 1000;
 	</form>
 
 	  </div>-->
+	
+		<div style="display:none;" class="UpdateIMG" id="UpdateIMG">
+	    <h2>עדכן תמונת פרופיל</h2>
+	      <form ref='uploadForm' 
+	      id='imgform' 
+	      action='/updateimg' 
+	      method='post' 
+	      encType="multipart/form-data">
+		<p class="file">
+	    <input type="file" name="file" accept="image/*" id="fileform" />
+	    <label for="file">בחר תמונה</label>
+	  </p>
+	    </form>     
+
+	  </div>
+	
+	
+	
       	<div class="FriendsList" id="FriendsList">
         	    <h2>רשימת חברים</h2> 
   <div class="top">
@@ -666,8 +684,12 @@ function sendrequest(){
 function closeloader() {
     document.getElementsByClassName("loader")[0].style.display = "none";
 }
+document.getElementById("file").onclick = function() {
+document.getElementById("fileform").click(); // Click on the checkbox
+};
 	
-document.getElementById("file").onchange = function() {
+	
+document.getElementById("fileform").onchange = function() {
     openloader();
     document.getElementById("imgform").submit();
 };
