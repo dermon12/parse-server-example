@@ -130,6 +130,7 @@ td, th {
     text-align: left;
     padding: 8px;
 }
+
 /* General Styles */
 html {
 	background-color: #C0C0C0;
@@ -379,7 +380,6 @@ font-size:20px;
 }
 .SendReq{
 height : 0px;
-
 }
 .edit{
 z-index: 1000;
@@ -390,6 +390,22 @@ padding:20px;
   background:#000;
 
   left: 0px;
+}
+.form{
+height : 0;
+}
+.Scorer{
+height : 0;
+}
+.plusbutton{
+z-index: 1000;
+  position:absolute;
+     -webkit-text-stroke-width: 2px;
+   -webkit-text-stroke-color: black;
+  font-size:22px;
+      border: none;
+    background-color: Transparent;
+
 }
 </style>
 
@@ -411,8 +427,8 @@ padding:20px;
   <div class="w3-bar-block w3-center">
     <a href="#" style="font-size: 70%;" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">בית</a>
     <a href="#FriendsList" style="font-size: 70%;" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">רשימת חברים</a>
-    <!--<a href="#SendReq" style="font-size: 70%;" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">בקשת חברות</a> 
-    <a href="#UpdateIMG" style="font-size: 70%;" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">עדכון תמונה</a>-->
+    <a href="#SendReq" style="font-size: 70%;" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">בקשת חברות</a>
+    <a href="#UpdateIMG" style="font-size: 70%;" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">עדכון תמונה</a>
     <a href="#ChooseClass" style="font-size: 70%;" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">עדכון כתה</a>
     <a href="#ScoreBoard" style="font-size: 70%;" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">לוח תוצאות</a>
     <a href="/logout" style="font-size: 70%;" class="w3-bar-item w3-button w3-text-grey w3-hover-black" onclick="closeNav()">התנתק</a>
@@ -429,14 +445,13 @@ padding:20px;
 
   <div class="content">
       
-  <header class="photo"  id="home">
-	  <button class= "edit fa fa-pencil fa-lg" id ="file"/>
-
+  <header class="photo" id="home">
+<button class= "edit fa fa-pencil fa-lg" id ="file"/>
   </header>
       <h1 class="textincont"><b></b></h1>
   </div>
   
-  <div class="totalscore"><b>ניקוד כולל:</b></div>
+  <div class="totalscore"><b>ניקוד כולל: </b></div>
   <button class="adddriver" id="addfrien"><b>הוסף נהג</b></button>
 	
 	<!---<div class="UpdateIMG" id="UpdateIMG">
@@ -474,23 +489,12 @@ padding:20px;
 </div>     
 </div>
         
-	<div class="UpdateIMG" id="UpdateIMG" style = "display:none;">
-	    <h2>עדכן תמונת פרופיל</h2>
-	      <form ref='uploadForm' 
-	      id='imgform' 
-	      action='/updateimg' 
-	      method='post' 
-	      encType="multipart/form-data">
-		<p class="file">
-	    <input type="file" name="file" accept="image/*" id="fileform" />
-	    <label for="file">בחר תמונה</label>
-	  </p>
-	    </form>     
 
-	  </div>
+
 
       <div class="ChooseClass" id="ChooseClass">
-    <h2>עדכן כתה</h2>
+      <button class="plusbutton" onclick="fader('form');"> ﹢</button>
+    <h2 >עדכן כתה</h2>
           <!-- 
   ****************************************
   Contest Entry for Treehouse:
@@ -515,7 +519,7 @@ padding:20px;
   <p id="failure">Oopsie...message not sent.</p>
   <p id="success">Your message was sent successfully. Thank you!</p>
 
-  <form id = "form" method="post" action="/updateclass">
+  <form class = "form fadeout" id = "form" method="post" action="/updateclass">
     <div>
 
 
@@ -561,11 +565,11 @@ padding:20px;
   </div>
     
     
-    
+     <button class="plusbutton" onclick="fader('Scorer');"> ﹢</button>
   <!-- About Section -->
   <div class="ScoreBoard" id="ScoreBoard">
     <h2>לוח תוצאות</h2>
-    <table id="myTable">
+    <table class = "Scorer fadeout" id="Scorer">
       <tr>
         <th>כתה</th>
         <th>ניקוד</th>
@@ -577,6 +581,7 @@ padding:20px;
  
   
 <!-- END PAGE CONTENT -->
+</div>
 </div>
 
 <!-- Add Google Maps -->
@@ -638,8 +643,9 @@ function closeloader() {
     document.getElementsByClassName("loader")[0].style.display = "none";
 }
 	
-document.getElementById("file").onclick = function() {
-    document.getElementById('fileform').click();
+document.getElementById("file").onchange = function() {
+    openloader();
+    document.getElementById("imgform").submit();
 };
 	
 	
@@ -679,21 +685,31 @@ $("#addfrien").click(function () {
     {
         $("#SendReq").removeClass("fadein").addClass("fadeout");
                 	  setTimeout(
-    function() {
-                        document.getElementsByClassName("SendReq")[0].style.height = "0px";
-                        document.getElementsByClassName("FriendsList")[0].style.display = "block";
-    }, 300);
-                    
-                    
-
-                                
+                      function() {                               document.getElementsByClassName("SendReq")[0].style.height = "0px";
+                                          document.getElementsByClassName("FriendsList")[0].style.display = "block";
+                      }, 300);
+                                           
         }
 });
-document.getElementById("fileform").onchange = function() {
-    openloader();
-    document.getElementById("imgform").submit();
+
+
+function fader(clastofade){
+    if ($('#' + clastofade).hasClass("fadeout"))
+    {
+        $('#' + clastofade).removeClass("fadeout").addClass("fadein");
+        document.getElementsByClassName(clastofade)[0].style.height = "auto";
+     }   
+    else
+    {
+        $('#' + clastofade).removeClass("fadein").addClass("fadeout");
+        setTimeout(
+        function() {                       document.getElementsByClassName(clastofade)[0].style.height = "0px";
+                                        
+                      }, 300);    
+	}
 };
 	
+
 	
 </script>
 
