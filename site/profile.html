@@ -397,6 +397,9 @@ height : 0;
 .Scorer{
 height : 0;
 }
+.ScoreBoard{
+height : 0;
+}
 .plusbutton{
 z-index: 1000;
   position:absolute;
@@ -445,7 +448,7 @@ z-index: 1000;
 
   <div class="content">
       
-  <header class="photo" id="home">
+  <header class="photo"  id="home">
 <button class= "edit fa fa-pencil fa-lg" id ="file"/>
   </header>
       <h1 class="textincont"><b></b></h1>
@@ -515,10 +518,6 @@ z-index: 1000;
 	      
 	      
 <div id="contact-form">
-
-  <p id="failure">Oopsie...message not sent.</p>
-  <p id="success">Your message was sent successfully. Thank you!</p>
-
   <form class = "form fadeout" id = "form" method="post" action="/updateclass">
     <div>
 
@@ -555,14 +554,14 @@ z-index: 1000;
               <option value="10">10</option>
 			      </select>
 		      </label>
-    </div>
+    
     <div>
       <button name="submit" id="submit" type="submit" onclick="openloader()" > עדכון כתה</button>
     </div>
-  </form>
-
-</div>
   </div>
+  </form>
+   </div>
+ 
     
     
      <button class="plusbutton" onclick="fader('Scorer');"> ﹢</button>
@@ -582,7 +581,7 @@ z-index: 1000;
   
 <!-- END PAGE CONTENT -->
 </div>
-</div>
+
 
 <!-- Add Google Maps -->
 <script>
@@ -713,5 +712,3 @@ function fader(clastofade){
 	
 </script>
 
-</body>
-</htmla>
