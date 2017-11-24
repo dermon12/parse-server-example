@@ -132,9 +132,6 @@ td, th {
 }
 
 /* General Styles */
-html {
-	background-color: #C0C0C0;
-}
 * {
   
    box-sizing:border-box;
@@ -392,13 +389,12 @@ padding:20px;
   left: 0px;
 }
 .form{
-height : 0;
-}
-.Scorer{
-height : 0;
+  height : 0;
+  overflow: hidden;
 }
 .ScoreBoard{
-height : 0;
+      height : 0;
+  overflow: hidden;
 }
 .plusbutton{
 z-index: 1000;
@@ -413,7 +409,7 @@ z-index: 1000;
 </style>
 
 <style type="text/css">
-   body { background:  #A6B7BF !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+   body { background:  #A6B7BF !important; } 
 </style>
 <body>
 <div class="loader"></div>
@@ -448,7 +444,7 @@ z-index: 1000;
 
   <div class="content">
       
-  <header class="photo"  id="home">
+  <header class="photo" id="home">
 <button class= "edit fa fa-pencil fa-lg" id ="file"/>
   </header>
       <h1 class="textincont"><b></b></h1>
@@ -518,64 +514,93 @@ z-index: 1000;
 	      
 	      
 <div id="contact-form">
-  <form class = "form fadeout" id = "form" method="post" action="/updateclass">
+  <form class="form fadeout" id="form" method="post" action=
+  "/updateclass">
     <div>
-
-
-      <label for="school">
-		      <span>:בית ספר</span>
-			      <select  dir="rtl" id="school" name="school" tabindex="4">   
-			         <option value="0">בית ספר רמת חן</option>
-			      </select>
-            
-            		      <label for="class" >
-		      <span>שכבה:</span>
-			      <select dir="rtl"  id="class" name="class" tabindex="4">   
-			         <option value="4">ד</option>
-              			         <option value="5">ה</option>
-              			         <option value="6">ו</option>
-              			         <option value="7">ז</option>
-              			         <option value="8">ח</option>
-			      </select>
-		      </label>
-        
-                    		      <label for="number" >
-		      <span>מספר כתה:</span>
-			      <select dir="rtl" id="number" name="number" tabindex="4">   
-			         <option value="1">1</option>
-              			         <option value="2">2</option>
-              			         <option value="3">3</option>
-              			         <option value="4">4</option>
-              			         <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-			      </select>
-		      </label>
-    
-    <div>
-      <button name="submit" id="submit" type="submit" onclick="openloader()" > עדכון כתה</button>
+      <label for="school"><span>:בית ספר</span> <select dir="rtl"
+      id="school" name="school" tabindex="4">
+        <option value="0">
+          בית ספר רמת חן
+        </option>
+      </select> <label for="class"><span>שכבה:</span> <select dir=
+      "rtl" id="class" name="class" tabindex="4">
+        <option value="4">
+          ד
+        </option>
+        <option value="5">
+          ה
+        </option>
+        <option value="6">
+          ו
+        </option>
+        <option value="7">
+          ז
+        </option>
+        <option value="8">
+          ח
+        </option>
+      </select></label> <label for="number"><span>מספר כתה:</span>
+      <select dir="rtl" id="number" name="number" tabindex="4">
+        <option value="1">
+          1
+        </option>
+        <option value="2">
+          2
+        </option>
+        <option value="3">
+          3
+        </option>
+        <option value="4">
+          4
+        </option>
+        <option value="5">
+          5
+        </option>
+        <option value="6">
+          6
+        </option>
+        <option value="7">
+          7
+        </option>
+        <option value="8">
+          8
+        </option>
+        <option value="9">
+          9
+        </option>
+        <option value="10">
+          10
+        </option>
+      </select></label></label>
+      <div>
+        <button name="submit" id="submit" type="submit" onclick=
+        "openloader()">עדכון כתה</button>
+      </div>
     </div>
-  </div>
   </form>
-   </div>
- 
-    
-    
-     <button class="plusbutton" onclick="fader('Scorer');"> ﹢</button>
+</div>
+   
+       
+     <button  class="plusbutton" onclick="fader('ScoreBoard');"> ﹢</button>
   <!-- About Section -->
-  <div class="ScoreBoard" id="ScoreBoard">
-    <h2>לוח תוצאות</h2>
-    <table class = "Scorer fadeout" id="Scorer">
+  <h2>לוח תוצאות</h2>
+  <div  class="ScoreBoard fadeout" id="ScoreBoard">
+    
+    <table class = "Scorer" id="Scorer">
       <tr>
         <th>כתה</th>
         <th>ניקוד</th>
-      </tr>
+    </tr>
     </table>
   <!-- End About Section -->
   </div>
+ </div>
+ </div>
+ 
+</body> 
+</html>
+ 
+    
 
  
   
