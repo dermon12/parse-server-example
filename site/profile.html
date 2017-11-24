@@ -691,7 +691,18 @@ document.getElementById("fileform").click(); // Click on the checkbox
 	
 document.getElementById("fileform").onchange = function() {
     openloader();
-    document.getElementById("imgform").submit();
+       $.ajax({
+           type: "POST",
+           url: "/updateclass",
+           // serialize your form's elements.
+           data: $("#imgform").serialize(), 
+           success: function(data)
+           {
+	   	closeloader();
+               // "something" is the class of your form wrapper
+               alert(data);
+           }
+         });
 };
 	
 	
