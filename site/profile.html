@@ -781,10 +781,10 @@ function fader(clastofade){
 
 function managesendreq(record){
 	alert("sending to " + record.getAttribute("data-mobile"));	
-}
-$('.microphone').on('mousedown touchstart',function(){
-	managesendreq(this);
-      });
+}	
+$('.microphone').live('mousedown touchstart', function(e) {  
+    managesendreq(this);
+});
 	
 	
 	
