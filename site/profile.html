@@ -782,7 +782,7 @@ function fader(clastofade){
 function managesendreq(record){
 	alert("sending to " + record.getAttribute("data-mobile"));	
 }
-$('#mobileMenuButton').on('mousedown touchstart',function(){
+$('.microphone').on('mousedown touchstart',function(){
 	managesendreq(this);
       });
 	
