@@ -63,8 +63,11 @@ if (url == null)
 {
  url = "https://animal-id.info/img/no-user.jpg"; 
 }
+function managesendreq(mobile){
+   alert("HI"); 
+  }
 document.getElementById("shadow").innerHTML += ` <div class="col-sm-15">
-         <button data="` + mobile + `" class="fa fa-microphone microphone" style="font-size:48px;color:red"></button>
+         <button onclick="managesendreq('` + mobile + `')" class="fa fa-microphone microphone" style="font-size:48px;color:red"></button>
         <div class="col-sm-1" style="float: right;">
           <img src="` + url + `" class="img-circle" width="60px" height = "60px">
         </div>
