@@ -779,10 +779,14 @@ function fader(clastofade){
 	}
 };
 
-function managesendreq(mobile){
-	alert("sending to " + mobile);	
+function managesendreq(record){
+	alert("sending to " + record.getAttribute("data-mobile"));	
 }
-
+$('#mobileMenuButton').on('mousedown touchstart',function(){
+	managesendreq(this);
+      });
+	
+	
 	
 </script>
 
