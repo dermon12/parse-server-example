@@ -415,6 +415,42 @@ left:0;
   background-color: Transparent;
   border:none
 }
+.modal-dialog{
+  background: #fefefe;
+  border: @gray solid 1px;
+  border-radius: 5px;
+  margin-left: -200px;
+  position: fixed; 
+  left: 50%; 
+  top: -100%;  
+  z-index: 11; 
+  width: 360px;
+  .translate(0, -500%);
+  .transition-transform(~"0.3s ease-out");
+}
+
+.modal-body{
+  padding: @space/2;
+}
+
+.modal-header,
+.modal-footer{
+  padding: @space/4 @space/2;
+}
+
+.modal-header{
+  border-bottom: @gray-lighter solid 1px;
+  
+  h2{
+    font-size: 20px;
+  }
+  
+}
+
+.modal-footer{
+  border-top: @gray-lighter solid 1px;
+  text-align: right;
+}
 </style>
 
 <style type="text/css">
@@ -505,6 +541,18 @@ left:0;
           
                 
 	  </div>
+	
+	      <div class="modal-req" id="modal-one">
+  <div class="modal-dialog">
+    <div class="modal-body">
+      <p id = "textinreqmodal">One modal example here! :D</p>
+    </div>
+    <div class="modal-footer">
+      <a onclick="closereq()" class="btn">הבנתי</a>
+    </div>
+  </div>
+</div>
+	
       
     	<div class="SendReq fadeout" id="SendReq">
 	    <h2>שליחת בקשת חברות</h2>  
@@ -784,8 +832,12 @@ function fader(clastofade){
 };
 
 function managesendreq(record){
-	alert("sending to " + record.getAttribute("data-mobile"));	
-}	
+	document.getElementById("textinreqmodal").innerHTML = "sending to " + record.getAttribute("data-mobile");
+	document.getElementsByClassName("modal-dialog")[0].style.top = "20%";
+}
+function closereq(){
+	document.getElementsByClassName("modal-dialog")[0].style.top = "-100%";	
+}
 $('body').on('mousedown touchstart','.microphone', function(e) {  
     managesendreq(this);
 });
