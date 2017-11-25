@@ -20,7 +20,7 @@ function createfriendslist(){
         var friendnum = friends[i];
         $.get("https://back-seat.herokuapp.com/getuser?num=" + friendnum, function(data, status){
               var friend = data;
-              add(friend.fullName, user.driversPoints[i], friend.profileImage.url, friend.mobile);
+              add(friend.fullName, user.driversPoints[i], friend.profileImage.url, friend.mobile, friend.fullName);
     	});
         
       }
@@ -58,13 +58,13 @@ var table = document.getElementById("Scorer");
 
 
 
-function add (name, points,url, mobile){
+function add (name, points,url, mobile, name){
 if (url == null)
 {
  url = "https://animal-id.info/img/no-user.jpg"; 
 }
 document.getElementById("shadow").innerHTML += ` <div class="col-sm-10">
-         <button class="fa fa-microphone microphone" data-mobile="` + mobile + `" style="font-size:48px;color:red"></button>
+         <button class="fa fa-microphone microphone" data-mobile="` + mobile + `" data-name="` + name + `" style="font-size:48px;color:red"></button>
         <div class="col-sm-1" style="float: right;">
           <img src="` + url + `" class="img-circle" width="60px" height = "60px">
         </div>
