@@ -831,7 +831,8 @@ function fader(clastofade){
 };
 
 function managesendreq(record){
-	document.getElementById("textinreqmodal").innerHTML = "אתה עומד לשלוח הקלטה אל " +  record.getAttribute("data-mobile") + " ";
+	var mobileto = record.getAttribute("data-mobile");
+	document.getElementById("textinreqmodal").innerHTML = "אתה עומד לשלוח הקלטה אל " +  record.getAttribute("data-name") + " ";
 	document.getElementById("textinreqmodal").innerHTML += "אנא בחר קובץ קול שאורכו בין 4 ל6 שניות";
 	document.getElementsByClassName("modal-dialog")[0].style.top = "20%";
 }
