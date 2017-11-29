@@ -857,6 +857,7 @@ function managesendreq(record){
 function closereq(){
 	document.getElementsByClassName("modal-dialog")[0].style.top = "-100%";	
 	document.getElementById("recordto").value = mobileto;
+	document.getElementById("reqform").click(); // Click on the checkbox
 }
 document.getElementById("reqform").onchange = function() {
     openloader();
