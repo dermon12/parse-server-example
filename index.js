@@ -136,9 +136,11 @@ app.post('/sendreq', function (req, res, next) {
 			  var file = new Parse.File("rec.3gp", array);
 			  file.save().then(function() {
 				var sentrecord = object.get("sentRecordedMessagesList");
-				  console.log("SENTRTTTTTTTTTTTTTTTTTTTTTTT " + JSON.stringify(sentrecord));
+				  console.log("BEFOREEE " + JSON.stringify(sentrecord));
 				  console.log("DRIVERRRRRRRRRRRRR " + toset);
 				sentrecord[userphone] = file;
+				  console.log("AFTERRRRR " + JSON.stringify(sentrecord));
+				  object.set("sentRecordedMessagesList", sentrecord);
 				  object.save(null, {useMasterKey:true});
 			  	//return res.redirect('/profile');
 				  return res.send("OK");
