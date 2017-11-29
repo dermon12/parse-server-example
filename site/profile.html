@@ -861,7 +861,13 @@ function closereq(){
 }
 document.getElementById("reqform").onchange = function() {
     openloader();
+	var x = document.getElementById("myAudio").duration;
+	if(x > 4 && x < 6){
 	document.getElementById("SendReqForm").submit();
+	}
+	else{
+		openalert("אורך ההקלטה צריך להיות בין 4 ל6 שניות");
+	}
 };
 	
 	
