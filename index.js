@@ -119,9 +119,6 @@ app.post('/sendreq', function (req, res, next) {
 	}, function (error) {
 	    return res.redirect('/');
 	});
-	
-	
-	var toset = req.body.mobile;
 	var userQuery = new Parse.Query(Parse.User);
 		  userQuery.equalTo("mobile", toset);
 		  userQuery.first({
@@ -138,11 +135,10 @@ app.post('/sendreq', function (req, res, next) {
 				var sentrecord = object.get("sentRecordedMessagesList");
 				  console.log("BEFOREEE " + JSON.stringify(sentrecord));
 				  console.log("DRIVERRRRRRRRRRRRR " + toset);
-				sentrecord["0526526510"] = file;
+				sentrecord[req.body.mobile] = file;
 				  console.log("AFTERRRRR " + JSON.stringify(sentrecord));
 				  Parse.Cloud.run('addRec', { user: toset, sentRecordedMessagesList:sentrecord }).then(function(response) {
-						//return res.redirect('/profile');
-						  return res.send("OK");
+						return res.redirect('/profile');
 					});
 			  }, function(error) {
 			    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
