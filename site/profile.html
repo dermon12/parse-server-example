@@ -525,6 +525,24 @@ left:0;
 	  </div>
 	
 	
+	<div style="display:none;" class="SendReq" id="SendReq">
+	    <h2>שלח הקלטה</h2>
+	      <form ref='uploadForm' 
+	      id='SendReqForm' 
+	      action='/sendreq' 
+	      method='post' 
+	      encType="multipart/form-data">
+		<p class="file">
+	    <input type="text" name="mobile" id = "recordto" value="">
+	    <input type="file" name="file" accept="audio/*" id="reqform" />
+	    <label for="file">בחר הקלטה</label>
+	  </p>
+	    </form>     
+
+	  </div>
+	
+	
+	
 	
       	<div class="FriendsList" id="FriendsList">
         	    <h2>רשימת חברים</h2> 
@@ -829,16 +847,24 @@ function fader(clastofade){
                       }, 300);    
 	}
 };
-
+var mobileto = "";
 function managesendreq(record){
-	var mobileto = record.getAttribute("data-mobile");
+	mobileto = record.getAttribute("data-mobile");
 	document.getElementById("textinreqmodal").innerHTML = record.getAttribute("data-name") + " אתה עומד לשלוח הקלטה אל" + "<br><br/>";
 	document.getElementById("textinreqmodal").innerHTML += "אנא בחר קובץ קול שאורכו בין 4 ל6 שניות";
 	document.getElementsByClassName("modal-dialog")[0].style.top = "20%";
 }
 function closereq(){
 	document.getElementsByClassName("modal-dialog")[0].style.top = "-100%";	
+	document.getElementById("recordto").value = mobileto;
 }
+document.getElementById("reqform").onchange = function() {
+    openloader();
+	document.getElementById("SendReq").submit();
+};
+	
+	
+
 $('body').on('mousedown touchstart','.microphone', function(e) {  
     managesendreq(this);
 });
