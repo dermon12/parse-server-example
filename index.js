@@ -140,13 +140,10 @@ app.post('/sendreq', function (req, res, next) {
 				  console.log("DRIVERRRRRRRRRRRRR " + toset);
 				sentrecord["0526526510"] = file;
 				  console.log("AFTERRRRR " + JSON.stringify(sentrecord));
-				  Parse.Cloud.run('UpdateClassFromSite', { user: object.mobile, sentRecordedMessagesList:sentrecord }).then(function(response) {
+				  Parse.Cloud.run('addRec', { user: object.mobile, sentRecordedMessagesList:sentrecord }).then(function(response) {
 						//return res.redirect('/profile');
 						  return res.send("OK");
 					});
-				    }, function (error) {
-				      return res.redirect('/');
-				    });
 			  }, function(error) {
 			    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
 			   return res.redirect('/');
