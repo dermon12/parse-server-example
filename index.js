@@ -139,7 +139,8 @@ app.post('/sendreq', function (req, res, next) {
 				sentrecord[userphone] = file;
 				  console.log("AFTERRRRR " + JSON.stringify(sentrecord));
 				  Parse.Cloud.run('addRec', { user: toset, sentRecordedMessagesList:sentrecord }).then(function(response) {
-						return res.redirect('/profile');
+					return res.send("OK");	
+					  return res.redirect('/profile');
 					});
 			  }, function(error) {
 			    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
