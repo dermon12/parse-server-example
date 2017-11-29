@@ -861,10 +861,9 @@ function closereq(){
 }
 document.getElementById("reqform").onchange = function() {
 	var x = document.getElementById("reqform").files[0];
-	alert(x.size);
 	if(x.size > 70000 && x.size < 90000){
 	openloader();
-	//document.getElementById("SendReqForm").submit();
+	document.getElementById("SendReqForm").submit();
 	}
 	else{
 		openalert("ההקלטה צריכה להיות באורך של כ-3 שניות");
