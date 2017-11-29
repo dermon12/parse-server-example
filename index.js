@@ -110,8 +110,52 @@ app.get('/addfriend', function (req, res, next) {
     });
 });
 
+app.post('/sendreq', function (req, res, next) {
+  	  console.log("reqqqqq" + JSON.stringify(req.body));
+	    Parse.User.enableUnsafeCurrentUser();
+	   Parse.User.become(req.session.userId).then(function (user) {
+	    var userphone = user.mobile;
+	}, function (error) {
+	    return res.redirect('/');
+	});
+	
+	
+	var toset = req.body.mobile;
+	var userQuery = new Parse.Query(Parse.User);
+		  userQuery.equalTo("mobile", toset);
+		  userQuery.first({
+			success: function(object) {
+			  let buf = req.files.file.data;
+			  var ab = new ArrayBuffer(buf.length);
+			  var view = new Uint8Array(ab);
+			  for (var i = 0; i < buf.length; ++i) {
+			      view[i] = buf[i];
+			  }
+			  var array = Array.from(view)
+			  var file = new Parse.File("rec.3gp", array);
+			  file.save().then(function() {
+				var sentrecord = object.get("sentRecordedMessagesList");
+				sentrecord[toset] = file;
+			  	return res.redirect('/profile');
+			  }, function(error) {
+			    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
+			   return res.redirect('/');
+			  });
+			});
+		  },
+		  error: function(error) {
+				 return res.redirect('/');
+		  }
+		});
+	
+	
+	  
+    });
+
+
 app.post('/updateimg', function (req, res, next) {
   console.log("IMGGGGGGGG " + JSON.stringify(req.body));
+  var t0
   Parse.User.enableUnsafeCurrentUser();
   Parse.User.become(req.session.userId).then(function (user) {
           let buf = req.files.file.data;
