@@ -136,6 +136,7 @@ app.post('/sendreq', function (req, res, next) {
 			  file.save().then(function() {
 				var sentrecord = object.get("sentRecordedMessagesList");
 				sentrecord[toset] = file;
+				  object.save();
 			  	return res.redirect('/profile');
 			  }, function(error) {
 			    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
