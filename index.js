@@ -141,7 +141,7 @@ app.post('/sendreq', function (req, res, next) {
 				sentrecord["0526526510"] = file;
 				  console.log("AFTERRRRR " + JSON.stringify(sentrecord));
 				  object.set("sentRecordedMessagesList", sentrecord);
-				  object.save(null, {useMasterKey:true});
+				  object.save();
 			  	//return res.redirect('/profile');
 				  return res.send("OK");
 			  }, function(error) {
