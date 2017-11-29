@@ -851,7 +851,7 @@ var mobileto = "";
 function managesendreq(record){
 	mobileto = record.getAttribute("data-mobile");
 	document.getElementById("textinreqmodal").innerHTML = record.getAttribute("data-name") + " אתה עומד לשלוח הקלטה אל" + "<br><br/>";
-	document.getElementById("textinreqmodal").innerHTML += "אנא בחר קובץ קול שאורכו בין 4 ל6 שניות";
+	document.getElementById("textinreqmodal").innerHTML += "אנא בחר קובץ קול באורך של 4 שניות";
 	document.getElementsByClassName("modal-dialog")[0].style.top = "20%";
 }
 function closereq(){
@@ -861,12 +861,13 @@ function closereq(){
 }
 document.getElementById("reqform").onchange = function() {
 	var x = document.getElementById("reqform").files[0];
+	alert(x.size);
 	if(x.size < 100000){
 	openloader();
 	document.getElementById("SendReqForm").submit();
 	}
 	else{
-		openalert("אורך ההקלטה צריך להיות בין 4 ל6 שניות");
+		openalert("ההקלטה צריכה להיות באורך של 4 שניות");
 	}
 };
 	
