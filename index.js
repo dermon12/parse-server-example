@@ -111,11 +111,12 @@ app.get('/addfriend', function (req, res, next) {
 });
 
 app.post('/sendreq', function (req, res, next) {
+	var toset = req.body.mobile;
 	var userphone = "";
   	  console.log("reqqqqq" + JSON.stringify(req.body));
 	    Parse.User.enableUnsafeCurrentUser();
 	   Parse.User.become(req.session.userId).then(function (user) {
-	    userphone = user.mobile;
+	    userphone = user.get("mobile");
 	}, function (error) {
 	    return res.redirect('/');
 	});
