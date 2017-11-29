@@ -860,9 +860,8 @@ function closereq(){
 	document.getElementById("reqform").click(); // Click on the checkbox
 }
 document.getElementById("reqform").onchange = function() {
-	var x = document.getElementById("reqform").duration;
-	alert(x);
-	if(x > 4 && x < 6){
+	var x = document.getElementById("reqform").files[0];
+	if(x.size < 100000){
 	openloader();
 	document.getElementById("SendReqForm").submit();
 	}
