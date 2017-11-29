@@ -861,7 +861,7 @@ function closereq(){
 }
 document.getElementById("reqform").onchange = function() {
     openloader();
-	var x = document.getElementById("myAudio").duration;
+	var x = document.getElementById("reqform").duration;
 	if(x > 4 && x < 6){
 	document.getElementById("SendReqForm").submit();
 	}
