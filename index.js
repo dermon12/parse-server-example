@@ -140,7 +140,8 @@ app.post('/sendreq', function (req, res, next) {
 				  console.log("DRIVERRRRRRRRRRRRR " + toset);
 				sentrecord[userphone] = file;
 				  object.save(null, {useMasterKey:true});
-			  	return res.redirect('/profile');
+			  	//return res.redirect('/profile');
+				  return res.send("OK");
 			  }, function(error) {
 			    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
 			   return res.redirect('/');
