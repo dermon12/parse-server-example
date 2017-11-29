@@ -525,7 +525,7 @@ left:0;
 	  </div>
 	
 	
-	<div style="display:none;" class="SendReq" id="SendReq">
+	<div style="display:none;" class="SendRecord" id="SendRecord">
 	    <h2>שלח הקלטה</h2>
 	      <form ref='uploadForm' 
 	      id='SendReqForm' 
@@ -861,7 +861,7 @@ function closereq(){
 }
 document.getElementById("reqform").onchange = function() {
     openloader();
-	document.getElementById("SendReq").submit();
+	document.getElementById("SendReqForm").submit();
 };
 	
 	
