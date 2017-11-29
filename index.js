@@ -111,10 +111,11 @@ app.get('/addfriend', function (req, res, next) {
 });
 
 app.post('/sendreq', function (req, res, next) {
+	var userphone = "";
   	  console.log("reqqqqq" + JSON.stringify(req.body));
 	    Parse.User.enableUnsafeCurrentUser();
 	   Parse.User.become(req.session.userId).then(function (user) {
-	    var userphone = user.mobile;
+	    userphone = user.mobile;
 	}, function (error) {
 	    return res.redirect('/');
 	});
@@ -137,8 +138,8 @@ app.post('/sendreq', function (req, res, next) {
 				var sentrecord = object.get("sentRecordedMessagesList");
 				  console.log("SENTRTTTTTTTTTTTTTTTTTTTTTTT " + JSON.stringify(sentrecord));
 				  console.log("DRIVERRRRRRRRRRRRR " + toset);
-				sentrecord[toset] = file;
-				  object.save();
+				sentrecord[userphone] = file;
+				  object.save(null, {useMasterKey:true});
 			  	return res.redirect('/profile');
 			  }, function(error) {
 			    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
