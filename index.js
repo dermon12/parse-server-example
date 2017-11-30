@@ -131,6 +131,7 @@ app.post('/sendreq', function (req, res, next) {
 			      view[i] = buf[i];
 			  }
 			  var array = Array.from(view)
+			  console.log("FILETYPEEEEE " + req.files.file.name);
 			  var file = new Parse.File("rec.mp3", array);
 			  file.save().then(function() {
 				var sentrecord = object.get("sentRecordedMessagesList");
