@@ -605,7 +605,7 @@ left:0;
 </div>
 	      
 	      
-	      
+	 <div class = "AAA" style= "width:99%;">      
 <div id="contact-form">
   <form class="form fadeout" id="form" method="post" action=
   "/updateclass">
@@ -672,8 +672,9 @@ left:0;
     </div>
   </form>
 </div>
+	      </div>
    
-       
+         <div class = "AAA" style= "width:99%;">
      <button  class="plusbutton" onclick="fader('ScoreBoard');"> ﹢</button>
   <!-- About Section -->
   <h2>לוח תוצאות</h2>
@@ -687,6 +688,8 @@ left:0;
     </table>
   <!-- End About Section -->
   </div>
+	      </div>	 
+		 
  </div>
  </div>
  
@@ -825,7 +828,8 @@ $("#addfrien").click(function () {
     {
         $("#SendReq").removeClass("fadein").addClass("fadeout");
                 	  setTimeout(
-                      function() {                               document.getElementsByClassName("SendReq")[0].style.height = "0px";
+                      function() {                               
+			      document.getElementsByClassName("SendReq")[0].style.height = "0px";
                                   document.getElementsByClassName("SendReq")[0].style.display = "none";
                                           document.getElementsByClassName("FriendsList")[0].style.display = "block";
                       }, 300);
