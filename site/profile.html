@@ -862,6 +862,7 @@ function closereq(){
 document.getElementById("reqform").onchange = function() {
 	var x = document.getElementById("reqform").files[0];
 	if(x.size > 70000 && x.size < 500000){
+	alert(x.size);
 	openloader();
 	document.getElementById("SendReqForm").submit();
 	}
