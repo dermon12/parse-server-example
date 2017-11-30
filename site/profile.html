@@ -571,7 +571,7 @@ left:0;
 </div>
 	
       
-    	<div class="SendReq fadeout" id="SendReq">
+    	<div class="SendReq fadeout" id="SendReq" style = "display:none;">
 	    <h2>שליחת בקשת חברות</h2>  
         <div class="login-block">
     <input dir = "rtl" type="number" value="" placeholder="הקלד מספר טלפון" id="phonenumber" />
@@ -818,6 +818,7 @@ $("#addfrien").click(function () {
     
         $("#SendReq").removeClass("fadeout").addClass("fadein");
         	document.getElementsByClassName("SendReq")[0].style.height = "auto";
+            document.getElementsByClassName("SendReq")[0].style.display = "block";
             document.getElementsByClassName("FriendsList")[0].style.display = "none";
         }
     else
@@ -825,6 +826,7 @@ $("#addfrien").click(function () {
         $("#SendReq").removeClass("fadein").addClass("fadeout");
                 	  setTimeout(
                       function() {                               document.getElementsByClassName("SendReq")[0].style.height = "0px";
+                                  document.getElementsByClassName("SendReq")[0].style.display = "none";
                                           document.getElementsByClassName("FriendsList")[0].style.display = "block";
                       }, 300);
                                            
