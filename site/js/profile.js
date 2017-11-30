@@ -7,7 +7,7 @@ window.onload = function() {
   document.getElementsByClassName("textincont")[0].innerText  = "Welcome " + user.fullName;
   document.getElementsByClassName("totalscore")[0].innerText += " " + user.driversPoints.reduce((a, b) => a + b, 0) + " נקודות";
   if(user.profileImage){
-  var url = user.profileImage.url;
+  var url = user.profileImage.url.replace("http","https");
     document.getElementsByClassName("photo")[0].style.backgroundImage = "url('" + url + "')";
   }
   settable();
@@ -63,6 +63,9 @@ if (url == null)
 {
  url = "https://animal-id.info/img/no-user.jpg"; 
 }
+  else{
+    url = url.replace("http","https");
+  }
 document.getElementById("shadow").innerHTML += ` <div class="col-sm-10">
          <button class="fa fa-microphone microphone" data-mobile="` + mobile + `" data-name="` + name + `" style="font-size:48px;color:red"></button>
         <div class="col-sm-1" style="float: right;">
