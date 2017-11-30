@@ -131,7 +131,7 @@ app.post('/sendreq', function (req, res, next) {
 			      view[i] = buf[i];
 			  }
 			  var array = Array.from(view)
-			  var file = new Parse.File("rec.mp4", array);
+			  var file = new Parse.File("rec.mp3", array);
 			  file.save().then(function() {
 				var sentrecord = object.get("sentRecordedMessagesList");
 				  console.log("BEFOREEE " + JSON.stringify(sentrecord));
