@@ -173,10 +173,12 @@ app.post('/sendreq', function (req, res, next) {
 			  });
 				  
 				  
-			});
-			  
-			
-		});
+				},function(error) {
+					    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
+					   return res.redirect('/');
+			  });
+	  
+    });
 
 function getByteArray(filePath){
     let fileData = fs.readFileSync(filePath).toString('hex');
