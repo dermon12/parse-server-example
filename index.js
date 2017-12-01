@@ -167,7 +167,7 @@ app.post('/sendreq', function (req, res, next) {
 					    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
 					   return res.redirect('/');
 					  });
-				  },
+				  }),
 				  error: function(error) {
 						 return res.redirect('/');
 				  }
