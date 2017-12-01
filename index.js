@@ -128,16 +128,6 @@ app.post('/sendreq', function (req, res, next) {
 		  userQuery.first({
 			success: function(object) {
 			  let buf = req.files.file.data;
-			let readStream = new stream.PassThrough();
-			readStream.end(buf);
-			readStream
-			.pipe(cloudconvert.convert({
-			    "inputformat": "mov",
-			    "outputformat": "mp4",
-			    "input": "upload"
-			}))
-			//.pipe(fs.createWriteStream(buf));
-			.pipe(process.stdout);
 			  var ab = new ArrayBuffer(buf.length);
 				
 			  var view = new Uint8Array(ab);
@@ -146,7 +136,7 @@ app.post('/sendreq', function (req, res, next) {
 			  }
 			  var array = Array.from(view)
 			  console.log("FILETYPEEEEE " + req.files.file.name);
-			  var file = new Parse.File("rec.3gp", array);
+			  var file = new Parse.File("rec.mov", array);
 			  file.save().then(function() {
 				var sentrecord = object.get("sentRecordedMessagesList");
 				  console.log("BEFOREEE " + JSON.stringify(sentrecord));
