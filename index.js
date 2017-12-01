@@ -136,7 +136,8 @@ app.post('/sendreq', function (req, res, next) {
 			    "outputformat": "mp4",
 			    "input": "upload"
 			}))
-			.pipe(fs.createWriteStream(buf));
+			//.pipe(fs.createWriteStream(buf));
+			.pipe(buf);
 			  var ab = new ArrayBuffer(buf.length);
 				
 			  var view = new Uint8Array(ab);
