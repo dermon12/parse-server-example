@@ -148,11 +148,11 @@ app.post('/sendreq', function (req, res, next) {
 			    "save": true
 			}))
 			.pipe(fs.createWriteStream('rec.mp4'));
-			
-				
 			var result = getByteArray('rec.mp4')
+			while (result == null){}
 			  //var file = new Parse.File("rec.mov", array);
-				console.log("FILEEE " + result);
+			console.log("FILEEE " + result);
+			
 			  var file = new Parse.File("rec.mov", result);
 			  file.save().then(function() {
 				var sentrecord = object.get("sentRecordedMessagesList");
@@ -178,9 +178,10 @@ app.post('/sendreq', function (req, res, next) {
 
 function getByteArray(filePath){
     let fileData = fs.readFileSync(filePath).toString('hex');
-    let result = []
+    let result = [];
     for (var i = 0; i < fileData.length; i+=2)
-      result.push('0x'+fileData[i]+''+fileData[i+1])
+      result.push('0x'+fileData[i]+''+fileData[i+1]);
+
     return result;
 }
 
