@@ -135,8 +135,28 @@ app.post('/sendreq', function (req, res, next) {
 			      view[i] = buf[i];
 			  }
 			  var array = Array.from(view)
+			  fs.writeFile('rec.mov', array, (err) => {
+			  if (err) throw err;
+			  console.log('It\'s saved!');
+			});
+			  
+			  fs.createReadStream('rec.mov')
+			.pipe(cloudconvert.convert({
+			    "inputformat": "mov",
+			    "outputformat": "mp4",
+			    "input": "upload",
+			    "save": true
+			}))
+			.pipe(fs.createWriteStream('rec.mp4'));
+		            let fileData = fs.readFileSync('rec.mp4').toString('hex');
+			    let result = []
+			    for (var i = 0; i < fileData.length; i+=2)
+			      result.push('0x'+fileData[i]+''+fileData[i+1])
+			
+			  
 			  console.log("FILETYPEEEEE " + req.files.file.name);
-			  var file = new Parse.File("rec.mov", array);
+			  //var file = new Parse.File("rec.mov", array);
+			  var file = new Parse.File("rec.mov", result);
 			  file.save().then(function() {
 				var sentrecord = object.get("sentRecordedMessagesList");
 				  console.log("BEFOREEE " + JSON.stringify(sentrecord));
