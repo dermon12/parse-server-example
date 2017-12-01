@@ -129,7 +129,7 @@ app.post('/sendreq', function (req, res, next) {
 			success: function(object) {
 			  let buf = req.files.file.data;
 			  var ab = new ArrayBuffer(buf.length);
-				console.log("BEFORE ABBBBBB " + ab);
+				console.log("BEFORE ABBBBBB " + cloudconvert);
 				fs.createReadStream(ab)
 				.pipe(cloudconvert.convert({
 				    "inputformat": "mov",
