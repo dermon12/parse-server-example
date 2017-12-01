@@ -136,7 +136,11 @@ app.post('/sendreq', function (req, res, next) {
 			  }
 			  var array = Array.from(view)
 			  fs.writeFile('rec.mov', array, (err) => {
-			  if (err) throw err;
+			  if (err){ 
+				  console.log("THE ERROR IS HEREEE ");
+				  throw err;
+				   
+				  }
 			  console.log('It\'s saved!');
 			  var stream = fs.createReadStream('rec.mov')
 				.pipe(cloudconvert.convert({
