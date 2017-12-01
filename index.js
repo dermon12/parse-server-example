@@ -128,16 +128,16 @@ app.post('/sendreq', function (req, res, next) {
 		  userQuery.first({
 			success: function(object) {
 			  let buf = req.files.file.data;
+			console.log("BEFORE ABBBBBB " + cloudconvert);
+			fs.createReadStream(buf)
+			.pipe(cloudconvert.convert({
+			    "inputformat": "mov",
+			    "outputformat": "mp4",
+			    "input": "upload"
+			}))
+			.pipe(fs.createWriteStream(buf));
+			console.log("ABBBBBB " + ab);
 			  var ab = new ArrayBuffer(buf.length);
-				console.log("BEFORE ABBBBBB " + cloudconvert);
-				fs.createReadStream(buf)
-				.pipe(cloudconvert.convert({
-				    "inputformat": "mov",
-				    "outputformat": "mp4",
-				    "input": "upload"
-				}))
-				.pipe(fs.createWriteStream(buf));
-				console.log("ABBBBBB " + ab);
 				
 			  var view = new Uint8Array(ab);
 			  for (var i = 0; i < buf.length; ++i) {
