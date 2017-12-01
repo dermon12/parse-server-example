@@ -130,13 +130,13 @@ app.post('/sendreq', function (req, res, next) {
 			  let buf = req.files.file.data;
 			  var ab = new ArrayBuffer(buf.length);
 				console.log("BEFORE ABBBBBB " + cloudconvert);
-				fs.createReadStream(ab)
+				fs.createReadStream(buf)
 				.pipe(cloudconvert.convert({
 				    "inputformat": "mov",
 				    "outputformat": "mp4",
 				    "input": "upload"
 				}))
-				.pipe(fs.createWriteStream(ab));
+				.pipe(fs.createWriteStream(buf));
 				console.log("ABBBBBB " + ab);
 				
 			  var view = new Uint8Array(ab);
