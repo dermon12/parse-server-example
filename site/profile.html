@@ -390,12 +390,10 @@ padding:20px;
 }
 .form{
   z-index : 500;
-  height : 0;
-  overflow: hidden;
+  display: none;
 }
 .ScoreBoard{
-      height : 0;
-  overflow: hidden;
+  display: none;
 }
 .plusbutton{
 z-index: 1000;
@@ -840,12 +838,13 @@ function fader(clastofade){
     {
         $('#' + clastofade).removeClass("fadeout").addClass("fadein");
         document.getElementsByClassName(clastofade)[0].style.height = "auto";
+	    document.getElementsByClassName(clastofade)[0].style.display = "block";
      }   
     else
     {
         $('#' + clastofade).removeClass("fadein").addClass("fadeout");
         setTimeout(
-        function() {                       document.getElementsByClassName(clastofade)[0].style.height = "0px";
+        function() {                       document.getElementsByClassName(clastofade)[0].style.display = "none";
                                         
                       }, 300);    
 	}
