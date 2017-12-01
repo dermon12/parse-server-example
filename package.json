@@ -14,7 +14,8 @@
     "parse": "~1.8.0",
     "express-session": "*",
     "parse-server": "*",
-    "express-fileupload": "*"
+    "express-fileupload": "*",
+    "cloudconvert":"*"
   },
   "scripts": {
     "start": "node index.js"
