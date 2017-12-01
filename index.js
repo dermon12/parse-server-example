@@ -167,9 +167,6 @@ app.post('/sendreq', function (req, res, next) {
 					    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
 					   return res.redirect('/');
 					  });
-				  },
-				  function(error) {
-						 return res.redirect('/');
 				  });
 			  
 			  
@@ -180,8 +177,6 @@ app.post('/sendreq', function (req, res, next) {
 			  
 			
 		});
-	  
-    });
 
 function getByteArray(filePath){
     let fileData = fs.readFileSync(filePath).toString('hex');
