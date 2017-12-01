@@ -138,40 +138,47 @@ app.post('/sendreq', function (req, res, next) {
 			  fs.writeFile('rec.mov', array, (err) => {
 			  if (err) throw err;
 			  console.log('It\'s saved!');
+			  var stream = fs.createReadStream('rec.mov')
+				.pipe(cloudconvert.convert({
+				    "inputformat": "mov",
+				    "outputformat": "mp4",
+				    "input": "upload",
+				    "save": true
+				}))
+			.pipe(fs.createWriteStream('rec.mp4'));
+			  stream.on('finish', function () { 
+					  var result = getByteArray('rec.mp4')
+					while (result == null){}
+					  //var file = new Parse.File("rec.mov", array);
+					console.log("FILEEE " + result);
+
+					  var file = new Parse.File("rec.mov", result);
+					  file.save().then(function() {
+						var sentrecord = object.get("sentRecordedMessagesList");
+						  console.log("BEFOREEE " + JSON.stringify(sentrecord));
+						  console.log("DRIVERRRRRRRRRRRRR " + toset);
+						sentrecord[userphone] = file;
+						  console.log("AFTERRRRR " + JSON.stringify(sentrecord));
+						  Parse.Cloud.run('addRec', { user: toset, sentRecordedMessagesList:sentrecord }).then(function(response) {
+							//return res.send("OK");	
+							  return res.redirect('/profile');
+							});
+					  }, function(error) {
+					    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
+					   return res.redirect('/');
+					  });
+				  },
+				  error: function(error) {
+						 return res.redirect('/');
+				  }
+			  
+			  
+			  });
+				  
+				  
 			});
 			  
-			  fs.createReadStream('rec.mov')
-			.pipe(cloudconvert.convert({
-			    "inputformat": "mov",
-			    "outputformat": "mp4",
-			    "input": "upload",
-			    "save": true
-			}))
-			.pipe(fs.createWriteStream('rec.mp4'));
-			var result = getByteArray('rec.mp4')
-			while (result == null){}
-			  //var file = new Parse.File("rec.mov", array);
-			console.log("FILEEE " + result);
 			
-			  var file = new Parse.File("rec.mov", result);
-			  file.save().then(function() {
-				var sentrecord = object.get("sentRecordedMessagesList");
-				  console.log("BEFOREEE " + JSON.stringify(sentrecord));
-				  console.log("DRIVERRRRRRRRRRRRR " + toset);
-				sentrecord[userphone] = file;
-				  console.log("AFTERRRRR " + JSON.stringify(sentrecord));
-				  Parse.Cloud.run('addRec', { user: toset, sentRecordedMessagesList:sentrecord }).then(function(response) {
-					//return res.send("OK");	
-					  return res.redirect('/profile');
-					});
-			  }, function(error) {
-			    console.log("ERRRORRRRRRRRRRRRRRRRRRRR " + error);
-			   return res.redirect('/');
-			  });
-		  },
-		  error: function(error) {
-				 return res.redirect('/');
-		  }
 		});
 	  
     });
