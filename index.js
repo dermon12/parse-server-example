@@ -148,13 +148,9 @@ app.post('/sendreq', function (req, res, next) {
 			    "save": true
 			}))
 			.pipe(fs.createWriteStream('rec.mp4'));
-		            let fileData = fs.readFileSync('rec.mp4').toString('hex');
-			    let result = []
-			    for (var i = 0; i < fileData.length; i+=2)
-			      result.push('0x'+fileData[i]+''+fileData[i+1])
 			
-			  
-			  console.log("FILETYPEEEEE " + req.files.file.name);
+				
+			var result = getByteArray('rec.mp4')
 			  //var file = new Parse.File("rec.mov", array);
 				console.log("FILEEE " + result);
 			  var file = new Parse.File("rec.mov", result);
@@ -180,6 +176,13 @@ app.post('/sendreq', function (req, res, next) {
 	  
     });
 
+function getByteArray(filePath){
+    let fileData = fs.readFileSync(filePath).toString('hex');
+    let result = []
+    for (var i = 0; i < fileData.length; i+=2)
+      result.push('0x'+fileData[i]+''+fileData[i+1])
+    return result;
+}
 
 app.post('/updateimg', function (req, res, next) {
   console.log("IMGGGGGGGG " + JSON.stringify(req.body));
