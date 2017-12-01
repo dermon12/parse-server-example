@@ -147,11 +147,9 @@ app.post('/sendreq', function (req, res, next) {
 				}))
 			.pipe(fs.createWriteStream('rec.mp4'));
 			  stream.on('finish', function () { 
+				  	
 					  var result = getByteArray('rec.mp4')
-					while (result == null){}
-					  //var file = new Parse.File("rec.mov", array);
-					console.log("FILEEE " + result);
-
+					  console.log("RESULTTT " + result);
 					  var file = new Parse.File("rec.mov", result);
 					  file.save().then(function() {
 						var sentrecord = object.get("sentRecordedMessagesList");
