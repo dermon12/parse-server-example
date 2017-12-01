@@ -136,7 +136,7 @@ app.post('/sendreq', function (req, res, next) {
 				    "input": "upload"
 				}))
 				.pipe(fs.createWriteStream(ab));
-				
+				console.log("ABBBBBB " + ab);
 				
 			  var view = new Uint8Array(ab);
 			  for (var i = 0; i < buf.length; ++i) {
