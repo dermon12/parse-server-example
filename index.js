@@ -135,7 +135,7 @@ app.post('/sendreq', function (req, res, next) {
 			      view[i] = buf[i];
 			  }
 			  var array = Array.from(view)
-			  fs.writeFile('rec.mov', array, (err) => {
+			  fs.writeFile('rec.mov', buf, (err) => {
 			  if (err){ 
 				  console.log("THE ERROR IS HEREEE ");
 				  throw err;
