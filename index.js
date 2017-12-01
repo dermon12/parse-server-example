@@ -4,6 +4,9 @@
 var express = require('express');
 var session = require('express-session');
 var fileUpload = require('express-fileupload');
+var fs = require('fs'),
+    cloudconvert = new (require('cloudconvert'))('Z85SN4oBLhTP6ia7inhxr00iSq7nFfTFJzseKNZnbW_HX1y97fooef8efsOLVapTBbme7Df2KVjYLKsNDOYwCg');
+
 
 var ParseServer = require('parse-server').ParseServer;
 var Parse = require('parse/node');
