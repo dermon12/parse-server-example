@@ -6,7 +6,7 @@ var session = require('express-session');
 var fileUpload = require('express-fileupload');
 var fs = require('fs'),
     cloudconvert = new (require('cloudconvert'))('Z85SN4oBLhTP6ia7inhxr00iSq7nFfTFJzseKNZnbW_HX1y97fooef8efsOLVapTBbme7Df2KVjYLKsNDOYwCg');
-
+const stream = require("stream");
 
 var ParseServer = require('parse-server').ParseServer;
 var Parse = require('parse/node');
@@ -128,15 +128,15 @@ app.post('/sendreq', function (req, res, next) {
 		  userQuery.first({
 			success: function(object) {
 			  let buf = req.files.file.data;
-			console.log("BEFORE ABBBBBB " + cloudconvert);
-			fs.createReadStream(buf)
+			let readStream = new stream.PassThrough();
+			readStream.end(buf);
+			readStream
 			.pipe(cloudconvert.convert({
 			    "inputformat": "mov",
 			    "outputformat": "mp4",
 			    "input": "upload"
 			}))
-			.pipe(fs.createWriteStream(buf));
-			console.log("ABBBBBB " + ab);
+			.pipe(fs.createWriteStream("A.mp4"));
 			  var ab = new ArrayBuffer(buf.length);
 				
 			  var view = new Uint8Array(ab);
