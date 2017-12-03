@@ -290,14 +290,14 @@ function verifycode(number, code){
 	      else{
 		  object.destroy({
 			  success: function(myObject) {
-			    // The object was deleted from the Parse Cloud.
+				  console.log("SEND TRUEEEEEEEEE");
+				  return true;
 			  },
 			  error: function(myObject, error) {
 			    // The delete failed.
 			    // error is a Parse.Error with an error code and message.
 			  }
 			});
-		  return true;
 	      }
 	      
       },
