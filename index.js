@@ -79,6 +79,32 @@ app.get('/getuser', function (req, res, next) {
 });
 
 
+app.post('/sendsms', function (req, res, next) {
+	
+	// perform real send
+	
+	
+	var num =  req.param('mobile');
+	var SMSVer = Parse.Object.extend("SMSVer");
+	var code = Math.floor(1000 + Math.random() * 9000);
+	// Create a new instance of that class.
+	var ver = new SMSVer();
+	ver.set("mobile", num);
+	ver.set("code", code);
+
+	ver.save(null, {
+	  success: function(gameScore) {
+	  },
+	  error: function(gameScore, error) {
+	  }
+	});
+	
+	
+});
+
+
+
+
 
 
 app.get('/addfriend', function (req, res, next) {
@@ -250,6 +276,27 @@ app.post('/updateclass', function (req, res, next) {
   
 });
 
+function verifycode(number, code){
+	var verquery = new Parse.Query("SMSVer");
+    verquery.equalTo("mobile", number);
+    verquery.equalTo("code", parseInt(code));
+    verquery.first({
+      success: function(object) {
+	      if (typeof object === "undefined"){
+		return false;      
+	      }
+	      else{
+		  return true;      
+	      }
+	      
+      },
+      error: function(error) {
+             return next(error);
+      }
+    });
+	
+}
+
 
 app.post('/', function (req, res, next) {
   // confirm that user typed same password twice
@@ -285,16 +332,21 @@ app.post('/', function (req, res, next) {
       success: function(object) {
         console.log("AAAAAAAAAAAAAAA" + object);
         if (typeof object === "undefined"){
+		if(verifycode(req.body.smobile,req.body.scode)) {
          user.signUp(null, {
-            success: function(user) {
-                req.session.userId = user.getSessionToken();
-                return res.redirect('/profile');
-              },
-              error: function(user, error) {
-                return res.send(error.message);
-                return next(error);
-              }
-            }); 
+		    success: function(user) {
+			req.session.userId = user.getSessionToken();
+			return res.redirect('/profile');
+		      },
+		      error: function(user, error) {
+			return res.send(error.message);
+			return next(error);
+		      }
+		    }); 
+      		}
+    else{
+	    	res.send("!קוד אימות שגוי"); 
+    	}
 
         }
        else{
