@@ -106,15 +106,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<input type="text" name="smobile" placeholder="מספר טלפון" required="">
 						<input type="password" name="spassword" placeholder="סיסמא" required="">
 						<input type="password" name="spasswordConf" placeholder="אימות סיסמא" required="">
-						<input type="hidden" name="scode" value="">
-						<input type="submit" value="הירשם כעת">
+						<input type="hidden" name="scode" id="scode" value="">
+						<input type="submit" data-target="#SMSVerModal" data-backdrop="static" data-keyboard="false" value="הירשם כעת">
 					</form>
 				</div>
 			</div>
 		</div>
 		<div class="clear"></div>
 		<!--//signin-form-->	
-	</div>				
+	</div>
+	
+	
+	<!-- Modal -->
+<div class="modal fade" id="SMSVerModal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+             
+                <h4 style=" text-align: center;" class="modal-title" id="myModalLabel">
+                    הזן קוד אימות
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div style=" text-align: center;" class="modal-body">
+                <form >
+                  <input style=" text-align: center;" type="number" id="scodeinmodal"><br>
+                </form>
+                <button style ="margin-top: 0.2cm;" type="submit" form="register" value="Submit">!הירשם</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+	
+	
+	
+	
 </body>
 </html>
 
@@ -131,7 +161,7 @@ function openalert(text) {
     modal.style.display = "block";
 }
 $("#register").submit(function() {
-	// set the code value
+	$("#scode").val($('#scodeinmodal').val());
     $.ajax({
            type: "POST",
            url : $("#register").attr("action"),
@@ -144,7 +174,6 @@ $("#register").submit(function() {
 		}
 		else if (data == "SENT"){
 			$("#register").attr("action", "/");
-			//open ver code dialog
 	        }
 	        else{
 	   		openalert(data);
