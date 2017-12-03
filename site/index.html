@@ -17,7 +17,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="site/js/ajaxforms.js"></script>
 <style>
 /* The Modal (background) */
-.modal {
+.msg-modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -31,7 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 /* Modal Content */
-.modal-content {
+.msg-modal-content {
     background-color: #3b5998;
     margin: auto;
     text-align: center;
@@ -69,10 +69,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--//web-fonts-->
 </head>
 <body>
-	<div id="myModal" class="modal">
+	<div id="myModal" class="msg-modal">
 
 	  <!-- Modal content -->
-	  <div class="modal-content">
+	  <div class="msg-modal-content">
 	    <span class="close">&times;</span>
 	    <p id = "alerttet">Some text in the Modal..</p>
 	  </div>
@@ -123,10 +123,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	
 	<!-- Modal -->
-<div class="smsmodal fade" id="SMSVerModal" tabindex="-1" role="dialog" 
+<div class="modal fade" id="SMSVerModal" tabindex="-1" role="dialog" 
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="sms-modal-content">
+        <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
              
