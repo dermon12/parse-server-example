@@ -288,10 +288,10 @@ function verifycode(number, code){
 		return false;      
 	      }
 	      else{
+		  return true;
 		  object.destroy({
 			  success: function(myObject) {
 				  console.log("SEND TRUEEEEEEEEE");
-				  return true;
 			  },
 			  error: function(myObject, error) {
 			    // The delete failed.
@@ -343,7 +343,8 @@ app.post('/', function (req, res, next) {
       success: function(object) {
         console.log("AAAAAAAAAAAAAAA" + object);
         if (typeof object === "undefined"){
-		if(verifycode(req.body.smobile,req.body.scode)) {
+		var ver = verifycode(req.body.smobile,req.body.scode);
+		if(ver == "true") {
          user.signUp(null, {
 		    success: function(user) {
 			req.session.userId = user.getSessionToken();
