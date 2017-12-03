@@ -84,7 +84,7 @@ app.post('/sendsms', function (req, res, next) {
 	// perform real send
 	
 	
-	var num =  req.body.number;
+	var num =  req.body.smobile;
 	var SMSVer = Parse.Object.extend("SMSVer");
 	var code = Math.floor(1000 + Math.random() * 9000);
 	// Create a new instance of that class.
@@ -94,8 +94,10 @@ app.post('/sendsms', function (req, res, next) {
 
 	ver.save(null, {
 	  success: function(gameScore) {
+		  res.send("SENT");
 	  },
 	  error: function(gameScore, error) {
+		  res.send("התרחשה שגיאה.. נא לנסות שוב במועד מאוחר יותר!");
 	  }
 	});
 	
