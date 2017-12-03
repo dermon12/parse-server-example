@@ -40,7 +40,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     float: right;
     font-size: 28px;
     font-weight: bold;
-}
+}#
 .close:hover,
 .close:focus {
     color: #000;
@@ -132,7 +132,7 @@ function openalert(text) {
 $("#register").submit(function() {
     $.ajax({
            type: "POST",
-           url : "/",
+           url : $("#register").attr("action"),
            data: $("#register").serialize(), 
            success: function(data)
    	{		
@@ -153,7 +153,7 @@ $("#register").submit(function() {
 $("#login").submit(function() {
     $.ajax({
            type: "POST",
-           url : "/",
+           url : $("#register").attr("action"),
            data: $("#login").serialize(), 
            success: function(data)
            {
