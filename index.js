@@ -84,7 +84,7 @@ app.post('/sendsms', function (req, res, next) {
 	// perform real send
 	
 	
-	var num =  req.param('mobile');
+	var num =  req.body.number;
 	var SMSVer = Parse.Object.extend("SMSVer");
 	var code = Math.floor(1000 + Math.random() * 9000);
 	// Create a new instance of that class.
