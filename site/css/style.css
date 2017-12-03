@@ -441,5 +441,14 @@ h1 {
 .header-social a.goog:hover {
     background: url(../images/google.png)no-repeat 12px 6px #ff4b3b;
 }
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+    width: 100%
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
+}
+	
+	
 }
 /*--//responsive-design---*/
