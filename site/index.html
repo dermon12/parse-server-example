@@ -100,12 +100,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h3>הירשם</h3>
 				
 				<div class="login-form">
-					<form id ="register" action="/" method="post">
+					<form id ="register" action="/sendsms" method="post">
 						<input type="text" name="semail" placeholder="אי-מייל" required="">
 						<input type="text" name="susername" placeholder="שם משתמש" required="">
 						<input type="text" name="smobile" placeholder="מספר טלפון" required="">
 						<input type="password" name="spassword" placeholder="סיסמא" required="">
 						<input type="password" name="spasswordConf" placeholder="אימות סיסמא" required="">
+						<input type="hidden" name="scode" value="">
 						<input type="submit" value="הירשם כעת">
 					</form>
 				</div>
@@ -130,6 +131,7 @@ function openalert(text) {
     modal.style.display = "block";
 }
 $("#register").submit(function() {
+	// set the code value
     $.ajax({
            type: "POST",
            url : $("#register").attr("action"),
@@ -140,6 +142,10 @@ $("#register").submit(function() {
 		{
 			window.location.replace("https://back-seat.herokuapp.com/profile");	
 		}
+		else if (data == "SENT"){
+			$("#register").attr("action", "/");
+			//open ver code dialog
+	        }
 	        else{
 	   		openalert(data);
 	        }
@@ -161,9 +167,9 @@ $("#login").submit(function() {
 		{
 			window.location.replace("https://back-seat.herokuapp.com/profile");	
 		}
-	        else{
-	   		openalert(data);
-	        }
+		   else{
+			openalert(data);
+		   }
            }
          });
     // avoid to execute the actual submit of the form.
