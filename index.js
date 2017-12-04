@@ -359,7 +359,7 @@ app.post('/', function (req, res, next) {
 					    }); 
 					}
 			    else{
-					res.send("!קוד אימות שגוי"); 
+					res.send("WRONG"); 
 				}
     			});  
 
