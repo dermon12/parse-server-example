@@ -82,9 +82,13 @@ app.get('/getuser', function (req, res, next) {
 app.post('/sendsms', function (req, res, next) {
 	
 	// perform real send
-	
-	
-	var num =  req.body.smobile;
+	var userQuery = new Parse.Query(Parse.User);
+    userQuery.equalTo("mobile", req.body.smobile);
+    userQuery.first({
+      success: function(object) {
+        console.log("AAAAAAAAAAAAAAA" + object);
+        if (typeof object === "undefined"){
+		var num =  req.body.smobile;
 	var SMSVer = Parse.Object.extend("SMSVer");
 	var code = Math.floor(1000 + Math.random() * 9000);
 	// Create a new instance of that class.
@@ -100,7 +104,18 @@ app.post('/sendsms', function (req, res, next) {
 		  res.send("התרחשה שגיאה.. נא לנסות שוב במועד מאוחר יותר!");
 	  }
 	});
-	
+	    
+		
+        }
+       else{
+        res.send("!משתמש תפוס.... בחר מספר אחר"); 
+       }
+       
+      },
+      error: function(error) {
+             return next(error);
+      }
+    });
 	
 });
 
