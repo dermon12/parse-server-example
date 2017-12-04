@@ -13,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-	
+<script src="https://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 <script src="site/js/ajaxforms.js"></script>
 <style>
 /* The Modal (background) */
@@ -70,6 +70,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 .modtitle{
     font-size: 2em;
     font-weight: 700;
+}
+.inputbox{
+      background: #FEF1EC;
+    border: 1px solid #CD0A0A;
+  
 }
 </style>
 
@@ -199,6 +204,10 @@ $("#register").submit(function() {
 		else if (data == "SENT"){
 			$("#register").attr("action", "/");
 			    $("#SMSVerModal").modal("show");
+	        }
+		else if (data == "WRONG"){
+			  $('#scodeinmodal').effect("shake", { times:3 }, 200);
+			  $('#scodeinmodal').addClass("inputbox");
 	        }
 	        else{
 	   		openalert(data);
