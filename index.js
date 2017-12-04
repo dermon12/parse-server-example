@@ -278,17 +278,17 @@ app.post('/updateclass', function (req, res, next) {
   
 });
 
-function verifycode(number, code){
+function verifycode(number, code, _callback){
 	var verquery = new Parse.Query("SMSVer");
     verquery.equalTo("mobile", number);
     verquery.equalTo("code", parseInt(code));
     verquery.first({
       success: function(object) {
 	      if (typeof object === "undefined"){
-		return false;      
+		    _callback(false);         
 	      }
 	      else{
-		  return true;
+		      _callback(true);   
 		  object.destroy({
 			  success: function(myObject) {
 				  console.log("SEND TRUEEEEEEEEE");
@@ -302,6 +302,7 @@ function verifycode(number, code){
 	      
       },
       error: function(error) {
+		_callback(false);   
              return next(error);
       }
     });
@@ -343,22 +344,24 @@ app.post('/', function (req, res, next) {
       success: function(object) {
         console.log("AAAAAAAAAAAAAAA" + object);
         if (typeof object === "undefined"){
-		var ver = verifycode(req.body.smobile,req.body.scode);
-		if(ver == "true") {
-         user.signUp(null, {
-		    success: function(user) {
-			req.session.userId = user.getSessionToken();
-			return res.redirect('/profile');
-		      },
-		      error: function(user, error) {
-			return res.send(error.message);
-			return next(error);
-		      }
-		    }); 
-      		}
-    else{
-	    	res.send("!קוד אימות שגוי"); 
-    	}
+		    verifycode(req.body.smobile,req.body.scode, function(ver) {
+        				
+					if(ver == "true") {
+				 user.signUp(null, {
+					    success: function(user) {
+						req.session.userId = user.getSessionToken();
+						return res.redirect('/profile');
+					      },
+					      error: function(user, error) {
+						return res.send(error.message);
+						return next(error);
+					      }
+					    }); 
+					}
+			    else{
+					res.send("!קוד אימות שגוי"); 
+				}
+    			});  
 
         }
        else{
