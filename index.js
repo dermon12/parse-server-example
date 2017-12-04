@@ -345,8 +345,8 @@ app.post('/', function (req, res, next) {
         console.log("AAAAAAAAAAAAAAA" + object);
         if (typeof object === "undefined"){
 		    verifycode(req.body.smobile,req.body.scode, function(ver) {
-        				console.log("VERRRRRRRRRRRR " + ver);
-					if(ver == "true") {
+        				console.log("VERRR " + typeof ver);
+					if(ver) {
 				 user.signUp(null, {
 					    success: function(user) {
 						req.session.userId = user.getSessionToken();
