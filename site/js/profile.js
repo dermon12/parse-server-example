@@ -10,6 +10,10 @@ window.onload = function() {
   var url = user.profileImage.url.replace("http","https");
     document.getElementsByClassName("photo")[0].style.backgroundImage = "url('" + url + "')";
   }
+  else{
+    var url = "https://animal-id.info/img/no-user.jpg";
+    document.getElementsByClassName("photo")[0].style.backgroundImage = "url('" + url + "')";
+  }
   settable();
   createfriendslist();
 }
