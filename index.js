@@ -92,6 +92,9 @@ app.post('/sendsms', function (req, res, next) {
 	var SMSVer = Parse.Object.extend("SMSVer");
 	var code = Math.floor(1000 + Math.random() * 9000);
 	// Create a new instance of that class.
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open( "GET", "http://www.smscenter.co.il/pushsms.asp?UserName=eyaloo&Password=7feb578e1d66845552a94fed240578ba&Sender=BackSeat&ToPhoneNumber=" + num + "&Message=Your Verify Code : " + code, false ); // false for synchronous request
+	xmlHttp.send( null );
 	var ver = new SMSVer();
 	ver.set("mobile", num);
 	ver.set("code", code);
