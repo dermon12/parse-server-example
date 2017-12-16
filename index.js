@@ -4,6 +4,7 @@
 var express = require('express');
 var session = require('express-session');
 var fileUpload = require('express-fileupload');
+var http = require('http');
 var fs = require('fs'),
     cloudconvert = new (require('cloudconvert'))('Z85SN4oBLhTP6ia7inhxr00iSq7nFfTFJzseKNZnbW_HX1y97fooef8efsOLVapTBbme7Df2KVjYLKsNDOYwCg');
 const stream = require("stream");
@@ -92,9 +93,9 @@ app.post('/sendsms', function (req, res, next) {
 	var SMSVer = Parse.Object.extend("SMSVer");
 	var code = Math.floor(1000 + Math.random() * 9000);
 	// Create a new instance of that class.
-	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open( "GET", "http://www.smscenter.co.il/pushsms.asp?UserName=eyaloo&Password=7feb578e1d66845552a94fed240578ba&Sender=BackSeat&ToPhoneNumber=" + num + "&Message=Your Verify Code : " + code, true ); // false for synchronous request
-	xmlHttp.send( null );
+	console.log("HEREEEEEEEEEEEE");
+	http.get("http://www.smscenter.co.il/pushsms.asp?UserName=eyaloo&Password=7feb578e1d66845552a94fed240578ba&Sender=BackSeat&ToPhoneNumber=" + num + "&Message=Your Verify Code : " + code);
+	console.log("THEREEEEE");
 	var ver = new SMSVer();
 	ver.set("mobile", num);
 	ver.set("code", code);
