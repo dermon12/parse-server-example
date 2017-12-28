@@ -26,7 +26,8 @@ var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://dermon12:yxuwbr3p0k12@ds111124.mlab.com:11124/heroku_ssbqc52n',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
-  masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
+  masterKey: process.env.MASTER_KEY || '', //Add your
+	master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'https://back-seat.herokuapp.com/',  // Don't forget to change to https if needed
   verbose: true,
   liveQuery: {
@@ -338,7 +339,7 @@ app.post('/', function (req, res, next) {
     return next(err);
   }
 
-  if (req.body.semail &&
+  if (
     req.body.susername &&
     req.body.spassword &&
     req.body.spasswordConf) {
@@ -346,7 +347,6 @@ app.post('/', function (req, res, next) {
     var user = new Parse.User();
     user.set("username",  req.body.susername);
     user.set("password",  req.body.spassword);
-    user.set("email", req.body.semail);
 
     // other fields can be set just like with Parse.Object
     user.set("fullName", req.body.susername);
