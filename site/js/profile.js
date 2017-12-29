@@ -30,7 +30,7 @@ function createfriendslist(){
               }
               else
               {
-                add(friend.fullName, user.driversPoints[i], "https://animal-id.info/img/no-user.jpg", friend.mobile, friend.fullName);
+                add(friend.fullName, user.driversPoints[i], null, friend.mobile, friend.fullName);
               }
     	});
         
