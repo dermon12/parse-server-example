@@ -24,7 +24,14 @@ function createfriendslist(){
         var friendnum = friends[i];
         $.get("https://back-seat.herokuapp.com/getuser?num=" + friendnum, function(data, status){
               var friend = data;
+              if(user.profileImage)
+              {
               add(friend.fullName, user.driversPoints[i], friend.profileImage.url, friend.mobile, friend.fullName);
+              }
+              else
+              {
+                add(friend.fullName, user.driversPoints[i], "https://animal-id.info/img/no-user.jpg", friend.mobile, friend.fullName);
+              }
     	});
         
       }
