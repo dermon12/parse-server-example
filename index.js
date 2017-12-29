@@ -354,6 +354,7 @@ app.post('/', function (req, res, next) {
     user.set("friendsList", new Array());
     user.set("sentRequestList", new Array());
     user.set("driversPoints", new Array());
+    user.set("waitingList", new Array());
     user.set("token","");
     
     var userQuery = new Parse.Query(Parse.User);
@@ -476,7 +477,7 @@ app.get('/table', function(req, res) {
             userQuery.first({
               success: function(object) {
                 if (typeof object === "undefined"){
-                  res.send("");
+                  res.send("{}");
                 }
                 else{
                   
