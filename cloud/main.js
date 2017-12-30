@@ -431,15 +431,7 @@ function sendPushNotificationToUserByMobile(id, pushData) {
 Parse.Cloud.define("SendSms", function(request, response) {
 	var mobile = request.params.mobile;
     	var randomCode = request.params.randomCode;
-	Parse.Cloud.httpRequest({
-	      url: 'http://www.smscenter.co.il/pushsms.asp?UserName=eyaloo&Password=7feb578e1d66845552a94fed240578ba&Sender=BackSeat&ToPhoneNumber=" + mobile + "&Message=Your Verify Code : " + randomCode',
-	}).then(function(httpResponse) {
-		console.log(httpResponse);
-		res.end(httpResponse.text);
-	}, function(err) {
-		console.log(err);
-		res.end(err);
-	});	
+	http.get("http://www.smscenter.co.il/pushsms.asp?UserName=eyaloo&Password=7feb578e1d66845552a94fed240578ba&Sender=BackSeat&ToPhoneNumber=" + mobile + "&Message=Your Verify Code : " + randomCode);
 });
 
 Parse.Cloud.define("SetFactors", function(request, response) {
