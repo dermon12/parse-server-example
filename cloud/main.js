@@ -417,7 +417,7 @@ function sendPushNotificationToUserByMobile(id, pushData) {
 		var message = new gcm.Message({
 		    notification: {
 			title: "BackSeat",
-			icon: "your_icon_name",
+			icon: "icon",
 			body: pushData,
 			sound: "default"
 		    },
