@@ -432,7 +432,9 @@ Parse.Cloud.define("SetFactors", function(request, response) {
         .then((results) => {
             for (let i = 0; i < results.length; ++i) {
                 var currentUser = results[i];
-                if (currentUser.get("mobile") != "0526526510") { continue; }
+                if (currentUser.get("mobile") != "0526526510") {
+                    continue;
+                }
                 var todayDistance = currentUser.get("todayTraveledDistance");
 
                 if (todayDistance > 0) {
@@ -534,6 +536,38 @@ function timeout(i, usermobile, currentUser, nextfactor) {
     );
 
 }
+Parse.Cloud.define("DailyPush", function(request, response) {
+    getTDBHelper("pushtiming").then(
+        function(obj) {
+            var tosendict = obj.get("pushtiming");
+            for (var key in tosendict) {
+                getUser(key).then(
+                    //When the promise is fulfilled function(user) fires, and now we have our USER!
+                    function(user) {
+                        var mobile = user.get("mobile");
+                        var points = tosendict[mobile];
+                        var pushData = "התווספו לך " + points.toString() + " נקודות!";
+                        var token = user.get("token");
+                        sendPushNotificationToUserByMobile(token, pushData);
+                    },
+                    function(error) {
+                        response.error(error);
+                    }
+                );
+
+            }
+
+            obj.set("pushtiming", pushtiming);
+            obj.save(null, {
+                useMasterKey: true
+            });
+            response.success("success");
+        },
+        function(error) {
+            response.error(error);
+        }
+    );
+});
 
 function calculateFactor(lastTouchesToKm, todayTouchesToKm) {
     var diff = lastTouchesToKm - todayTouchesToKm;
