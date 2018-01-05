@@ -437,6 +437,7 @@ Parse.Cloud.define("SendSms", function(request, response) {
 });
 
 Parse.Cloud.define("SetFactors", function(request, response) {
+  var i = 0;
   var query = new Parse.Query(Parse.User);
   query.equalTo("userType", "Driver")
     .find()
@@ -462,35 +463,45 @@ Parse.Cloud.define("SetFactors", function(request, response) {
         	    currentUser.set("todayTraveledDistance", 0.0);
         	    
 		    var driverslist = currentUser.get("friendsList");
-		    /*if ( nextfactor >= 10){
+		    if ( nextfactor >= 10){
 			     for (let i = 0; i < driverslist.length; ++i) {
-				 getUser(driverslist[i]).then
-				(   
-					//When the promise is fulfilled function(user) fires, and now we have our USER!
-					function(user)
-					{	
-						var waitingList = user.get("waitingList");
-						var toadd =  parseInt((nextfactor / 10), 10);
-						if (toadd >= 10){
-							toadd = 9;
-						}
-						waitingList.push(currentUser.get("mobile") + toadd);
-						user.set("waitingList",waitingList);
-						var schoolid = user.get("SchoolID");
-						var userclas = user.get("class");
-						if (schoolid != null){
-							Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
-						}
-						user.save(null, {useMasterKey:true});
+						 getUser(driverslist[i]).then
+						(   
+							//When the promise is fulfilled function(user) fires, and now we have our USER!
+							function(user)
+							{	
+							
+								setTimeout(function(){
+									var driversPoints = user.get("driversPoints");
+									var friendsList = user.get("friendsList");
+									var currentmobile = currentUser.get("mobile");
+									var toadd =  parseInt((nextfactor / 10), 10);
+									if (toadd >= 10){
+										toadd = 9;
+									}
+									var indexofmobile = friendsList.indexOf(currentmobile);
+									if(indexofmobile > -1 && driversPoints.length > indexofmobile){
+										driversPoints[indexofmobile] = driversPoints[indexofmobile] + toadd;
+										user.set("driversPoints",driversPoints);
+										user.save(null, {useMasterKey:true});
+									}
+									
+									var schoolid = user.get("SchoolID");
+									var userclas = user.get("class");
+									if (schoolid != null){
+										Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
+									}
+									i = i + 1;
+								}, 1000 * i);
+							}
+							,
+							function(error)
+							{
+								response.error(error);
+							}
+						);
 					}
-					,
-					function(error)
-					{
-					    response.error(error);
-					}
-			    );
-			     }
-		    }*/
+				}
             }
 		currentUser.save(null, {useMasterKey:true});
         } 
