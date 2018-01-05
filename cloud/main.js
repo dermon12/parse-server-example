@@ -479,7 +479,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 									if (toadd >= 10){
 										toadd = 9;
 									}
-									var indexofmobile = friendsList.indexOf(currentmobile);
+									var indexofmobile = friendsList.indexOf(currentmobile) - 1;
 									console.log("HEYYYYYYYY " + driversPoints + " " + indexofmobile);
 									if(indexofmobile > -1 && driversPoints.length > indexofmobile){
 										driversPoints[indexofmobile] = driversPoints[indexofmobile] + toadd;
