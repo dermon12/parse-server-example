@@ -466,20 +466,8 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 		    var driverslist = currentUser.get("friendsList");
 		    if ( nextfactor >= 10){
 			     for (let i = 0; i < driverslist.length; ++i) {
-						 getUser(driverslist[i]).then
-						(   
-							//When the promise is fulfilled function(user) fires, and now we have our USER!
-							function(user)
-							{	
-								timeout(i, user,currentUser, nextfactor);
-								i = i + 1;
-							}
-							,
-							function(error)
-							{
-								response.error(error);
-							}
-						);
+						timeout(i,driverslist[i], user, currentUser, nextfactor);
+						i = i + 1;
 					}
 				}
             }
@@ -497,30 +485,41 @@ Parse.Cloud.define("SetFactors", function(request, response) {
     });
 });
 
-function timeout(i, user, currentUser, nextfactor){
-	setTimeout(function(){
-		var driversPoints = user.get("driversPoints");
-		var friendsList = user.get("friendsList");
-		var currentmobile = currentUser.get("mobile");
-		var toadd =  parseInt((nextfactor / 10), 10);
-		if (toadd >= 10){
-			toadd = 9;
-		}
-		var indexofmobile = friendsList.indexOf(currentmobile);
-		console.log("HEYYYYYYYY " + friendsList + " " + currentmobile + " " + indexofmobile);
-		if(indexofmobile > -1 && driversPoints.length > indexofmobile){
-			driversPoints[indexofmobile] = driversPoints[indexofmobile] + toadd;
-			user.set("driversPoints",driversPoints);
-			user.save(null, {useMasterKey:true});
-		}
-		
-		var schoolid = user.get("SchoolID");
-		var userclas = user.get("class");
-		if (schoolid != null){
-			Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
-		}
-	}, 1000 * i);
-	
+function timeout(i, usermobile, user, currentUser, nextfactor){
+							 getUser(usermobile).then
+						(   
+							//When the promise is fulfilled function(user) fires, and now we have our USER!
+							function(user)
+							{	
+									setTimeout(function(){
+										var driversPoints = user.get("driversPoints");
+										var friendsList = user.get("friendsList");
+										var currentmobile = currentUser.get("mobile");
+										var toadd =  parseInt((nextfactor / 10), 10);
+										if (toadd >= 10){
+											toadd = 9;
+										}
+										var indexofmobile = friendsList.indexOf(currentmobile);
+										console.log("HEYYYYYYYY " + friendsList + " " + currentmobile + " " + indexofmobile);
+										if(indexofmobile > -1 && driversPoints.length > indexofmobile){
+											driversPoints[indexofmobile] = driversPoints[indexofmobile] + toadd;
+											user.set("driversPoints",driversPoints);
+											user.save(null, {useMasterKey:true});
+										}
+										
+										var schoolid = user.get("SchoolID");
+										var userclas = user.get("class");
+										if (schoolid != null){
+											Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
+										}
+									}, 1000 * i);
+							}
+							,
+							function(error)
+							{
+								response.error(error);
+							}
+						);
 	
 }
 
