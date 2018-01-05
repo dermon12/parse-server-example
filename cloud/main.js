@@ -454,6 +454,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
                         var driverslist = currentUser.get("friendsList");
                         if (nextfactor >= 10) {
                             for (let i = 0; i < driverslist.length; ++i) {
+                                console.log("HEYYYYYYYY " + driverslist[i]);
                                 var toadd = parseInt((nextfactor / 10), 10);
                                 if (toadd >= 10) {
                                     toadd = 9;
