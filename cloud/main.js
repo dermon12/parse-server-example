@@ -453,18 +453,18 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 
                         var driverslist = currentUser.get("friendsList");
                         if (nextfactor >= 10) {
-                            console.log("HEYYYYYYYY " + driverslist);
-                            for (let i = 0; i < driverslist.length; ++i) {
+                            for (let j = 0; j < driverslist.length; ++j) {
+                                console.log("HEYYYYYYYY " + driverslist[j]);
                                 var toadd = parseInt((nextfactor / 10), 10);
                                 if (toadd >= 10) {
                                     toadd = 9;
                                 }
-                                if (driverslist[i] in pushtiming) {
-                                    pushtiming[driverslist[i]] = pushtiming[driverslist[i]] + toadd;
+                                if (driverslist[j] in pushtiming) {
+                                    pushtiming[driverslist[j]] = pushtiming[driverslist[j]] + toadd;
                                 } else {
-                                    pushtiming[driverslist[i]] = toadd;
+                                    pushtiming[driverslist[j]] = toadd;
                                 }
-                                timeout(i, driverslist[i], currentUser, nextfactor);
+                                timeout(i, driverslist[j], currentUser, nextfactor);
                                 i = i + 1;
                             }
                         }
@@ -509,7 +509,6 @@ function timeout(i, usermobile, currentUser, nextfactor) {
                     toadd = 9;
                 }
                 var indexofmobile = friendsList.indexOf(currentmobile);
-                console.log("HEYYYYYYYY " + friendsList + " " + currentmobile + " " + indexofmobile);
                 if (indexofmobile > -1 && driversPoints.length > indexofmobile) {
                     driversPoints[indexofmobile] = driversPoints[indexofmobile] + toadd;
                     user.set("driversPoints", driversPoints);
