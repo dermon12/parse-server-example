@@ -471,7 +471,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 							//When the promise is fulfilled function(user) fires, and now we have our USER!
 							function(user)
 							{	
-							
+							console.log("HEYYYYYYYY " + user.get("mobile"));
 								setTimeout(function(){
 									var driversPoints = user.get("driversPoints");
 									var friendsList = user.get("friendsList");
