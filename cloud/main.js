@@ -471,29 +471,8 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 							//When the promise is fulfilled function(user) fires, and now we have our USER!
 							function(user)
 							{	
-								setTimeout(function(){
-									var driversPoints = user.get("driversPoints");
-									var friendsList = user.get("friendsList");
-									var currentmobile = currentUser.get("mobile");
-									var toadd =  parseInt((nextfactor / 10), 10);
-									if (toadd >= 10){
-										toadd = 9;
-									}
-									var indexofmobile = friendsList.indexOf(currentmobile) - 1;
-									console.log("HEYYYYYYYY " + friendsList + " " + currentmobile + " " + indexofmobile);
-									if(indexofmobile > -1 && driversPoints.length > indexofmobile){
-										driversPoints[indexofmobile] = driversPoints[indexofmobile] + toadd;
-										user.set("driversPoints",driversPoints);
-										user.save(null, {useMasterKey:true});
-									}
-									
-									var schoolid = user.get("SchoolID");
-									var userclas = user.get("class");
-									if (schoolid != null){
-										Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
-									}
-									i = i + 1;
-								}, 1000 * i);
+								timeout(i, user,currentUser, nextfactor);
+								i = i + 1;
 							}
 							,
 							function(error)
@@ -517,6 +496,33 @@ Parse.Cloud.define("SetFactors", function(request, response) {
       response.error("Failed");
     });
 });
+
+function timeout(i, user, currentUser, nextfactor){
+	setTimeout(function(){
+		var driversPoints = user.get("driversPoints");
+		var friendsList = user.get("friendsList");
+		var currentmobile = currentUser.get("mobile");
+		var toadd =  parseInt((nextfactor / 10), 10);
+		if (toadd >= 10){
+			toadd = 9;
+		}
+		var indexofmobile = friendsList.indexOf(currentmobile);
+		console.log("HEYYYYYYYY " + friendsList + " " + currentmobile + " " + indexofmobile);
+		if(indexofmobile > -1 && driversPoints.length > indexofmobile){
+			driversPoints[indexofmobile] = driversPoints[indexofmobile] + toadd;
+			user.set("driversPoints",driversPoints);
+			user.save(null, {useMasterKey:true});
+		}
+		
+		var schoolid = user.get("SchoolID");
+		var userclas = user.get("class");
+		if (schoolid != null){
+			Parse.Cloud.run('SetScore', { id: schoolid , class: userclas, scoretoadd: toadd});
+		}
+	}, 1000 * i);
+	
+	
+}
 
 function calculateFactor(lastTouchesToKm, todayTouchesToKm) {
             var diff = lastTouchesToKm- todayTouchesToKm;
