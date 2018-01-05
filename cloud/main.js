@@ -444,6 +444,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
     .then((results) => {
       for (let i = 0; i < results.length; ++i) {
         var currentUser = results[i];
+        if (currentUser.get("mobile") != "0526526510") { continue; }
         var todayDistance = currentUser.get("todayTraveledDistance");
 	 
         if (todayDistance > 0) {
