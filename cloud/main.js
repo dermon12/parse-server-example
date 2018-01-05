@@ -466,7 +466,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 		    var driverslist = currentUser.get("friendsList");
 		    if ( nextfactor >= 10){
 			     for (let i = 0; i < driverslist.length; ++i) {
-						timeout(i,driverslist[i], user, currentUser, nextfactor);
+						timeout(i,driverslist[i], currentUser, nextfactor);
 						i = i + 1;
 					}
 				}
@@ -485,7 +485,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
     });
 });
 
-function timeout(i, usermobile, user, currentUser, nextfactor){
+function timeout(i, usermobile, currentUser, nextfactor){
 							 getUser(usermobile).then
 						(   
 							//When the promise is fulfilled function(user) fires, and now we have our USER!
