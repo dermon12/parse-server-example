@@ -455,6 +455,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
             currentUser.set("lastTouchesToKM", todayTouchesToKm );
 		 currentUser.set("todayTouches", 0);
         	    currentUser.set("todayTraveledDistance", 0.0);   
+	    }
             if (lastTouchestoKm  > -1){
 
 		    var nextfactor = calculateFactor(lastTouchestoKm, todayTouchesToKm);
@@ -503,8 +504,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
 					}
 				}
             }
-					currentUser.save(null, {useMasterKey:true});
-		}
+		currentUser.save(null, {useMasterKey:true});
         } 
        
         //TOODO : reset to 0 all today's values
