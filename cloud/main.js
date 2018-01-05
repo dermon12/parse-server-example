@@ -557,7 +557,7 @@ Parse.Cloud.define("DailyPush", function(request, response) {
 
             }
 
-            obj.set("pushtiming", pushtiming);
+            obj.set("pushtiming", {});
             obj.save(null, {
                 useMasterKey: true
             });
