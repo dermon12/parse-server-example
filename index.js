@@ -356,6 +356,7 @@ app.post('/', function (req, res, next) {
     user.set("driversPoints", new Array());
     user.set("waitingList", new Array());
     user.set("token","");
+    user.set("IWANT",new Array());
     
     var userQuery = new Parse.Query(Parse.User);
     userQuery.equalTo("mobile", req.body.smobile);
