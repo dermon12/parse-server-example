@@ -586,7 +586,7 @@ Parse.Cloud.define("IWANT", function(request, response) {
                             var friendslist = currentUser.get("friendsList");
                             var driverspoints = currentUser.get("driversPoints");
                             var requestlist = currentUser.get("sentRequestList");
-                            friendsList.push(added);
+                            friendslist.push(added);
                             requestlist.push(added);
                             driverspoints.push(0);
                             currentUser.set("friendsList", friendslist);
