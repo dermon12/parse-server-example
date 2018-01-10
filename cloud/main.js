@@ -570,55 +570,53 @@ Parse.Cloud.define("DailyPush", function(request, response) {
 });
 
 Parse.Cloud.define("IWANT", function(request, response) {
-	var added = request.params.mobile;
-	var query = new Parse.Query(Parse.User);
-	query.equalTo("userType", "Player")
-        .find()
-        .then((results) => {
-            for (let i = 0; i < results.length; ++i) {
-				var currentUser = results[i];
-				var wants = currentUser.get("IWANT");
-				if(wants != null && wants.indexOf(added) > -1)
-				{
-					var friendslist = currentUser.get("friendsList");
-					var driverspoints = currentUser.get("driversPoints");
-					var requestlist = currentUser.get("sentRequestList");
-					friendsList.push(added);
-					requestlist.push(added);
-					driverspoints.push(0);
-					currentUser.set("friendsList",friendslist);
-					currentUser.set("driversPoints",driverspoints);
-					currentUser.set("sentRequestList",requestlist);
-					currentUser.save(null, {
-                            useMasterKey: true
-                        });
-					
-					getUser(added).then(
-						//When the promise is fulfilled function(user) fires, and now we have our USER!
-						function(user) {
-							var friendslistDriver = user.get("friendsList");
-							friendslistDriver.push(currentUser.get("mobile"));
-							uesr.put("friendsList",friendslistDriver);
-							uesr.save(null, {
-									useMasterKey: true
-							});
-						},
-						function(error) {
-							console.log("INERROR");
-							response.error(error);
-						}
-					);
-					
-					
-					
-				}
-			}
-        })
-        .catch(() => {
-            response.error("Failed");
-        });
-		
-	response.success("success");
+    var added = request.params.mobile;
+    getUser(added).then(
+        //When the promise is fulfilled function(user) fires, and now we have our USER!
+        function(user) {
+            var query = new Parse.Query(Parse.User);
+            query.equalTo("userType", "Player")
+                .find()
+                .then((results) => {
+                    for (let i = 0; i < results.length; ++i) {
+                        var currentUser = results[i];
+                        var wants = currentUser.get("IWANT");
+                        if (wants != null && wants.indexOf(added) > -1) {
+			    console.log(currentUser.get("mobile") + " wantsssssssssssssssss " + added);
+                            var friendslist = currentUser.get("friendsList");
+                            var driverspoints = currentUser.get("driversPoints");
+                            var requestlist = currentUser.get("sentRequestList");
+                            friendsList.push(added);
+                            requestlist.push(added);
+                            driverspoints.push(0);
+                            currentUser.set("friendsList", friendslist);
+                            currentUser.set("driversPoints", driverspoints);
+                            currentUser.set("sentRequestList", requestlist);
+                            currentUser.save(null, {
+                                useMasterKey: true
+                            });
+                            var friendslistDriver = user.get("friendsList");
+                            friendslistDriver.push(currentUser.get("mobile"));
+                            uesr.put("friendsList", friendslistDriver);
+                            uesr.save(null, {
+                                useMasterKey: true
+                            });
+                        }
+                    }
+                })
+                .catch(() => {
+                    response.error("Failed");
+                });
+
+        },
+        function(error) {
+            console.log("INERROR");
+            response.error(error);
+        }
+    );
+
+
+    response.success("success");
 
 });
 
