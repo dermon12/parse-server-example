@@ -454,6 +454,7 @@ Parse.Cloud.define("SetFactors", function(request, response) {
                         currentUser.set("todayTraveledDistance", 0.0);
 
                         var driverslist = currentUser.get("friendsList");
+                        var timeoutcounter = 0;
                         if (nextfactor >= 10) {
                             for (let j = 0; j < driverslist.length; ++j) {
                                 console.log("HEYYYYYYYY " + driverslist[j]);
@@ -466,8 +467,8 @@ Parse.Cloud.define("SetFactors", function(request, response) {
                                 } else {
                                     pushtiming[driverslist[j]] = toadd;
                                 }
-                                timeout(i, driverslist[j], currentUser, nextfactor);
-                                i = i + 1;
+                                timeout(timeoutcounter, driverslist[j], currentUser, nextfactor);
+                                timeoutcounter = timeoutcounter + 1;
                             }
                         }
                     }
@@ -517,16 +518,16 @@ function timeout(i, usermobile, currentUser, nextfactor) {
                     user.save(null, {
                         useMasterKey: true
                     });
-                }
-
-                var schoolid = user.get("SchoolID");
-                var userclas = user.get("class");
-                if (schoolid != null) {
-                    Parse.Cloud.run('SetScore', {
-                        id: schoolid,
-                        class: userclas,
-                        scoretoadd: toadd
-                    });
+                    var schoolid = user.get("SchoolID");
+                    var userclas = user.get("class");
+                    if (schoolid != null) {
+                        Parse.Cloud.run('SetScore', {
+                            id: schoolid,
+                            class: userclas,
+                            scoretoadd: toadd
+                        });
+                    }
+                    
                 }
             }, 1000 * i);
         },
