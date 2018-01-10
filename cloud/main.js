@@ -571,6 +571,7 @@ Parse.Cloud.define("DailyPush", function(request, response) {
 
 Parse.Cloud.define("IWANT", function(request, response) {
 	var added = request.params.mobile;
+	var query = new Parse.Query(Parse.User);
 	query.equalTo("userType", "Player")
         .find()
         .then((results) => {
