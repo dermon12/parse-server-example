@@ -599,8 +599,8 @@ Parse.Cloud.define("IWANT", function(request, response) {
                                 });
                                 var friendslistDriver = user.get("friendsList");
                                 friendslistDriver.push(currentUser.get("mobile"));
-                                uesr.set("friendsList", friendslistDriver);
-                                uesr.save(null, {
+                                user.set("friendsList", friendslistDriver);
+                                user.save(null, {
                                     useMasterKey: true
                                 });
 
