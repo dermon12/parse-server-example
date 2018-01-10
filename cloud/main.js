@@ -581,26 +581,30 @@ Parse.Cloud.define("IWANT", function(request, response) {
                     for (let i = 0; i < results.length; ++i) {
                         var currentUser = results[i];
                         var wants = currentUser.get("IWANT");
-                        if (wants != null && wants.indexOf(added) > -1) {
-			    console.log(currentUser.get("mobile") + " wantsssssssssssssssss " + added);
-                            var friendslist = currentUser.get("friendsList");
-                            var driverspoints = currentUser.get("driversPoints");
-                            var requestlist = currentUser.get("sentRequestList");
-                            friendslist.push(added);
-                            requestlist.push(added);
-                            driverspoints.push(0);
-                            currentUser.set("friendsList", friendslist);
-                            currentUser.set("driversPoints", driverspoints);
-                            currentUser.set("sentRequestList", requestlist);
-                            currentUser.save(null, {
-                                useMasterKey: true
-                            });
-                            var friendslistDriver = user.get("friendsList");
-                            friendslistDriver.push(currentUser.get("mobile"));
-                            uesr.set("friendsList", friendslistDriver);
-                            uesr.save(null, {
-                                useMasterKey: true
-                            });
+                        if (wants != null) {
+                            if (wants.indexOf(added) > -1 && currentUser.get("friendsList").indexOf(added) == -1) {
+
+                                console.log(currentUser.get("mobile") + " wantsssssssssssssssss " + added);
+                                var friendslist = currentUser.get("friendsList");
+                                var driverspoints = currentUser.get("driversPoints");
+                                var requestlist = currentUser.get("sentRequestList");
+                                friendslist.push(added);
+                                requestlist.push(added);
+                                driverspoints.push(0);
+                                currentUser.set("friendsList", friendslist);
+                                currentUser.set("driversPoints", driverspoints);
+                                currentUser.set("sentRequestList", requestlist);
+                                currentUser.save(null, {
+                                    useMasterKey: true
+                                });
+                                var friendslistDriver = user.get("friendsList");
+                                friendslistDriver.push(currentUser.get("mobile"));
+                                uesr.set("friendsList", friendslistDriver);
+                                uesr.save(null, {
+                                    useMasterKey: true
+                                });
+
+                            }
                         }
                     }
                 })
