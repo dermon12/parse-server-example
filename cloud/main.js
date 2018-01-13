@@ -290,8 +290,10 @@ Parse.Cloud.define("updateFriends", function(request, response) {
                 response.success("success");
 
                 var driversPoints = user.get("driversPoints");
-                driversPoints.push(0);
-                user.set("driversPoints", pointsList);
+                if(driversPoints.length < friendsList.length){
+                    driversPoints.push(0);
+                }
+                user.set("driversPoints", driversPoints);
                 user.save(null, {
                     useMasterKey: true
                 });
