@@ -426,6 +426,7 @@ Parse.Cloud.define("SendSms", function(request, response) {
 });
 
 Parse.Cloud.define("SetFactors", function(request, response) {
+    var d = new Date();
     var i = 0;
     var pushtiming = {};
     var query = new Parse.Query(Parse.User);
@@ -443,6 +444,12 @@ Parse.Cloud.define("SetFactors", function(request, response) {
                     var todayTouches = currentUser.get("todayTouches");
                     var lastTouchestoKm = currentUser.get("lastTouchesToKM");
                     var todayTouchesToKm = todayTouches / todayDistance;
+                    var rehabData = currentUser.get("rehabData");
+                    if(rehabData == null){
+                        rehabData = {};
+                    }
+                    rehabData[d.getTime()] = todayTouchesToKm;
+                    currentUser.set("rehabData", rehabData);
                     if (todayTouchesToKm > 0) {
                         currentUser.set("lastTouchesToKM", todayTouchesToKm);
                         currentUser.set("todayTouches", 0);
