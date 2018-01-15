@@ -449,6 +449,11 @@ app.get('/logout', function (req, res, next) {
   }
 });
 
+app.get('/whatsthesms', function (req, res, next) {
+	var numtoget =  req.param('num');
+	res.send(numtoget);
+});
+
 
 
 
