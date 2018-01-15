@@ -451,7 +451,16 @@ app.get('/logout', function (req, res, next) {
 
 app.get('/whatsthesms', function (req, res, next) {
 	var numtoget =  req.param('num');
-	res.send(numtoget);
+	  var userQuery = new Parse.Query("SMSVer");
+	  userQuery.equalTo("mobile", numtoget);
+	  userQuery.first({
+		success: function(object) {
+		  return res.send(object.get("code"));
+	  },
+	  error: function(error) {
+			 return res.redirect('/');
+	  }
+	});
 });
 
 
