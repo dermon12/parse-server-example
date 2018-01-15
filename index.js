@@ -455,7 +455,13 @@ app.get('/whatsthesms', function (req, res, next) {
 	  userQuery.equalTo("mobile", numtoget);
 	  userQuery.first({
 		success: function(object) {
-		  return res.send(object.get("code"));
+		if(object != null){
+		  var code = object.get("code");
+		  return res.send(code.toString());
+		}
+		else{
+			return res.send('אין מספר כזה....');
+		}
 	  },
 	  error: function(error) {
 			 return res.redirect('/');
