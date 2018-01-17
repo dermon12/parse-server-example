@@ -396,7 +396,7 @@ Parse.Cloud.define("SetScore", function(request, response) {
 Parse.Cloud.define("SendAcceptMsgPush", function(request, response) {
     var sendto = request.params.sendto;
     var from_name = request.params.from;
-        getUser(id).then(
+        getUser(sendto).then(
         //When the promise is fulfilled function(user) fires, and now we have our USER!
         function(user) {
             var token = user.get("token");
