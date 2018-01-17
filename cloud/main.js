@@ -393,6 +393,23 @@ Parse.Cloud.define("SetScore", function(request, response) {
 });
 
 
+Parse.Cloud.define("SendAcceptMsgPush", function(request, response) {
+    var sendto = request.params.sendto;
+    var from_name = request.params.from;
+        getUser(id).then(
+        //When the promise is fulfilled function(user) fires, and now we have our USER!
+        function(user) {
+            var token = user.get("token");
+            var pushdata = from_name + " אישר את ההקלטה שלך!";
+            sendPushNotificationToUserByMobile(token,pushdata);
+        },
+        function(error) {
+            console.log("INERROR");
+            response.error(error);
+        }
+    );
+    
+});
 
 
 function sendPushNotificationToUserByMobile(id, pushData) {
