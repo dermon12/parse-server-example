@@ -573,7 +573,7 @@ Parse.Cloud.define("DailyPush", function(request, response) {
                         function(user) {
                             var mobile = user.get("mobile");
                             var points = tosendict[mobile];
-                            var pushData = "התווספו לך " + points.toString() + " נקודות!";
+                            var pushData = "התקבלו " + points.toString() + " נקודות חדשות מהנהגים שלך!";
                             var token = user.get("token");
                             sendPushNotificationToUserByMobile(token, pushData);
                         },
