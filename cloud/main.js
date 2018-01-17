@@ -562,36 +562,39 @@ function timeout(i, usermobile, currentUser, nextfactor) {
 
 }
 Parse.Cloud.define("DailyPush", function(request, response) {
-    getTDBHelper("pushtiming").then(
-        function(obj) {
-            var tosendict = obj.get("pushtiming");
-            for (var key in tosendict) {
-                getUser(key).then(
-                    //When the promise is fulfilled function(user) fires, and now we have our USER!
-                    function(user) {
-                        var mobile = user.get("mobile");
-                        var points = tosendict[mobile];
-                        var pushData = "התווספו לך " + points.toString() + " נקודות!";
-                        var token = user.get("token");
-                        sendPushNotificationToUserByMobile(token, pushData);
-                    },
-                    function(error) {
-                        response.error(error);
-                    }
-                );
+    var myDate = new Date();
+    if (myDate.getDay() != 6) { // not at Yom Shabat
+        getTDBHelper("pushtiming").then(
+            function(obj) {
+                var tosendict = obj.get("pushtiming");
+                for (var key in tosendict) {
+                    getUser(key).then(
+                        //When the promise is fulfilled function(user) fires, and now we have our USER!
+                        function(user) {
+                            var mobile = user.get("mobile");
+                            var points = tosendict[mobile];
+                            var pushData = "התווספו לך " + points.toString() + " נקודות!";
+                            var token = user.get("token");
+                            sendPushNotificationToUserByMobile(token, pushData);
+                        },
+                        function(error) {
+                            response.error(error);
+                        }
+                    );
 
+                }
+
+                obj.set("pushtiming", {});
+                obj.save(null, {
+                    useMasterKey: true
+                });
+                response.success("success");
+            },
+            function(error) {
+                response.error(error);
             }
-
-            obj.set("pushtiming", {});
-            obj.save(null, {
-                useMasterKey: true
-            });
-            response.success("success");
-        },
-        function(error) {
-            response.error(error);
-        }
-    );
+        );
+    }
 });
 
 Parse.Cloud.define("IWANT", function(request, response) {
