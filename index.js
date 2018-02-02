@@ -1,6 +1,5 @@
 // Example express application adding the parse-server module to expose Parse
 // compatible API routes.
-var SimpleMailgunAdapter = require('parse-server/lib/Adapters/Email/SimpleMailgunAdapter');
 var express = require('express');
 var session = require('express-session');
 var fileUpload = require('express-fileupload');
@@ -41,7 +40,7 @@ var api = new ParseServer({
 publicServerURL: 'http://back-seat.herokuapp.com/parse/',
   appName: 'BackSeat',
   emailAdapter: {
-    module: 'parse-server-simple-mailgun-adapter',
+    //module: 'parse-server-simple-mailgun-adapter',
     options: {
       // The address that your emails come from
       fromAddress: 'backseat@backseat.com',
