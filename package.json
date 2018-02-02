@@ -15,7 +15,8 @@
     "express-session": "*",
     "parse-server": "*",
     "express-fileupload": "*",
-    "cloudconvert":"*"
+    "cloudconvert":"*",
+    "parse-server-simple-mailgun-adapter:"*"
   },
   "scripts": {
     "start": "node index.js"
