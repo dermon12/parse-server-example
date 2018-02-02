@@ -41,7 +41,7 @@ var api = new ParseServer({
 publicServerURL: 'http://back-seat.herokuapp.com/parse/',
   appName: 'BackSeat',
   emailAdapter: {
-    module: 'parse-server-simple-mailgun-adapter',
+    module: 'parse-server-mailgun',
     options: {
       // The address that your emails come from
       fromAddress: 'backseat@backseat.com',
