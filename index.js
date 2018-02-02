@@ -26,7 +26,6 @@ var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://dermon12:yxuwbr3p0k12@ds111124.mlab.com:11124/heroku_ssbqc52n',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
-  publicServerURL : 'https://back-seat.herokuapp.com/parse/',
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'https://back-seat.herokuapp.com/',  // Don't forget to change to https if needed
   verbose: true,
@@ -37,6 +36,19 @@ var api = new ParseServer({
     android: {
       senderId: '413497295606',
       apiKey: 'AIzaSyAKDwdIROZUChQBXESs4D_JxeW84FVCMdI' 
+    }
+  },
+publicServerURL: 'http://back-seat.herokuapp.com/parse/',
+  appName: 'BackSeat',
+  emailAdapter: {
+    module: 'parse-server-simple-mailgun-adapter',
+    options: {
+      // The address that your emails come from
+      fromAddress: 'backseat@backseat.com',
+      // Your domain from mailgun.com
+      domain: 'sandbox6d5903f6f99a4ba9b54011b012537a46.mailgun.org',
+      // Your API key from mailgun.com
+      apiKey: 'key-872918c8b24167dad1d49346ac27da04',
     }
   }
 });
