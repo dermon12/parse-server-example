@@ -46,8 +46,7 @@ publicServerURL: 'http://back-seat.herokuapp.com/parse/',
       fromAddress: 'backseat@backseat.com',
       // Your domain from mailgun.com
       domain: 'sandbox6d5903f6f99a4ba9b54011b012537a46.mailgun.org',
-	    
-      verificationBody: 'Hi,\n\nYou are being asked to confirm the e-mail address %email% with %appname%\n\nClick here to confirm it:\n%link%',
+	passwordResetBody: 'לחץ על הקישור הבא לצורך קביעת סיסמא חדשה:\n\n%link%',
       // Your API key from mailgun.com
       apiKey: 'key-872918c8b24167dad1d49346ac27da04',
     }
