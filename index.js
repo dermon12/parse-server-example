@@ -1,6 +1,6 @@
 // Example express application adding the parse-server module to expose Parse
 // compatible API routes.
-
+var SimpleMailgunAdapter = require('parse-server/lib/Adapters/Email/SimpleMailgunAdapter');
 var express = require('express');
 var session = require('express-session');
 var fileUpload = require('express-fileupload');
