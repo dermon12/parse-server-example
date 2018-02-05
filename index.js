@@ -79,7 +79,7 @@ app.use(require('express-session')({
     },
     store: store,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 
 
