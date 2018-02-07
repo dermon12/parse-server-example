@@ -41,7 +41,7 @@ var api = new ParseServer({
     publicServerURL: 'http://back-seat.herokuapp.com/parse/',
     appName: 'BackSeat',
     emailAdapter: {
-         module: "parse-server-genericemail-adapter",
+         module: "parse-server-generic-email-adapter",
         options: {
            service: "Gmail" ,// Could be anything like yahoo, hotmail, etc, Full list - see below 
          email: "ofir.tro@gmail.com",
