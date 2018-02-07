@@ -18,7 +18,7 @@
     "cloudconvert":"*",
     "parse-server-simple-mailgun-adapter":"*",
     "connect-mongodb-session": "*",
-    "parse-server-genericemail-adapter":"*"
+    "parse-server-generic-email-adapter":"*"
   },
   "scripts": {
     "start": "node index.js"
