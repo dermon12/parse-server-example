@@ -44,7 +44,7 @@ var api = new ParseServer({
         module: 'parse-server-simple-mailgun-adapter',
         options: {
             // The address that your emails come from
-            fromAddress: 'backseat@mailgun.org',
+            fromAddress: 'backseat@backseat.com',
             // Your domain from mailgun.com
             domain: 'sandbox6d5903f6f99a4ba9b54011b012537a46.mailgun.org',
             passwordResetBody: 'לחץ על הקישור הבא לצורך קביעת סיסמא חדשה:\n\n%link%',
