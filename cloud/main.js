@@ -422,6 +422,7 @@ Parse.Cloud.define("SendAcceptMsgPush", function(request, response) {
             var token = user.get("token");
             var pushdata = from_name + " אישר את ההקלטה שלך!";
             sendPushNotificationToUserByMobile(token,pushdata);
+            response.success("success");
         },
         function(error) {
             console.log("INERROR");
@@ -460,6 +461,7 @@ Parse.Cloud.define("SendSms", function(request, response) {
     var mobile = request.params.mobile;
     var randomCode = request.params.randomCode;
     http.get("http://www.smscenter.co.il/pushsms.asp?UserName=eyaloo&Password=7feb578e1d66845552a94fed240578ba&Sender=BackSeat&ToPhoneNumber=" + mobile + "&Message=Your Verify Code : " + randomCode);
+    response.success("success");
 });
 
 Parse.Cloud.define("SetFactors", function(request, response) {
