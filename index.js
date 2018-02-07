@@ -44,7 +44,7 @@ var api = new ParseServer({
          module: "parse-server-generic-email-adapter",
         options: {
            service: "Gmail" ,// Could be anything like yahoo, hotmail, etc, Full list - see below 
-         email: "ofir.tro@gmail.com",
+         email: "ilbackseat@gmail.com",
          password: process.env.pass
         }
     }
