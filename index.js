@@ -41,15 +41,11 @@ var api = new ParseServer({
     publicServerURL: 'http://back-seat.herokuapp.com/parse/',
     appName: 'BackSeat',
     emailAdapter: {
-        module: 'parse-server-simple-mailgun-adapter',
+         module: "parse-server-genericemail-adapter",
         options: {
-            // The address that your emails come from
-            fromAddress: 'backseat@backseat.com',
-            // Your domain from mailgun.com
-            domain: 'sandbox6d5903f6f99a4ba9b54011b012537a46.mailgun.org',
-            passwordResetBody: 'לחץ על הקישור הבא לצורך קביעת סיסמא חדשה:\n\n%link%',
-            // Your API key from mailgun.com
-            apiKey: 'key-872918c8b24167dad1d49346ac27da04',
+           service: "Gmail" ,// Could be anything like yahoo, hotmail, etc, Full list - see below 
+         email: "ofir.tro@gmail.com",
+         password: process.env.pass
         }
     }
 });
