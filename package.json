@@ -17,7 +17,8 @@
     "express-fileupload": "*",
     "cloudconvert":"*",
     "parse-server-simple-mailgun-adapter":"*",
-    "connect-mongodb-session": "*"
+    "connect-mongodb-session": "*",
+    "parse-server-genericemail-adapter":"*"
   },
   "scripts": {
     "start": "node index.js"
