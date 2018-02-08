@@ -23,7 +23,7 @@ if (!databaseUri) {
 }
 
 var api = new ParseServer({
-    databaseURI: databaseUri || 'mongodb://dermon12:yxuwbr3p0k12@ds111124.mlab.com:11124/heroku_ssbqc52n',
+    databaseURI: databaseUri,
     cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
     appId: process.env.APP_ID || 'myAppId',
     masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
@@ -55,7 +55,7 @@ var api = new ParseServer({
 
 var app = express();
 var store = new MongoDBStore({
-    uri: 'mongodb://dermon12:yxuwbr3p0k12@ds111124.mlab.com:11124/heroku_ssbqc52n',
+    uri: databaseUri,
     collection: 'mySessions'
 });
 
@@ -69,7 +69,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(require('express-session')({
-    secret: 'Shh, its a secret!',
+    secret: process.env.secret,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     },
